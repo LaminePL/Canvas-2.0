@@ -11,7 +11,15 @@ app.get('/', (req, res)=>{
     res.send('Test Root Route');
 });
 
+// import user routes
+const userRoutes = require('./src/routes/user.route');
+
+
+// create user routes
+app.use('/api/v1/users', userRoutes); 
+
 // Ecouter sur le port
 app.listen(port, ()=>{
     console.log(`Server listening on port ${port}`)
 })
+
