@@ -9,4 +9,7 @@ router.get('/', userController.getUserList);
 //get user by ID
 router.get('/:id_user', userController.getUserByID);
 
+//create new user
+router.post('/', userController.createNewUser);
+
 module.exports = router;
