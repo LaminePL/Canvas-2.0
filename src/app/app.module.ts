@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule,   } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,20 +8,12 @@ import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CanvasModule } from './canvas/canvas.module';
 import { NgChartsModule } from 'ng2-charts';
-import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-
-
+import {MaterialModule} from './material.module'
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
   ],
   imports: [
 
@@ -33,14 +25,7 @@ import { MatListModule } from '@angular/material/list';
     CanvasModule,
     NgChartsModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-
-
-
+    MaterialModule,
   ],
   providers: [
     {
@@ -49,6 +34,8 @@ import { MatListModule } from '@angular/material/list';
       multi: true,
       deps: [KeycloakService],
     }
+  ],
+  schemas: [
   ],
   bootstrap: [AppComponent]
 })

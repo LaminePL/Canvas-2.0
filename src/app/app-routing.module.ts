@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StudentsComponent } from './canvas/students/students.component'
 import { TeachersComponent } from './canvas/teachers/teachers.component'
 import { AdminsComponent } from './canvas/admins/admins.component'
 import { AuthGuard } from "./utils/auth-guard";
 import { HomePageComponent } from './canvas/home-page/home-page.component'
 import {CanvasResolver} from './canvas/canvas.resolver'
+import {NavComponent} from './canvas/student-board/nav/nav.component'
+import {AdminsNavComponent} from './canvas/admins/admins_nav/admins_nav.component'
 const routes: Routes = [
   {
 
@@ -18,13 +19,13 @@ const routes: Routes = [
       },
       {
         path: 'student',
-        component: StudentsComponent,
+        component: NavComponent,
         canActivate: [AuthGuard],
         data: { roles: ['student_role'] },
       },
       {
         path: 'admin',
-        component: AdminsComponent,
+        component: AdminsNavComponent,
         canActivate: [AuthGuard],
         data: { roles: ['staff'] }
       },
