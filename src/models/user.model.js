@@ -50,4 +50,30 @@ User.createUser = (userReqData, result)=>{
 
 }
 
-module.exports = User;
+//update user
+User.updateUser = (id_user, userReqData, result) => {
+    dbConn.query("UPDATE user SET id_userType=?,first_name=?, last_name=?, email=?, is_admin=? WHERE id_user=?", [userReqData.id_userType, userReqData.first_name, userReqData.last_name, userReqData.email, userReqData.is_admin, id_user], (err, res)=>{
+      if(err){
+              console.log('Error updating data');
+              result(null, err);
+          }else{
+              console.log('User updated successfully');
+              result(null, res)
+          }
+    })
+  }
+  
+  //delete user
+  User.deleteUser = (id_user, result) => {
+    dbConn.query("DELETE FROM user WHERE id_user=?", id_user, (err, res)=>{
+      if(err){
+              console.log('Error deleting data');
+              result(null, err);
+          }else{
+              console.log('User deleted successfully');
+              result(null, res)
+          }
+    })
+  }
+  
+  module.exports = User;

@@ -45,3 +45,31 @@ exports.createNewUser = (req, res)=>{
 
     }
 }
+
+// update user
+exports.updateUser = (req, res) => {
+    console.log('req data update', req.body);
+    const userReqData = new UserModel(req.body);
+    //check null
+    if (req.body.contructor === Object && Object.keys(req.body).length === 0) {
+      res.send(400).send({ success: false, message: 'Please fill all fields' });
+  
+    } else {
+      console.log('Valid data');
+      UserModel.updateUser(req.params.id_user, userReqData, (err, user) => {
+        if (err)
+          res.send(err);
+        res.json({ status: true, message: 'User updated successfully', data: user });
+      })
+  
+    }
+  }
+  
+  //delete user
+  exports.deleteUser = (req,res) => {
+    UserModel.deleteUser(req.params.id_user, (err, user)=>{
+      if(err)
+        res.send(err);
+      res.json({success: true, message: 'user deleted successfully'});
+    })
+  }
