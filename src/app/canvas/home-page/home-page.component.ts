@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { KeycloakService, KeycloakAuthGuard } from 'keycloak-angular';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {KeycloakService, KeycloakAuthGuard} from 'keycloak-angular';
 
 @Component({
   selector: 'app-home-page',
@@ -9,14 +9,18 @@ import { KeycloakService, KeycloakAuthGuard } from 'keycloak-angular';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private keycloakService: KeycloakService, public router: Router) { }
+  constructor(private keycloakService: KeycloakService, public router: Router) {
+  }
 
   ngOnInit(): void {
     if (this.keycloakService.isUserInRole('student_role')) {
+      console.log('user')
       this.router.navigateByUrl('canvas/student');
-    } else if (this.keycloakService.isUserInRole('staff')) {
+    }
+    if (this.keycloakService.isUserInRole('staff')) {
       this.router.navigateByUrl('canvas/admin');
-    } else if (this.keycloakService.isUserInRole('teacher')) {
+    }
+    if (this.keycloakService.isUserInRole('teacher_role')) {
       this.router.navigateByUrl('canvas/teacher');
     }
   }

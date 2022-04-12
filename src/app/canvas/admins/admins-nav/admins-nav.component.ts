@@ -6,9 +6,9 @@ import {KeycloakService} from "keycloak-angular";
 import { KeycloakProfile } from 'keycloak-js';
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './admins_nav.component.html',
-  styleUrls: ['./admins_nav.component.css']
+  selector: 'app-admins-nav',
+  templateUrl: './admins-nav.component.html',
+  styleUrls: ['./admins-nav.component.css']
 })
 export class AdminsNavComponent implements OnInit {
   username:any;

@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, NgModule,   } from '@angular/core';
+import { APP_INITIALIZER, NgModule, } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -7,9 +7,11 @@ import { KeycloakAngularModule, KeycloakService } from "keycloak-angular";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CanvasModule } from './canvas/canvas.module';
-import { NgChartsModule } from 'ng2-charts';
 import { LayoutModule } from '@angular/cdk/layout';
-import {MaterialModule} from './material.module'
+import { MaterialModule } from './material.module';
+import { NgChartsModule } from 'ng2-charts';
+import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
+
 
 @NgModule({
   declarations: [
@@ -23,9 +25,11 @@ import {MaterialModule} from './material.module'
     KeycloakAngularModule,
     AppRoutingModule,
     CanvasModule,
-    NgChartsModule,
     LayoutModule,
     MaterialModule,
+    NgChartsModule,
+    ScheduleModule
+
   ],
   providers: [
     {

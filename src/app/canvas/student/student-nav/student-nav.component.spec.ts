@@ -7,15 +7,15 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { NavComponent } from './nav.component';
+import { StudentNavComponent } from './student-nav.component';
 
 describe('NavComponent', () => {
-  let component: NavComponent;
-  let fixture: ComponentFixture<NavComponent>;
+  let component: StudentNavComponent;
+  let fixture: ComponentFixture<StudentNavComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [NavComponent],
+      declarations: [StudentNavComponent],
       imports: [
         NoopAnimationsModule,
         LayoutModule,
@@ -29,7 +29,7 @@ describe('NavComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavComponent);
+    fixture = TestBed.createComponent(StudentNavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

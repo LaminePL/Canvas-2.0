@@ -7,11 +7,11 @@ import { typeWithParameters } from '@angular/compiler/src/render3/util';
 import { KeycloakProfile } from 'keycloak-js';
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  selector: 'app-teachers-nav',
+  templateUrl: './teachers-nav.component.html',
+  styleUrls: ['./teachers-nav.component.css']
 })
-export class NavComponent implements OnInit {
+export class TeachersNavComponent implements OnInit {
   username:any;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
