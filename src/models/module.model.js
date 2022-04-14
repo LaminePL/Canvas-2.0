@@ -22,7 +22,7 @@ Module.getAllModules = (data)=> {
 
 //get module by ID
 Module.getModuleByID = (id, data)=>{
-    dbConn.query("SELECT * FROM module WHERE id=?", id, (err, res)=>{
+    dbConn.query("SELECT * FROM modules WHERE id=?", id, (err, res)=>{
         if(err){
             console.log('Error fetching module with id', err);
             data(null, err);
