@@ -21,7 +21,9 @@ import { TestComponent } from './test/test.component';
 import { CreditsECTSComponent } from './student/credits-ects/credits-ects.component'
 import { ChartModule } from 'angular2-chartjs';
 import { NgChartsModule } from 'ng2-charts';
-
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import {CanvasCalendarComponent} from './features/canvas-calendar/canvas-calendar.component'
 @NgModule({
   declarations: [
     AdminsBoardComponent,
@@ -32,6 +34,7 @@ import { NgChartsModule } from 'ng2-charts';
     TeachersNavComponent,
     TestComponent,
     CreditsECTSComponent,
+    CanvasCalendarComponent
     ],
   imports: [
     CommonModule,
@@ -46,7 +49,11 @@ import { NgChartsModule } from 'ng2-charts';
     MatSidenavModule,
     MatListModule,
     ChartModule,
-    NgChartsModule
+    NgChartsModule,
+    CalendarModule.forRoot({
+     provide: DateAdapter,
+     useFactory: adapterFactory,
+   }),
 
   ],
   providers: [

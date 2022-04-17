@@ -10,7 +10,6 @@ import { CanvasModule } from './canvas/canvas.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialModule } from './material.module';
 import { NgChartsModule } from 'ng2-charts';
-import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 
 
 @NgModule({
@@ -28,8 +27,6 @@ import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
     LayoutModule,
     MaterialModule,
     NgChartsModule,
-    ScheduleModule
-
   ],
   providers: [
     {

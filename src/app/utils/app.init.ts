@@ -8,7 +8,7 @@ export function initializeKeycloak(keyckloak: KeycloakService): () => Promise<an
           {
             config :{
               url:"http://localhost:8080"+"/auth",
-              realm:"canvas-bis",
+              realm:"CANVAS",
               clientId:"canvas-app"
             },
             loadUserProfileAtStartUp:true,
