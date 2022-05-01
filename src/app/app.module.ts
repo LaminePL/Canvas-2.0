@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, NgModule, } from '@angular/core';
+import { APP_INITIALIZER, LOCALE_ID, NgModule, } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +12,10 @@ import { MaterialModule } from './material.module';
 import { NgChartsModule } from 'ng2-charts';
 import {SideNavComponent} from './canvas/shared/side-nav/side-nav.component'
 import {NavbarComponent} from './canvas/shared/navbar/navbar.component'
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+
+registerLocaleData(localeFr);
 
 @NgModule({
   declarations: [
@@ -36,10 +40,14 @@ import {NavbarComponent} from './canvas/shared/navbar/navbar.component'
       useFactory: initializeKeycloak,
       multi: true,
       deps: [KeycloakService],
-    }
+    },
+    { provide: LOCALE_ID, useValue: 'fr-FR'},
+
   ],
   schemas: [
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
