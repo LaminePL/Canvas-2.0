@@ -6,7 +6,7 @@ import {AdminsModule} from "./admins/admins.module";
 import {TeachersModule} from "./teachers/teachers.module";
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import {CanvasComponent} from './canvas.component';
-import {MaterialModule} from '../material.module'
+import {MaterialModule} from '../material.module';
 @NgModule({
   declarations: [
 

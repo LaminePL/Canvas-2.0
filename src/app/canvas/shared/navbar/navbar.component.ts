@@ -8,11 +8,11 @@ import {KeycloakProfile} from 'keycloak-js';
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-student-nav',
-  templateUrl: './student-nav.component.html',
-  styleUrls: ['./student-nav.component.scss']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class StudentNavComponent implements OnInit {
+export class NavbarComponent implements OnInit {
   firstName: any;
   lastName: any;
   email: any;

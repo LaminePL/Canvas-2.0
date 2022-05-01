@@ -1,9 +1,6 @@
 <mat-sidenav-container autosize>
-
   <mat-sidenav #sidenav mode="side" opened="true">
-
     <mat-nav-list>
-
 
       <mat-list-item (click)="isExpanded = !isExpanded">
         <mat-icon mat-list-icon class="chevron-button" [ngClass]="{ rotated: isExpanded }">chevron_right
@@ -11,11 +8,9 @@
       </mat-list-item>
       <div *ngIf="isExpanded" class="user-profile">
         <img class="avatar mat-elevation-z8" src="../../../../assets//img//lamine.png" />
-        <h4  class="name">{{firstName | uppercase}} {{lastName | uppercase}}</h4>
+        <h4 class="name">{{firstName | uppercase}} {{lastName | uppercase}}</h4>
         <p class="designation">Etudiant</p>
       </div>
-
-
       <mat-divider></mat-divider>
       <mat-list-item routerLink="">
         <mat-icon>dashboard</mat-icon>
@@ -49,7 +44,7 @@
 
       <button mat-button class="menu-button" routerLink="/profile">
         <mat-icon>exit_to_app</mat-icon>
-        <span *ngIf="isExpanded"  class="material-icon-outlined menu-item" href="#" (click)="logout()">Logout</span>
+        <span *ngIf="isExpanded" class="material-icon-outlined menu-item" href="#" (click)="logout()">Logout</span>
       </button>
 
     </mat-nav-list>
@@ -57,11 +52,9 @@
 
   <!-- Content -->
   <mat-sidenav-content>
-<app-student-nav></app-student-nav>
-<div class="main-contrainer">
-  <router-outlet></router-outlet>
-</div>
+    <app-navbar></app-navbar>
+    <div class="main-contrainer">
+      <router-outlet></router-outlet>
+    </div>
 
   </mat-sidenav-content>
-
-
