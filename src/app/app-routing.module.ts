@@ -40,8 +40,7 @@ const routes: Routes = [
 
   },
   { path: '', redirectTo: '/canvas', pathMatch: 'full' },
-  { path: 'canvas/404', component: NotFoundComponent },
-  { path: '**', redirectTo: 'canvas/404' }
+  { path: '**', component: NotFoundComponent }
 
 
 ];

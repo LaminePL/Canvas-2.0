@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { KeycloakService} from 'keycloak-angular';
 @Component({
-  selector: 'canvas-root',
-  templateUrl: '../app.component.html',
-  styleUrls: ['../app.component.scss']
+  selector: 'app-canvas',
+  templateUrl: './canvas.component.html',
+  styleUrls: ['./canvas.component.css']
 })
 export class CanvasComponent implements OnInit {
   title = 'Canvas';  firstName: any;

@@ -32,8 +32,9 @@ export class AuthGuard extends KeycloakAuthGuard {
 
       if (!granted) {
         console.log('error 401')
-        this.router.navigate(['/401']);
+        this.router.navigate(['canvas/401']);
       }
+
 
 
       resolve(granted);
