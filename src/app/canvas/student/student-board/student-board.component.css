@@ -16,9 +16,25 @@
   right: 10px;
 }
 
-.dashboard-card-content {
-  text-align: center;
-}
-.credits-ects{
+
+.credits-ects {
   display: block;
+}
+
+.mat-h1 {
+  margin-left: 15px;
+}
+
+.mat-card-content {
+  height: 90%;
+}
+
+.dashboard-img {
+  border-radius: 3px;
+  padding: 21px;
+  margin-top: -52px !important;
+  float: left;
+  height: 100px;
+  margin-left: -2em;
+
 }

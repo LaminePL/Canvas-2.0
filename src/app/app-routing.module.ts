@@ -1,14 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TeachersBoardComponent } from './canvas/teachers/teachers-board/teachers-board.component'
-import { AdminsBoardComponent } from './canvas/admins/admins-board/admins-board.component'
 import { AuthGuard } from "./utils/auth-guard";
-import { HomePageComponent } from './canvas/home-page/home-page.component'
-import {CanvasResolver} from './canvas/canvas.resolver'
-import {StudentNavComponent} from './canvas/student/student-nav/student-nav.component'
-import {AdminsNavComponent} from './canvas/admins/admins-nav/admins-nav.component'
-import {TeachersNavComponent} from "./canvas/teachers/teachers-nav/teachers-nav.component";
-
+import { PageNotFoundComponent } from './canvas/shared/page-not-found/page-not-found.component'
+import { CanvasComponent } from './canvas/canvas.component'
 const routes: Routes = [
   {
 
@@ -16,24 +10,26 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomePageComponent,
+        component: CanvasComponent,
+        canActivate: [AuthGuard],
 
       },
       {
         path: 'student',
-        component: StudentNavComponent,
+        loadChildren: () => import('./canvas/student/student.module').then(mod => mod.StudentModule),
         canActivate: [AuthGuard],
         data: { roles: ['student_role'] },
       },
+
       {
         path: 'admin',
-        component: AdminsNavComponent,
+        loadChildren: () => import('./canvas/admins/admins.module').then(mod => mod.AdminsModule),
         canActivate: [AuthGuard],
         data: { roles: ['admins_role'] }
       },
       {
         path: 'teacher',
-        component: TeachersNavComponent,
+        loadChildren: () => import('./canvas/teachers/teachers.module').then(mod => mod.TeachersModule),
         canActivate: [AuthGuard],
         data: { roles: ['teachers_role'] }
       },
@@ -41,14 +37,15 @@ const routes: Routes = [
     ],
 
   },
- // { path: '**', redirectTo: '/canvas' }
+  { path: '', redirectTo: '/canvas', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent }
 
 
 ];
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: false })],
   providers: [AuthGuard],
   exports: [RouterModule]
 })

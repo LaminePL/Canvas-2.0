@@ -1,4 +1,4 @@
-/*mat-sidenav-container {
+mat-sidenav-container {
   height: 100%;
   mat-sidenav {
     background: #369ee9;
@@ -60,19 +60,5 @@ mat-icon {
   height: 70px;
   border-radius: 50%;
 }
-*/
-.spacer {
-  flex: 1 1 auto;
-}
-.nav-right {
-  display: flex;
-  align-items: center;
-}
 
-@media screen and (max-width: 767px) {
-  .mat-toolbar-row, .mat-toolbar-single-row {
-    display: flex;
-    flex-direction: row;
-  }
 
-}

@@ -8,16 +8,17 @@ import {KeycloakProfile} from 'keycloak-js';
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-student-nav',
-  templateUrl: './student-nav.component.html',
-  styleUrls: ['./student-nav.component.scss']
+  selector: 'app-side-nav',
+  templateUrl: './side-nav.component.html',
+  styleUrls: ['./side-nav.component.scss']
 })
-export class StudentNavComponent implements OnInit {
+export class SideNavComponent implements OnInit {
   firstName: any;
   lastName: any;
   email: any;
   userRole: any;
   isExpanded: boolean = false;
+  showFiller = false;
 
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -60,7 +61,5 @@ export class StudentNavComponent implements OnInit {
 
 
   }
-
-
 
 }

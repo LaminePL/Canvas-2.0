@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TestComponent } from './test.component';
+import { CanvasCalendarZoomComponent } from './canvas-calendar-zoom.component';
 
-describe('TestComponent', () => {
-  let component: TestComponent;
-  let fixture: ComponentFixture<TestComponent>;
+describe('CanvasCalendarZoomComponent', () => {
+  let component: CanvasCalendarZoomComponent;
+  let fixture: ComponentFixture<CanvasCalendarZoomComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TestComponent ]
+      declarations: [ CanvasCalendarZoomComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestComponent);
+    fixture = TestBed.createComponent(CanvasCalendarZoomComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

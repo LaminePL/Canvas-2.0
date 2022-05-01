@@ -3,13 +3,21 @@
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .user_account {
   margin-left: auto !important;
   margin-right: 0 !important;
 }
+
 .user_email {
   font-size: 9px;
 }
@@ -18,4 +26,44 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   display: none !important;
 }
 
+.dashboard-card-content {
+  text-align: center;
+  width: auto;
+  overflow: auto;
 
+}
+
+.responsive-menu {
+  display: none !important;
+}
+
+.main-container {
+  width: 90%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.mat-toolbar.mat-primary {
+  position: relative;
+  box-shadow: 0 12px 25px rgb(0 0 0 / 26%);
+  z-index: 10;
+  margin-bottom: 2em;
+}
+.mat-toolbar-multiple-rows {
+  min-height: 100px;
+}
+
+@media screen and (max-width: 767px) {
+
+  .responsive-menu {
+    display: block !important;
+  }
+
+  .nav-right {
+    display: none !important;
+  }
+
+}

@@ -10,14 +10,15 @@ import { CanvasModule } from './canvas/canvas.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialModule } from './material.module';
 import { NgChartsModule } from 'ng2-charts';
-
-
+import {SideNavComponent} from './canvas/shared/side-nav/side-nav.component'
+import {StudentNavComponent} from './canvas/student/student-nav/student-nav.component'
 @NgModule({
   declarations: [
     AppComponent,
+    SideNavComponent,
+    StudentNavComponent
   ],
   imports: [
-
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,

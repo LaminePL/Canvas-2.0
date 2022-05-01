@@ -1,0 +1,111 @@
+mat-sidenav-container {
+  height: 100%;
+  mat-sidenav {
+    background: #673ab7;
+  }
+  mat-sidenav {
+    mat-nav-list {
+      .menu-item {
+        margin-left: 8px;
+      }
+
+      .chevron-button {
+        transition: 300ms ease-in-out;
+        transform: rotate(0deg);
+      }
+
+      .chevron-button.rotated {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+.mat-list-base {
+  padding-top: 15px;
+  display: block;
+  -webkit-tap-highlight-color: transparent;
+}
+.mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+  padding-bottom: 3em;
+}
+.material-icons {
+  color: white;
+}
+.menu-item {
+  color: white;
+}
+.main-contrainer{
+  margin-left: 3em;
+}
+.name {
+  margin-top: 8px;
+  font-weight: normal;
+}
+
+.designation {
+  margin-top: 2px;
+  font-size: 0.7rem;
+  color: lightgrey;
+}
+
+mat-divider {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: lightgrey;
+}
+mat-icon {
+  margin-right: 8px;
+}
+.mat-icon {
+  margin-right: 8px;
+}
+.user-profile {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+}
+.avatar {
+  margin-top: 16px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.toolbarNav {
+  position: fixed;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-around;
+  padding: 2em;
+  background-color: white;
+
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 3px 3px 5px 6px #ccc; /* Firefox 3.5 - 3.6 */
+  box-shadow: 2px 2px 4px 5px #ccc; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+
+  button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    span {
+      display: block;
+    }
+  }
+}
+
+button:hover,
+.active-link {
+  color: blueviolet;
+}
+
+
+@media screen and (max-width: 767px) {
+  .main-contrainer{
+    margin: 0 auto;
+  }
+  }
+
+
