@@ -42,11 +42,10 @@
         <span *ngIf="isExpanded" class="menu-item">Infos</span>
       </mat-list-item>
 
-      <button mat-button class="menu-button" routerLink="/profile">
+      <button mat-button class="menu-button" (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
-        <span *ngIf="isExpanded" class="material-icon-outlined menu-item" href="#" (click)="logout()">Logout</span>
+        <span *ngIf="isExpanded" class="material-icon-outlined menu-item" >Logout</span>
       </button>
-
     </mat-nav-list>
   </mat-sidenav>
 

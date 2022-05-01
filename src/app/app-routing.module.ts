@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from "./utils/auth-guard";
-import { PageNotFoundComponent } from './canvas/shared/page-not-found/page-not-found.component'
 import { CanvasComponent } from './canvas/canvas.component'
+import { UnauthorizedComponent } from './canvas/shared/unauthorized/unauthorized.component';
+import { NotFoundComponent } from './canvas/shared/not-found/not-found.component';
 const routes: Routes = [
   {
 
@@ -33,12 +34,14 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         data: { roles: ['teachers_role'] }
       },
+      { path: '401', component: UnauthorizedComponent },
 
     ],
 
   },
   { path: '', redirectTo: '/canvas', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent }
+  { path: 'canvas/404', component: NotFoundComponent },
+  { path: '**', redirectTo: 'canvas/404' }
 
 
 ];

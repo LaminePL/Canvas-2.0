@@ -13,13 +13,19 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {NgChartsModule} from "ng2-charts";
 import {AdminsBoardComponent} from './admins-board/admins-board.component'
-import {AdminsNavComponent} from './admins-nav/admins-nav.component'
-
+import { RouterModule, Routes } from '@angular/router';
+const ROUTES: Routes = [
+  {
+    path: '',
+    component:AdminsBoardComponent ,
+  },
+]
 
 @NgModule({
-  declarations: [AdminsBoardComponent, AdminsNavComponent],
+  declarations: [AdminsBoardComponent],
   imports: [
     CommonModule,
+    RouterModule.forChild(ROUTES),
     ChartModule,
     CommonModule,
     MaterialModule,
