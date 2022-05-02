@@ -1,5 +1,5 @@
-import {KeycloakService, KeycloakOptions} from 'keycloak-angular'
-
+import {KeycloakService} from 'keycloak-angular'
+import {environment} from '../../environments/environment'
 export function initializeKeycloak(keyckloak: KeycloakService): () => Promise<any> {
   return (): Promise<any>=>{
     return new Promise<void>(async  (resolve,reject) =>{
@@ -7,9 +7,9 @@ export function initializeKeycloak(keyckloak: KeycloakService): () => Promise<an
         await keyckloak.init(
           {
             config :{
-              url:"http://localhost:8080"+"/auth",
-              realm:"CANVAS", //CANVAS //canvas-bis
-              clientId:"canvas-app"
+              url: environment.keycloak.issuer,
+              realm:environment.keycloak.realm, //CANVAS //canvas-bis
+              clientId:environment.keycloak.clientId
             },
             loadUserProfileAtStartUp:true,
             initOptions:{
@@ -22,7 +22,7 @@ export function initializeKeycloak(keyckloak: KeycloakService): () => Promise<an
         resolve()
       }
       catch (error){
-        alert('errror')
+        return error
       }
     })
   }

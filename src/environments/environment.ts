@@ -8,7 +8,7 @@ export const environment = {
   envName: 'local',
   keycloak: {
     // Url of the Identity Provider
-    issuer: 'http://localhost:8080/auth/',
+    issuer: "http://localhost:8080" + "/auth",
 
     // Realm
     realm: 'CANVAS',
