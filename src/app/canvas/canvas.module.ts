@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { CommonModule, registerLocaleData } from '@angular/common';
+import { CommonModule} from '@angular/common';
 
 import { StudentModule } from "./student/student.module";
 import { AdminsModule } from "./admins/admins.module";
@@ -29,8 +29,5 @@ import { HttpClientModule } from '@angular/common/http';
 
 })
 export class CanvasModule {
-}
-function localeFr(localeFr: any) {
-  throw new Error('Function not implemented.');
 }
 

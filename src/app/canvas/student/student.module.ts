@@ -25,7 +25,18 @@ import {
 import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
 import {RouterModule, Routes} from "@angular/router";
 import {StudentBoardComponent} from './student-board/student-board.component';
-import { CreditsEctsZoomComponent } from './features/credits-ects-zoom/credits-ects-zoom.component'
+import { CreditsEctsZoomComponent } from './features/credits-ects-zoom/credits-ects-zoom.component';
+import { StudentCalendarComponent } from './features/student-calendar/student-calendar.component';
+
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  interactionPlugin,
+  timeGridPlugin
+]);
 
 class CustomDateFormatter extends CalendarNativeDateFormatter {
   public override dayViewHour({date, locale}: DateFormatterParams): string {
@@ -44,7 +55,7 @@ const ROUTES: Routes = [
   },
   {
     path: 'calendar',
-    component: CanvasCalendarZoomComponent
+    component: StudentCalendarComponent
   },
   {
     path: 'credit-ECTS',
@@ -54,7 +65,7 @@ const ROUTES: Routes = [
 ]
 
 @NgModule({
-  declarations: [CreditsECTSComponent, StudentBoardComponent, CanvasCalendarComponent, CanvasCalendarZoomComponent, CreditsEctsZoomComponent],
+  declarations: [CreditsECTSComponent, StudentBoardComponent, CanvasCalendarComponent, CanvasCalendarZoomComponent, CreditsEctsZoomComponent, StudentCalendarComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(ROUTES),
@@ -71,6 +82,8 @@ const ROUTES: Routes = [
     MatSidenavModule,
     MatListModule,
     NgChartsModule,
+    FullCalendarModule,
+
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory

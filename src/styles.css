@@ -60,6 +60,13 @@ body {
   min-height: 78px;
 }
 
+.fc .fc-col-header-cell-cushion {
+  display: inline-block;
+  padding: 2px 4px;
+  color: #2c3e50;
+  text-decoration: unset;
+}
+
 @media screen and (max-width: 767px) {
 
   .responsive-menu {
@@ -69,5 +76,15 @@ body {
   .nav-right {
     display: none !important;
   }
-
+  .mat-card>:last-child:not(.mat-card-footer), .mat-card-content>:last-child:not(.mat-card-footer) {
+    margin-bottom: 0;
+    height: 536px;
+    /* width: 105%; */
+  }
+  .fc .fc-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+  }
 }
