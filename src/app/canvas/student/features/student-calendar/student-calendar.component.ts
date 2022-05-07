@@ -4,6 +4,7 @@ import {Calendar} from '@fullcalendar/core';
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import frLocale from '@fullcalendar/core/locales/fr';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-student-calendar',
@@ -33,9 +34,9 @@ export class StudentCalendarComponent implements OnInit {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
-    dayHeaderFormat: { weekday: 'short', month: 'short', day: '2-digit', omitCommas: true },
+    dayHeaderFormat: {weekday: 'short', month: 'short', day: '2-digit', omitCommas: true},
     businessHours: {
-      daysOfWeek: [ 1, 2, 3, 4,5 ], // lundi - vendredi
+      daysOfWeek: [1, 2, 3, 4, 5], // lundi - vendredi
       startTime: '09:00',
       endTime: '18:00',
     },
@@ -49,25 +50,29 @@ export class StudentCalendarComponent implements OnInit {
         start: '2022-05-04T09:30:00',
         end: '2022-05-04T12:30:00',
         extendedProps: {
-          department: 'BioChemistry'
+          department: 'salle des Géants'
         },
-        description: 'Lecture'
+        description: 'Disccussion projet de fin d année'
       },
       {
         title: '4PROG',
         start: '2022-05-04T13:30:00',
         end: '2022-05-04T17:30:00',
         extendedProps: {
-          department: 'BioChemistry'
+          department: 'salle des Géants'
         },
-        description: 'Lecture'
+        description: 'Disccussion projet de fin d année'
       }
     ],
-    eventClick: function(info) {
-      console.log('Event: ' + info.event.title);
-      console.log('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-      console.log('View: ' + info.view.type);
-
+    eventClick: function (info) {
+      Swal.fire({
+        //position: 'top-end',
+        title: info.event.title,
+        text: info.event.extendedProps['description'],
+        footer: info.event.extendedProps['department'],
+        showConfirmButton: false,
+        //timer: 1500
+      })
       // change the border color just for fun
       info.el.style.borderColor = 'red';
     }
