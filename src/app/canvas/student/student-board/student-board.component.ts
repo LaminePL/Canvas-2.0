@@ -27,12 +27,14 @@ export class StudentBoardComponent {
       }
 
       return [
-        { title: 'Card A', cols: 2, rows: 1 },
-        { title: 'Card B', cols: 2, rows: 1 },
-        { title: 'Card C', cols: 2, rows: 1, img: '../../../../assets//img//pngegg (3).png' },
-        { title: 'Contabilité', cols: 2, rows: 1 },
+        { title: 'Cours', cols: 8, rows: 2,  img: '../../../../assets//img//courses.png' },
         { title: 'Credits ECTS', cols: 4, rows: 2 },
         { title: 'Calendrier journalier', cols: 4, rows: 2, img: '../../../../assets//img//calendar.png' },
+        { title: 'Card A', cols: 2, rows: 1 },
+        { title: 'Card B', cols: 2, rows: 1 },
+        { title: 'Contabilité', cols: 2, rows: 1 },
+        { title: 'Card C', cols: 2, rows: 1, img: '../../../../assets//img//pngegg (3).png' },
+
         { title: 'Card 4', cols: 4, rows: 1 }
       ];
     })
