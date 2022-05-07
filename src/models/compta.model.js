@@ -2,6 +2,7 @@ var dbConn = require('../../config/db.config');
 
 
 var Compta = function(compta) {
+    this.id_student = compta.id_student;
     this.compta_payment_type = compta.compta_payment_type;
     this.compta_paid = compta.compta_paid;
     this.compta_payment_due = compta.compta_payment_due;

@@ -2,6 +2,7 @@ var dbConn = require('../../config/db.config');
 
 
 var Hiring = function(hiring) {
+    this.id_student = hiring.id_student;
     this.lenght_month_hired = hiring.lenght_month_hired;
     this.company_hired = hiring.company_hired;
 }

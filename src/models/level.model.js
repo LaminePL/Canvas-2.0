@@ -2,6 +2,7 @@ var dbConn = require('../../config/db.config');
 
 
 var Level = function(level) {
+    this.id_student = level.id_student;
     this.level = level.level;
     this.age_of_entry = level.age_of_entry;
     this.previous_level = level.previous_level;

@@ -2,6 +2,7 @@ var dbConn = require('../../config/db.config');
 
 
 var Contrat_pro = function(contrat_pro) {
+    this.id_student = contrat_pro.id_student;
     this.company_name = contrat_pro.company_name;
     this.company_adress = contrat_pro.company_adress;
     this.post_occupation = contrat_pro.post_occupation;
