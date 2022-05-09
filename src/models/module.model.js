@@ -3,6 +3,7 @@ var dbConn = require('../../config/db.config');
 
 var Module = function(module) {
     this.module_name = module.module_name;
+    this.module_credits = module.module_credits;
 }
 
 

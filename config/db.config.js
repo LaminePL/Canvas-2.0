@@ -7,7 +7,7 @@ const dbConn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'canvas2'
+    database: 'canvasbis'
 });
 
 dbConn.connect(function(error){
