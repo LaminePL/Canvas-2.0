@@ -47,22 +47,12 @@ export class StudentCalendarComponent implements OnInit {
     events: [
       {
         title: '4PROG',
-        start: '2022-05-04T09:30:00',
-        end: '2022-05-04T12:30:00',
-        extendedProps: {
-          department: 'salle des Géants'
-        },
+        start: '2022-05-17T09:00:00',
+        end: '2022-05-17T17:00:00',
+        department: 'salle des Géants',
         description: 'Disccussion projet de fin d année'
       },
-      {
-        title: '4PROG',
-        start: '2022-05-04T13:30:00',
-        end: '2022-05-04T17:30:00',
-        extendedProps: {
-          department: 'salle des Géants'
-        },
-        description: 'Disccussion projet de fin d année'
-      }
+
     ],
     eventClick: function (info) {
       Swal.fire({
