@@ -32,6 +32,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { StudentResolver } from './student.resolver';
+import { ComptaComponent } from './features/compta/compta.component';
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
   interactionPlugin,
@@ -51,6 +53,9 @@ const ROUTES: Routes = [
   {
     path: '',
     component: StudentBoardComponent,
+    resolve: {
+      types : StudentResolver
+    }
 
   },
   {
@@ -65,7 +70,7 @@ const ROUTES: Routes = [
 ]
 
 @NgModule({
-  declarations: [CreditsECTSComponent, StudentBoardComponent, CanvasCalendarComponent, CanvasCalendarZoomComponent, CreditsEctsZoomComponent, StudentCalendarComponent],
+  declarations: [CreditsECTSComponent, StudentBoardComponent, CanvasCalendarComponent, CanvasCalendarZoomComponent, CreditsEctsZoomComponent, StudentCalendarComponent, ComptaComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(ROUTES),
