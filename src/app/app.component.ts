@@ -14,11 +14,21 @@ export class AppComponent implements OnInit {
   userRole: any;
   isExpanded: boolean = false;
   showFiller = false;
+  userProfileRoute = ''
 
   constructor(private keycloakService: KeycloakService, public router: Router) {
   }
   ngOnInit(): void {
 
+    if (this.keycloakService.isUserInRole('student_role')) {
+      this.userProfileRoute = 'canvas/student'
+    }
+    if (this.keycloakService.isUserInRole('admins_role')) {
+      this.userProfileRoute = 'canvas/admin'
+    }
+    if (this.keycloakService.isUserInRole('teachers_role')) {
+      this.userProfileRoute = 'canvas/teacher'
+    }
   }
 
   logout() {

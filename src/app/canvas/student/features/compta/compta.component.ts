@@ -15,7 +15,6 @@ export class ComptaComponent implements OnInit {
   ngOnInit(): void {
     this.sutdentService.getComptaInfo(localStorage.getItem('student_id')).pipe(
       map((compta)=>{
-        debugger
         return compta[0].compta_payment_due
       })
     ).subscribe((res)=>{

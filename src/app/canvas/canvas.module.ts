@@ -7,11 +7,13 @@ import { TeachersModule } from "./teachers/teachers.module";
 import { CanvasComponent } from './canvas.component';
 import { MaterialModule } from '../material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { UserProfileComponent } from './shared/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
 
     CanvasComponent,
+      UserProfileComponent,
   ],
   imports: [
     CommonModule,
