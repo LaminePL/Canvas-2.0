@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
-import { SutdentService } from '../../sutdent.service';
+import { StudentsService } from '../../../../../services/students.service';
 
 @Component({
   selector: 'app-compta',
@@ -10,10 +10,10 @@ import { SutdentService } from '../../sutdent.service';
 export class ComptaComponent implements OnInit {
   comptaPaymentDue: number | undefined
 
-  constructor(private sutdentService: SutdentService) { }
+  constructor(private studentsService: StudentsService) { }
 
   ngOnInit(): void {
-    this.sutdentService.getComptaInfo(localStorage.getItem('student_id')).pipe(
+    this.studentsService.getComptaInfo(localStorage.getItem('student_id')).pipe(
       map((compta)=>{
         return compta[0].compta_payment_due
       })

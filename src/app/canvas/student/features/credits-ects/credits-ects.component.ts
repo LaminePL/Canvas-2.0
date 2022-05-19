@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { map } from 'rxjs';
-import { SutdentService } from '../../sutdent.service';
+import { StudentsService } from '../../../../../services/students.service';
 
 @Component({
   selector: 'app-credits-ects',
@@ -13,10 +13,10 @@ export class CreditsECTSComponent implements OnInit {
   creditsNonValidés: number = 60;
   data : any;
 
-  constructor(private sutdentService: SutdentService
+  constructor(private studentsService: StudentsService
   ) { }
   ngOnInit(): void {
-    this.sutdentService.getStudentGrade(localStorage.getItem('student_id')).pipe(
+    this.studentsService.getStudentGrade(localStorage.getItem('student_id')).pipe(
       map((grades: any)=>{
         this.creditsValidés = grades['total_credits']
         return grades['total_credits']

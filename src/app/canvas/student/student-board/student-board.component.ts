@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { map, take } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SutdentService } from '../sutdent.service';
+import { StudentsService } from '../../../../services/students.service';
 
 @Component({
   selector: 'app-student-board',
@@ -50,7 +50,7 @@ export class StudentBoardComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private router: Router,
     private route: ActivatedRoute,
-    private sutdentService: SutdentService
+    private studentsService: StudentsService
   ) {
     this.route.data.subscribe(data => {
       console.log(data['types'])
@@ -63,7 +63,7 @@ export class StudentBoardComponent implements OnInit {
   getStudentInfos(){
     console.log(this.studentEmail)
 
-    return this.sutdentService.getStudentInfo(this.studentEmail).pipe(
+    return this.studentsService.getStudentInfo(this.studentEmail).pipe(
       map((user)=>{
         return user[0].id_user
       })

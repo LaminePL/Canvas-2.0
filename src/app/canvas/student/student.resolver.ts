@@ -5,18 +5,17 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 import { map, Observable, of, finalize } from 'rxjs';
-import { SutdentService } from './sutdent.service';
-
+import  {StudentsService } from '../../../services/students.service'
 @Injectable({
   providedIn: 'root'
 })
 export class StudentResolver implements Resolve<any> {
   user: any;
   constructor(private router: Router,
-    private sutdentService: SutdentService) {
+    private studentsService: StudentsService) {
   }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.sutdentService.getStudentId()
+    return this.studentsService.getStudentId()
 
   }
 }
