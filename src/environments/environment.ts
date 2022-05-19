@@ -20,7 +20,7 @@ export const environment = {
 
 
   CanvasApi:{
-    apiUrl: 'api/v1/'
+    apiUrl: 'api/'
   }
 };
 /*
