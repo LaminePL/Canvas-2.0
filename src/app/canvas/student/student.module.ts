@@ -39,7 +39,8 @@ FullCalendarModule.registerPlugins([
   timeGridPlugin
 ]);
 import {CoursZoomComponent} from './features/cours-zoom/cours-zoom.component'
-import { UserProfileComponent } from '../shared/user-profile/user-profile.component'
+import { UserProfileComponent } from '../shared/user-profile/user-profile.component';
+import { ComptaZoomComponent } from './features/compta-zoom/compta-zoom.component'
 class CustomDateFormatter extends CalendarNativeDateFormatter {
   public override dayViewHour({ date, locale }: DateFormatterParams): string {
     return new Intl.DateTimeFormat('ca', {
@@ -73,13 +74,17 @@ const ROUTES: Routes = [
   {
     path: 'courses',
     component: CoursZoomComponent
+  },
+  {
+    path: 'compta',
+    component: ComptaZoomComponent
   }
 
 
 ]
 
 @NgModule({
-  declarations: [CreditsECTSComponent, StudentBoardComponent, CanvasCalendarComponent, CanvasCalendarZoomComponent, CreditsEctsZoomComponent, StudentCalendarComponent, ComptaComponent,CoursZoomComponent],
+  declarations: [CreditsECTSComponent, StudentBoardComponent, CanvasCalendarComponent, CanvasCalendarZoomComponent, CreditsEctsZoomComponent, StudentCalendarComponent, ComptaComponent,CoursZoomComponent, ComptaZoomComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(ROUTES),

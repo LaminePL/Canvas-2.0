@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { map, take } from 'rxjs/operators';
+import { map, mergeMap, switchMap } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentsService } from '../../../../services/students.service';
@@ -61,14 +61,14 @@ export class StudentBoardComponent implements OnInit {
     this.getStudentInfos()
   }
   getStudentInfos(){
-    console.log(this.studentEmail)
 
     return this.studentsService.getStudentInfo(this.studentEmail).pipe(
       map((user)=>{
         return user[0].id_user
       })
-    ).subscribe((res)=>{
-      localStorage.setItem('student_id' , res)
+    ).subscribe((res: string)=>{
+      return localStorage.setItem('student_id', res);
+
     })
   }
 
@@ -77,6 +77,9 @@ export class StudentBoardComponent implements OnInit {
   }
   getCreditEcts() {
     this.router.navigateByUrl('canvas/student/credit-ECTS');
+  }
+  getCompta() {
+    this.router.navigateByUrl('canvas/student/compta');
   }
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
