@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { KeycloakService, KeycloakAuthGuard } from 'keycloak-angular';
+import { LocalService } from 'src/services/local.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,7 +17,8 @@ export class AppComponent implements OnInit {
   showFiller = false;
   userProfileRoute = ''
 
-  constructor(private keycloakService: KeycloakService, public router: Router) {
+  constructor(private keycloakService: KeycloakService, public router: Router,
+    private localService : LocalService) {
   }
   ngOnInit(): void {
     this.getUserInfo()
@@ -45,7 +47,7 @@ export class AppComponent implements OnInit {
     this.firstName = userDetails.firstName;
     this.lastName = userDetails.lastName;
     this.email = userDetails.email;
-    localStorage.setItem('userEmail', this.email)
+    this.localService.setJsonValue('userEmail', this.email);
   }
 
   getuserRole() {

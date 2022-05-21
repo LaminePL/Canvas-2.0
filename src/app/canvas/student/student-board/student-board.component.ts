@@ -4,6 +4,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentsService } from '../../../../services/students.service';
 import { KeycloakService } from 'keycloak-angular';
+import { LocalService } from 'src/services/local.service';
 
 @Component({
   selector: 'app-student-board',
@@ -52,7 +53,8 @@ export class StudentBoardComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private studentsService: StudentsService,
-    private keycloakService: KeycloakService
+    private keycloakService: KeycloakService,
+    private localService : LocalService
   ) {
   }
   ngOnInit(): void {
@@ -63,7 +65,7 @@ export class StudentBoardComponent implements OnInit {
 
 
   getStudentInfos(){
-    return this.studentsService.getStudentInfo(localStorage.getItem('userEmail')).pipe(
+    return this.studentsService.getStudentInfo(this.localService.getJsonValue('userEmail')).pipe(
       map((user)=>{
         return user[0].id_user
       })
