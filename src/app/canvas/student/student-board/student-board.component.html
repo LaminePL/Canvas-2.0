@@ -17,10 +17,10 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
-          <button mat-menu-item (click)="getCompta()">details</button>
+          <button  [userId]="userId" mat-menu-item (click)="getCompta()">details</button>
         </mat-menu>
         <div>
-          <app-compta></app-compta>
+          <app-compta *ngIf="userId"  [userId]="userId" ></app-compta>
         </div>
       </mat-card-content>
       <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Credits ECTS'">

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
+import { map,tap } from 'rxjs';
+import { SharedService } from 'src/services/shared.service';
 import { StudentsService } from '../../../../../services/students.service';
 
 @Component({
@@ -9,19 +10,30 @@ import { StudentsService } from '../../../../../services/students.service';
 })
 export class ComptaComponent implements OnInit {
   comptaPaymentDue: any
+  @Input('userId') public userId
 
-  constructor(private studentsService: StudentsService) { }
+  constructor(private studentsService: StudentsService,
+    private sharedService: SharedService) { }
 
   ngOnInit(): void {
-    this.studentsService.getComptaInfo(localStorage.getItem('student_id')).pipe(
-      map((compta)=>{
-        return compta[0]?.compta_payment_due ? compta[0]?.compta_payment_due : 'pas de data'
+    this.getUserCompta(this.userId)
+
+
+  }
+  getUserCompta(userId) {
+    this.studentsService.getComptaInfo(userId).pipe(
+      tap((compta)=>{
+        this.sharedService.loadComptaInfo(compta)
+        return compta
+      }),
+      map((compta) => {
+        return compta[0]?.compta_payment_due
       })
-    ).subscribe((res)=>{
+    ).subscribe((res) => {
+
       this.comptaPaymentDue = res
       return res
     })
 
   }
-
 }

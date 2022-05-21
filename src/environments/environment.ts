@@ -20,7 +20,7 @@ export const environment = {
 
 
   CanvasApi:{
-    apiUrl: 'api/'
+    apiUrl: 'http://localhost:5000/api/v1/'
   }
 };
 /*

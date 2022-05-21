@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { KeycloakService } from 'keycloak-angular';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UserInfo } from 'src/interfaces/user-info.interface';
 
 const API_URL = environment.CanvasApi.apiUrl
 
@@ -11,20 +12,11 @@ const API_URL = environment.CanvasApi.apiUrl
 })
 export class StudentsService {
 
-  constructor(private keycloakService: KeycloakService,
+  constructor(
     private http: HttpClient) { }
-  userId: any;
-
-  getStudentId() {
-    return this.keycloakService.loadUserProfile()
-      .then(profile => {
-        return profile.email
-      })
-      .catch(reason => { console.log("reason =>" + reason) });
-  }
 
   getStudentInfo(studentEmail: string): Observable<any[]> {
-    return this.http.get<any[]>(`${API_URL}userinfos/${studentEmail}`);
+    return this.http.get<UserInfo[]>(`${API_URL}userinfos/${studentEmail}`);
   }
 
 

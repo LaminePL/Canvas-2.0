@@ -3,6 +3,7 @@ import { map, mergeMap, switchMap } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentsService } from '../../../../services/students.service';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-student-board',
@@ -11,7 +12,7 @@ import { StudentsService } from '../../../../services/students.service';
 })
 export class StudentBoardComponent implements OnInit {
   sideBarOpen = true;
-  studentEmail =  ""
+  userId: string
   creditEtudiants: any;
 
   /** Based on the screen size, switch from standard to one column per row */
@@ -50,25 +51,25 @@ export class StudentBoardComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private router: Router,
     private route: ActivatedRoute,
-    private studentsService: StudentsService
+    private studentsService: StudentsService,
+    private keycloakService: KeycloakService
   ) {
-    this.route.data.subscribe(data => {
-      console.log(data['types'])
-      this.studentEmail = data['types'];
-    });
   }
   ngOnInit(): void {
     this.getStudentInfos()
   }
-  getStudentInfos(){
 
-    return this.studentsService.getStudentInfo(this.studentEmail).pipe(
+
+
+
+  getStudentInfos(){
+    return this.studentsService.getStudentInfo(localStorage.getItem('userEmail')).pipe(
       map((user)=>{
         return user[0].id_user
       })
     ).subscribe((res: string)=>{
-      return localStorage.setItem('student_id', res);
-
+      this.userId = res
+      return res
     })
   }
 

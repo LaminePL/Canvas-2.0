@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   constructor(private keycloakService: KeycloakService, public router: Router) {
   }
   ngOnInit(): void {
+    this.getUserInfo()
 
     if (this.keycloakService.isUserInRole('student_role')) {
       this.userProfileRoute = 'canvas/student'
@@ -44,6 +45,7 @@ export class AppComponent implements OnInit {
     this.firstName = userDetails.firstName;
     this.lastName = userDetails.lastName;
     this.email = userDetails.email;
+    localStorage.setItem('userEmail', this.email)
   }
 
   getuserRole() {
