@@ -14,6 +14,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {NgChartsModule} from "ng2-charts";
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -33,6 +34,7 @@ import {NgChartsModule} from "ng2-charts";
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    NgChartsModule,  ]
+    NgChartsModule,
+    SharedModule  ]
 })
 export class TeachersModule { }

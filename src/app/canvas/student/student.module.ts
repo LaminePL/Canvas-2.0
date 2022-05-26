@@ -26,6 +26,7 @@ import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
 import {RouterModule, Routes} from "@angular/router";
 import {StudentBoardComponent} from './student-board/student-board.component';
 import { CreditsEctsZoomComponent } from './features/credits-ects-zoom/credits-ects-zoom.component'
+import { SharedModule } from '../shared/shared.module';
 
 class CustomDateFormatter extends CalendarNativeDateFormatter {
   public override dayViewHour({date, locale}: DateFormatterParams): string {
@@ -71,6 +72,7 @@ const ROUTES: Routes = [
     MatSidenavModule,
     MatListModule,
     NgChartsModule,
+    SharedModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory

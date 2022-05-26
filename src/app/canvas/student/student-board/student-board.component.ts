@@ -1,14 +1,18 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {map} from 'rxjs/operators';
 import {Breakpoints, BreakpointObserver} from '@angular/cdk/layout';
 import {Router} from '@angular/router';
+import { StudentsService } from 'src/services/students.service';
+import { ColumnDefinition } from '../../shared/models/columnDefinition';
+import { studentColumns } from '../../models/student-columns';
+import { StudentModel } from '../../models/student.model';
 
 @Component({
   selector: 'app-student-board',
   templateUrl: './student-board.component.html',
   styleUrls: ['./student-board.component.css']
 })
-export class StudentBoardComponent {
+export class StudentBoardComponent implements OnInit {
   sideBarOpen = true;
 
   /** Based on the screen size, switch from standard to one column per row */
@@ -38,7 +42,12 @@ export class StudentBoardComponent {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver, private router: Router) {
+
+  displayedRows: Array<StudentModel>
+  displayedColumns: Array<ColumnDefinition>
+
+  constructor(private breakpointObserver: BreakpointObserver, private router: Router,private studentSrv: StudentsService) {
+    this.displayedRows = []
   }
 
   getCalendar() {
@@ -50,4 +59,15 @@ export class StudentBoardComponent {
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
   }
+
+  ngOnInit(){
+    this.displayedColumns = studentColumns;
+
+    this.studentSrv.getAllStudents().subscribe(data =>{
+      this.displayedRows = data ;
+    })
+
+  }
 }
+
+

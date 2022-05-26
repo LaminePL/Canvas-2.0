@@ -7,10 +7,9 @@ import {TeachersModule} from "./teachers/teachers.module";
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import {CanvasComponent} from './canvas.component';
 import {MaterialModule} from '../material.module'
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
-
-    PageNotFoundComponent,
     CanvasComponent,
   ],
   imports: [
@@ -18,7 +17,8 @@ import {MaterialModule} from '../material.module'
     StudentModule,
     AdminsModule,
     TeachersModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
 
 
 

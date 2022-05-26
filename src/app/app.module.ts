@@ -10,12 +10,11 @@ import { CanvasModule } from './canvas/canvas.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialModule } from './material.module';
 import { NgChartsModule } from 'ng2-charts';
-import {SideNavComponent} from './canvas/shared/side-nav/side-nav.component'
 import {StudentNavComponent} from './canvas/student/student-nav/student-nav.component'
+import { SharedModule } from './canvas/shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
-    SideNavComponent,
     StudentNavComponent
   ],
   imports: [
@@ -28,6 +27,7 @@ import {StudentNavComponent} from './canvas/student/student-nav/student-nav.comp
     LayoutModule,
     MaterialModule,
     NgChartsModule,
+    SharedModule
   ],
   providers: [
     {
