@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CanvasResolver } from './canvas.resolver';
+import { StudentResolver } from './student.resolver';
 
-describe('CanvasResolver', () => {
-  let resolver: CanvasResolver;
+describe('StudentResolver', () => {
+  let resolver: StudentResolver;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    resolver = TestBed.inject(CanvasResolver);
+    resolver = TestBed.inject(StudentResolver);
   });
 
   it('should be created', () => {

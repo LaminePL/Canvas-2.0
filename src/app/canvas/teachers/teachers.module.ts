@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {TeachersBoardComponent} from "./teachers-board/teachers-board.component";
-import {TeachersNavComponent} from "./teachers-nav/teachers-nav.component";
 import {ChartModule} from "angular2-chartjs";
 import {MaterialModule} from "../../material.module";
 import {MatGridListModule} from "@angular/material/grid-list";
@@ -15,13 +14,21 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {NgChartsModule} from "ng2-charts";
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule, Routes } from '@angular/router';
 
+const ROUTES: Routes = [
+  {
+    path: '',
+    component:TeachersBoardComponent ,
+  },
+]
 
 
 @NgModule({
-  declarations: [TeachersBoardComponent, TeachersNavComponent],
+  declarations: [TeachersBoardComponent],
   imports: [
     CommonModule,
+    RouterModule.forChild(ROUTES),
     ChartModule,
     CommonModule,
     MaterialModule,

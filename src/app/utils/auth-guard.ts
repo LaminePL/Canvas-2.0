@@ -16,6 +16,7 @@ export class AuthGuard extends KeycloakAuthGuard {
       }
       console.log('role restriction given at app-routing.module for this route', route.data['roles']);
       console.log('User roles coming after login from keycloak :', this.roles);
+
       const requiredRoles = route.data['roles'];
       let granted: boolean = false;
       if (!requiredRoles || requiredRoles.length === 0) {
@@ -30,8 +31,10 @@ export class AuthGuard extends KeycloakAuthGuard {
       }
 
       if (!granted) {
-        this.router.navigate(['/']);
+        console.log('error 401')
+        this.router.navigate(['canvas/401']);
       }
+
 
 
       resolve(granted);
