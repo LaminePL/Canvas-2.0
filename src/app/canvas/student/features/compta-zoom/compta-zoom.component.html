@@ -1,2 +1,55 @@
-{{comptaDetails |json}}
-{{userId | json}}
+<div class="student-profile py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-3">
+        <div class="card shadow-sm">
+
+          <div class="card-body">
+            <h3 class="mb-0"> <i class="far fa-clone pr-1 ml-2"> </i> Relevé d’Identité Bancaire</h3>
+
+            <p class="mb-0"><strong class="pr-1">RIB:</strong>FR6514508000505814497481A75</p>
+            <p class="mb-0"><strong class="pr-1 mr-1">Nom du titulaire:</strong>{{firstName}}  {{lastName}}</p>
+            <p class="mb-0"><strong class="pr-1" *ngIf="campus">Campus:</strong>{{campus}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card shadow-sm">
+          <div class="card-header bg-transparent border-0">
+            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Informations Comptabilités</h3>
+          </div>
+          <div class="card-body pt-0">
+            <div class="table">
+              <tr class="d-flex">
+                <th width="30%">Le montant à payer</th>
+                <td width="2%">:</td>
+                <td>{{comptaDetails[0]?.compta_payment_due}}  €</td>
+              </tr>
+              <tr class="d-flex">
+                <th width="30%">Type de Payement </th>
+                <td width="2%">:</td>
+                <td>{{comptaDetails[0].compta_payment_type}} </td>
+              </tr>
+              <tr class="d-flex"  *ngIf="comptaDetails[0].compta_relance ==! null ">
+                <th width="30%">Nombre de relance</th>
+                <td width="2%">:</td>
+                <td>{{comptaDetails[0]?.compta_relance}}</td>
+              </tr>
+            </div>
+          </div>
+        </div>
+        <div style="height: 26px"></div>
+        <div class="card shadow-sm">
+          <div class="card-header bg-transparent border-0">
+            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Autres Informations</h3>
+          </div>
+          <div class="card-body pt-0">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+              ea commodo consequat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

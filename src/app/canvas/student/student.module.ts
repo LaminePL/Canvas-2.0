@@ -38,7 +38,7 @@ FullCalendarModule.registerPlugins([
   timeGridPlugin
 ]);
 import {CoursZoomComponent} from './features/cours-zoom/cours-zoom.component'
-import { UserProfileComponent } from '../shared/user-profile/user-profile.component';
+import { UserProfileComponent } from './features/user-profile/user-profile/user-profile.component';
 import { ComptaZoomComponent } from './features/compta-zoom/compta-zoom.component'
 class CustomDateFormatter extends CalendarNativeDateFormatter {
   public override dayViewHour({ date, locale }: DateFormatterParams): string {

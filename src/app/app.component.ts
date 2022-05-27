@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     private localService : LocalService) {
   }
   ngOnInit(): void {
-    this.getUserInfo()
+   // this.getUserInfo()
 
     if (this.keycloakService.isUserInRole('student_role')) {
       this.userProfileRoute = 'canvas/student'
@@ -42,13 +42,6 @@ export class AppComponent implements OnInit {
     this.keycloakService.getUsername();
   }
 
-  async getUserInfo() {
-    let userDetails = await this.keycloakService.loadUserProfile();
-    this.firstName = userDetails.firstName;
-    this.lastName = userDetails.lastName;
-    this.email = userDetails.email;
-    this.localService.setJsonValue('userEmail', this.email);
-  }
 
   getuserRole() {
     if (this.keycloakService.isUserInRole('student_role')) {

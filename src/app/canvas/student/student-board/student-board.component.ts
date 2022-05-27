@@ -15,6 +15,7 @@ export class StudentBoardComponent implements OnInit {
   sideBarOpen = true;
   userId: string
   creditEtudiants: any;
+  email: string;
 
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
@@ -23,7 +24,7 @@ export class StudentBoardComponent implements OnInit {
         return [
           { title: 'courses', cols: 8, rows: 1, img: '../../../../assets//img//book.png' },
           { title: 'notes', cols: 8, rows: 1 },
-          { title: 'stages', cols: 8, rows: 1, img: '../../../../assets//img//loupe.png'},
+          { title: 'stages', cols: 8, rows: 1, img: '../../../../assets//img//loupe.png' },
           { title: 'Compta', cols: 8, rows: 1, img: '../../../../assets//img//calculatrice.png' },
           { title: 'Credits ECTS', cols: 8, rows: 2 },
           { title: 'Calendrier journalier', cols: 8, rows: 3, img: '../../../../assets//img//calendar.png' },
@@ -51,30 +52,46 @@ export class StudentBoardComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private router: Router,
-    private route: ActivatedRoute,
     private studentsService: StudentsService,
-    private keycloakService: KeycloakService,
-    private localService : LocalService
+    private localService: LocalService,
   ) {
   }
   ngOnInit(): void {
-    this.getStudentInfos()
+    // this.getStudentEmail()
+    this.getStudentData()
   }
 
 
-
-
-  getStudentInfos(){
-    return this.studentsService.getStudentInfo(this.localService.getJsonValue('userEmail')).pipe(
-      map((user)=>{
+ /* async getStudentEmail() {
+    let userDetails = await this.keycloakService.loadUserProfile();
+    this.email = userDetails.email;
+    return this.studentsService.getStudentInfo(this.email).pipe(
+      map((user) => {
         return user[0].id_user
       })
-    ).subscribe((res: string)=>{
-      this.userId = res
+    ).subscribe((res: string) => {
+
       return res
     })
+  }*/
+  getStudentData() {
+    this.studentsService.getUserData().then((res => {
+      res.pipe(
+        map((user) => {
+          console.log(user)
+          return user.id_user
+        })
+      ).
+        subscribe(
+          (res) => {
+            this.userId = res
+            // send the userId to localStorage to other independent Component
+            this.localService.setJsonValue('userId', this.userId);
+            return res
+          }
+        )
+    }))
   }
-
   getCalendar() {
     this.router.navigateByUrl('canvas/student/calendar');
   }

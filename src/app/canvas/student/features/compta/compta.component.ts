@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { map,tap } from 'rxjs';
+import { map, tap } from 'rxjs';
+import { LocalService } from 'src/services/local.service';
 import { SharedService } from 'src/services/shared.service';
 import { StudentsService } from '../../../../../services/students.service';
 
@@ -13,16 +14,15 @@ export class ComptaComponent implements OnInit {
   @Input('userId') public userId
 
   constructor(private studentsService: StudentsService,
-    private sharedService: SharedService) { }
+    private sharedService: SharedService,
+    private localService: LocalService) { }
 
   ngOnInit(): void {
     this.getUserCompta(this.userId)
-
-
   }
   getUserCompta(userId) {
     this.studentsService.getComptaInfo(userId).pipe(
-      tap((compta)=>{
+      tap((compta) => {
         this.sharedService.loadComptaInfo(compta)
         return compta
       }),
@@ -34,6 +34,5 @@ export class ComptaComponent implements OnInit {
       this.comptaPaymentDue = res
       return res
     })
-
   }
 }
