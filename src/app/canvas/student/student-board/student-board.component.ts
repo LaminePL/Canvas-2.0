@@ -1,16 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {map} from 'rxjs/operators';
 import {Breakpoints, BreakpointObserver} from '@angular/cdk/layout';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { StudentsService } from 'src/services/students.service';
 import { ColumnDefinition } from '../../shared/models/columnDefinition';
 import { studentColumns } from '../../models/student-columns';
 import { StudentModel } from '../../models/student.model';
-import { Component, OnInit } from '@angular/core';
-import { map, take } from 'rxjs/operators';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { ActivatedRoute, Router } from '@angular/router';
-import { StudentsService } from '../../../../services/students.service';
+
 
 @Component({
   selector: 'app-student-board',
@@ -58,21 +54,28 @@ export class StudentBoardComponent implements OnInit {
   displayedRows: Array<StudentModel>
   displayedColumns: Array<ColumnDefinition>
 
-  constructor(private breakpointObserver: BreakpointObserver, private router: Router,private studentSrv: StudentsService) {
-    this.displayedRows = []
   constructor(
     private breakpointObserver: BreakpointObserver,
     private router: Router,
     private route: ActivatedRoute,
     private studentsService: StudentsService
   ) {
+
+    this.displayedRows = []
     this.route.data.subscribe(data => {
       console.log(data['types'])
       this.studentEmail = data['types'];
     });
   }
-  ngOnInit(): void {
+
+
+  ngOnInit(){
     this.getStudentInfos()
+    this.displayedColumns = studentColumns;
+    this.studentsService.getAllStudents().subscribe(data =>{
+      this.displayedRows = data ;
+    })
+
   }
   getStudentInfos(){
     console.log(this.studentEmail)
@@ -96,14 +99,7 @@ export class StudentBoardComponent implements OnInit {
     this.sideBarOpen = !this.sideBarOpen;
   }
 
-  ngOnInit(){
-    this.displayedColumns = studentColumns;
 
-    this.studentSrv.getAllStudents().subscribe(data =>{
-      this.displayedRows = data ;
-    })
-
-  }
 }
 
 

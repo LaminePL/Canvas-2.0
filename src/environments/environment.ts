@@ -11,13 +11,15 @@ export const environment = {
     issuer: "http://localhost:8080" + "/auth",
 
     // Realm
-    realm: 'canvas-bis',
+    realm: 'CANVAS',
 
     // The SPA's id.
     // The SPA is registerd with this id at the auth-serverß
     clientId: 'canvas-app',
   },
-  apiUrl:'http://localhost:5000/api/v1'
+  CanvasApi: {
+    apiUrl: 'http://localhost:5000/api/v1'
+  }
 };
 /*
  * For easier debugging in development mode, you can import the following file
