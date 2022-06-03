@@ -51,8 +51,7 @@ export class StudentBoardComponent implements OnInit {
   );
 
 
-  displayedRows: Array<StudentModel>
-  displayedColumns: Array<ColumnDefinition>
+
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -60,8 +59,6 @@ export class StudentBoardComponent implements OnInit {
     private route: ActivatedRoute,
     private studentsService: StudentsService
   ) {
-
-    this.displayedRows = []
     this.route.data.subscribe(data => {
       console.log(data['types'])
       this.studentEmail = data['types'];
@@ -71,10 +68,6 @@ export class StudentBoardComponent implements OnInit {
 
   ngOnInit(){
     this.getStudentInfos()
-    this.displayedColumns = studentColumns;
-    this.studentsService.getAllStudents().subscribe(data =>{
-      this.displayedRows = data ;
-    })
 
   }
   getStudentInfos(){

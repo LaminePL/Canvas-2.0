@@ -5,6 +5,7 @@ import { StudentModel } from 'src/app/canvas/models/student.model';
 import { environment } from 'src/environments/environment';
 
 import { KeycloakService } from 'keycloak-angular';
+import { StudentDetailsModel } from 'src/app/canvas/models/student-details.model';
 
 
 const API_URL = environment.CanvasApi.apiUrl
@@ -14,7 +15,6 @@ const API_URL = environment.CanvasApi.apiUrl
 })
 export class StudentsService {
 
-  private readonly rootUrl = `${API_URL}/students`
 
 
   constructor(private keycloakService: KeycloakService,
@@ -46,9 +46,13 @@ export class StudentsService {
     return this.http.get<any[]>(`${API_URL}compta/${user_id}`)
 
   }
-
+// display student list and student details
   getAllStudents():Observable<StudentModel[]>{
-    return this.http.get<StudentModel[]>(this.rootUrl);
+    return this.http.get<StudentModel[]>(`${API_URL}students/list`);
+  }
+
+  getStudentDetails(studentId): Observable<StudentDetailsModel>{
+    return this.http.get<StudentDetailsModel>(`${API_URL}students/details/${studentId}`)
   }
 
 }

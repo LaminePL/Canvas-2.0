@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MaterialModule } from 'src/app/material.module';
 import { DTableComponent } from './d-table/d-table.component';
@@ -13,7 +14,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 const COMPONENTS = [DTableComponent,NotFoundComponent,SideNavComponent,UserProfileComponent,UnauthorizedComponent,NavbarComponent]
 
 @NgModule({
-    imports: [MatTableModule,CommonModule,MaterialModule],
+    imports: [MatTableModule,CommonModule,MaterialModule,FormsModule],
     exports: [...COMPONENTS],
     declarations: [...COMPONENTS],
     providers: [],

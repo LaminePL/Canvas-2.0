@@ -11,11 +11,11 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import {animate, state, style, transition, trigger} from "@angular/animations";
-import {MatTableDataSource} from "@angular/material/table";
-import {MatPaginator, PageEvent} from "@angular/material/paginator";
-import {MatSort, Sort} from "@angular/material/sort";
-import {SelectionModel} from "@angular/cdk/collections";
+import { animate, state, style, transition, trigger } from "@angular/animations";
+import { MatTableDataSource } from "@angular/material/table";
+import { MatPaginator, PageEvent } from "@angular/material/paginator";
+import { MatSort, Sort } from "@angular/material/sort";
+import { SelectionModel } from "@angular/cdk/collections";
 import { ColumnDefinition } from '../models/columnDefinition';
 
 @Component({
@@ -24,26 +24,27 @@ import { ColumnDefinition } from '../models/columnDefinition';
   styleUrls: ['./d-table.component.scss'],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
     ])
   ]
 })
 export class DTableComponent implements OnInit, OnChanges {
 
-  @Input() rows: Array<any> | undefined
-  @Input() columnsDefinition: Array<ColumnDefinition> | undefined
-
+  @Input() rows: Array<any>
+  @Input() columnsDefinition: Array<ColumnDefinition>
+  @Input() loading: boolean;
+  @Input() searchable: boolean;
 
   displayedRows: MatTableDataSource<any>
   displayedColumns: Array<ColumnDefinition>
   columnNames: Array<string>
-
+  searchKey!: string;
 
 
   @ContentChild('columnTemplate') columnTemplate: TemplateRef<any>
-  @ViewChild('paginator', {static: false}) paginator: MatPaginator
+  @ViewChild('paginator', { static: false }) paginator: MatPaginator
   @ViewChild(MatSort) sort: MatSort
 
   pageSizes = [10, 25, 50, 100]
@@ -56,7 +57,7 @@ export class DTableComponent implements OnInit, OnChanges {
     this.columnNames = []
     this.columnNames.push(...this.columnsDefinition?.map(x => x.name))
     this.displayedColumns = [...this.columnsDefinition]
-    if(this.rows)
+    if (this.rows)
       this.displayedRows.data = [...this.rows]
 
     //this.displayPaginator = this.pagination?.totalRows > 0;
@@ -64,7 +65,7 @@ export class DTableComponent implements OnInit, OnChanges {
   }
 
   ngAfterViewInit() {
-    //this.initPaginator();
+    this.displayedRows.paginator = this.paginator;
   }
 
   getValue(row: any, column: ColumnDefinition) {
@@ -93,6 +94,9 @@ export class DTableComponent implements OnInit, OnChanges {
     if (changes.rows?.currentValue) {
       this.displayedRows.data = [...changes.rows.currentValue]
     }
+
+    if (changes.loading)
+      this.loading = changes.loading.currentValue
 
   }
 
@@ -126,6 +130,18 @@ export class DTableComponent implements OnInit, OnChanges {
   filterBy(event: Event, column: ColumnDefinition) {
     this.displayedRows.data = [...this.rows.filter(x => this.getValue(x, column).toString().includes((event.target as HTMLInputElement).value))]
   }
+
+  onSearchKey() {
+    this.searchKey = ""
+    this.applyFilter();
+  }
+
+  applyFilter() {
+    this.displayedRows.filter = this.searchKey.trim().toLocaleLowerCase();
+  }
+
+
+
 
 
 }
