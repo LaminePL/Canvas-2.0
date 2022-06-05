@@ -7,7 +7,7 @@ import { StudentDetailsModel } from '../../models/student-details.model';
 @Component({
   selector: 'app-student-details',
   templateUrl: './academy-student-details.component.html',
-  styleUrls: ['./academy-student-details.component.css']
+  styleUrls: ['./academy-student-details.component.scss']
 })
 export class AcademyStudentDetailsComponent implements OnInit {
   studentDetails: StudentDetailsModel;

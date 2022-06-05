@@ -21,6 +21,21 @@
           <span *ngIf="isExpanded" class="menu-item">Students</span>
         </mat-list-item>
 
+        <mat-list-item routerLink="{{currentUser?.route}}/contributors">
+          <mat-icon>supervisor_account</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">Contributors</span>
+        </mat-list-item>
+
+        <mat-list-item routerLink="{{currentUser?.route}}/modules">
+          <mat-icon>library_books</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">Modules</span>
+        </mat-list-item>
+
+        <mat-list-item routerLink="{{currentUser?.route}}/partnerships">
+          <mat-icon>handshake</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">Partnerships</span>
+        </mat-list-item>
+
       </ng-container>
 
 

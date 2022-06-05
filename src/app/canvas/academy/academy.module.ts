@@ -6,6 +6,10 @@ import { SharedModule } from '../shared/shared.module';
 import { AcademyStudentsComponent } from './academy-students/academy-students.component';
 import { AcademyStudentDetailsComponent } from './academy-student-details/academy-student-details.component';
 import { FormsModule } from '@angular/forms';
+import { AcademyContributorsComponent } from './academy-contributors/academy-contributors.component';
+import { AcademyModulesComponent } from './academy-modules/academy-modules.component';
+import { AcademyPartnershipsComponent } from './academy-partnerships/academy-partnerships.component';
+import { AcademyStudentsFilterComponent } from './academy-students-filter/academy-students-filter.component';
 
 const ROUTES: Routes = [
   {
@@ -17,6 +21,18 @@ const ROUTES: Routes = [
     path: 'students/student-details/:id',
     component: AcademyStudentDetailsComponent
   },
+  {
+    path: 'contributors',
+    component: AcademyContributorsComponent
+  },
+  {
+    path: 'modules',
+    component: AcademyModulesComponent
+  },
+  {
+    path: 'partnerships',
+    component: AcademyPartnershipsComponent
+  },
 ]
 
 @NgModule({
@@ -24,7 +40,11 @@ const ROUTES: Routes = [
   exports: [],
   declarations: [
     AcademyStudentsComponent,
-    AcademyStudentDetailsComponent
+    AcademyStudentDetailsComponent,
+    AcademyContributorsComponent,
+    AcademyModulesComponent,
+    AcademyPartnershipsComponent,
+    AcademyStudentsFilterComponent
   ],
   providers: [],
 })

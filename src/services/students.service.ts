@@ -46,7 +46,7 @@ export class StudentsService {
     return this.http.get<any[]>(`${API_URL}compta/${user_id}`)
 
   }
-// display student list and student details
+
   getAllStudents():Observable<StudentModel[]>{
     return this.http.get<StudentModel[]>(`${API_URL}students/list`);
   }

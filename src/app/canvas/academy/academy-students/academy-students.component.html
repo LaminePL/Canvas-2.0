@@ -1,14 +1,16 @@
+
+<h1>Students</h1>
 <app-d-table
 [rows]="displayedRows"
 [columnsDefinition]="displayedColumns"
 [loading] = "loading"
 [searchable]="true">
 
-<div filters>
-  <section>
-    <mat-checkbox  [(ngModel)]="filterContratPro" class="m-1" (change)="onFilterContratProChange()">Contrat pro</mat-checkbox>
-    <mat-checkbox  [(ngModel)]="filterHired" class="m-1" (change)="onFilterHiredChange()">Hired</mat-checkbox>
-  </section>
+<div filters class="m-auto ms-0">
+
+    <!--<mat-checkbox  [(ngModel)]="filterContratPro" class="m-1" (change)="onFilterContratProChange()">Contrat pro</mat-checkbox>
+    <mat-checkbox  [(ngModel)]="filterHired" class="m-1" (change)="onFilterHiredChange()">Hired</mat-checkbox>-->
+    <button mat-button (click)="onFilterClick()">Filter <mat-icon>filter_list</mat-icon></button>
 </div>
 <ng-template #columnTemplate let-column let-row="row">
   <ng-container *ngIf="column.name == 'details'">

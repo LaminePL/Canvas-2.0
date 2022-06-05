@@ -1,7 +1,7 @@
 import { formatDate } from "@angular/common";
-import { StudentModel } from "./student.model";
-import { ColumnDefinition } from '../shared/models/columnDefinition';
-export const studentColumns = [
+import { StudentModel } from "../student.model";
+import { ColumnDefinition } from '../../shared/models/columnDefinition';
+export const academyStudentColumns = [
 
   {
     name: 'first_name',

@@ -4,7 +4,7 @@ import {Breakpoints, BreakpointObserver} from '@angular/cdk/layout';
 import {ActivatedRoute, Router} from '@angular/router';
 import { StudentsService } from 'src/services/students.service';
 import { ColumnDefinition } from '../../shared/models/columnDefinition';
-import { studentColumns } from '../../models/student-columns';
+import { academyStudentColumns } from '../../models/columns/academy-student-columns';
 import { StudentModel } from '../../models/student.model';
 
 
