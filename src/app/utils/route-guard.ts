@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { KeycloakService, KeycloakAuthGuard } from 'keycloak-angular';
+import {Injectable} from '@angular/core';
+import {CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
+import {KeycloakService, KeycloakAuthGuard} from 'keycloak-angular';
 
 @Injectable()
-export class AuthGuard extends KeycloakAuthGuard {
+export class RouteGuard extends KeycloakAuthGuard {
   constructor(protected override router: Router, protected override keycloakAngular: KeycloakService) {
     super(router, keycloakAngular);
   }
@@ -14,7 +14,6 @@ export class AuthGuard extends KeycloakAuthGuard {
         this.keycloakAngular.login();
         return;
       }
-
       const requiredRoles = route.data['roles'];
       let granted: boolean = false;
       if (!requiredRoles || requiredRoles.length === 0) {
@@ -29,26 +28,9 @@ export class AuthGuard extends KeycloakAuthGuard {
       }
 
       if (!granted) {
+        console.log('error 401')
         this.router.navigate(['canvas/401']);
-      } else {
-
-        if (this.keycloakAngular.isUserInRole('student_role')) {
-          this.router.navigate(['canvas/student']);
-        }
-        if (this.keycloakAngular.isUserInRole('admins_role')) {
-          this.router.navigate(['canvas/admin']);
-        }
-        if (this.keycloakAngular.isUserInRole('teachers_role')) {
-          this.router.navigate(['canvas/teacher']);
-        }
-        if (this.keycloakAngular.isUserInRole('academy_role')) {
-          this.router.navigate(['canvas/academy']);
-        }
-
-
       }
-
-
 
       resolve(granted);
     });

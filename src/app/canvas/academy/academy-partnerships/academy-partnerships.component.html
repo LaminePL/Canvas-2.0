@@ -1,0 +1,11 @@
+<div class="custom-flex m-1">
+  <mat-card matRipple class="custom-item" *ngFor="let partnership of partnershipList" >
+    <mat-card-title class="card-title">{{partnership.partnership_name | uppercase}}</mat-card-title>
+    <img mat-card-image [src]="partnership.partnership_image" [alt]="partnership.partnership_name">
+    <mat-card-content>
+       Date de début de partenariat: <strong>{{ partnership.partnership_date | date:'dd/MM/yyyy' }}</strong>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<mat-spinner *ngIf="loading" class="m-auto"></mat-spinner>

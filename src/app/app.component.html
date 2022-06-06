@@ -12,39 +12,82 @@
         <p class="designation">Etudiant</p>
       </div>
       <mat-divider></mat-divider>
-      <mat-list-item routerLink="">
-        <mat-icon>dashboard</mat-icon>
-        <span *ngIf="isExpanded" class="menu-item">Dashboard</span>
-      </mat-list-item>
 
-      <mat-list-item routerLink="{{userProfileRoute}}/user-profile">
+
+      <ng-container *ngIf="currentUser?.role == roles.Academy">
+
+        <mat-list-item routerLink="{{currentUser?.route}}/students">
+          <mat-icon>school</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">Students</span>
+        </mat-list-item>
+
+        <mat-list-item routerLink="{{currentUser?.route}}/contributors">
+          <mat-icon>supervisor_account</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">Contributors</span>
+        </mat-list-item>
+
+        <mat-list-item routerLink="{{currentUser?.route}}/modules">
+          <mat-icon>library_books</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">Modules</span>
+        </mat-list-item>
+
+        <mat-list-item routerLink="{{currentUser?.route}}/partnerships">
+          <mat-icon>handshake</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">Partnerships</span>
+        </mat-list-item>
+
+      </ng-container>
+
+
+      <ng-container *ngIf="currentUser?.role == roles.Admin">
+
+      </ng-container>
+
+
+      <ng-container *ngIf="currentUser?.role == roles.Teacher">
+
+      </ng-container>
+
+
+      <ng-container *ngIf="currentUser?.role == roles.Student">
+
+        <mat-list-item routerLink="">
+          <mat-icon>dashboard</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">Dashboard</span>
+        </mat-list-item>
+
+        <mat-list-item routerLink="{{currentUser?.route}}/calendar">
+          <mat-icon>calendar_today</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">Calendar</span>
+        </mat-list-item>
+
+        <mat-list-item routerLink="{{currentUser?.route}}/courses">
+          <mat-icon>book</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">Courses</span>
+        </mat-list-item>
+
+        <mat-list-item routerLink="">
+          <mat-icon>inbox</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">Inbox</span>
+        </mat-list-item>
+
+        <mat-list-item routerLink="">
+          <mat-icon>info</mat-icon>
+          <span *ngIf="isExpanded" class="menu-item">Infos</span>
+        </mat-list-item>
+      </ng-container>
+
+
+
+      <mat-list-item routerLink="{{currentUser?.route}}/user-profile">
         <mat-icon>person</mat-icon>
         <span *ngIf="isExpanded" class="menu-item">Profile</span>
       </mat-list-item>
 
-      <mat-list-item routerLink="{{userProfileRoute}}/calendar">
-        <mat-icon>calendar_today</mat-icon>
-        <span *ngIf="isExpanded" class="menu-item">Calendar</span>
-      </mat-list-item>
-
-      <mat-list-item routerLink="{{userProfileRoute}}/courses">
-        <mat-icon>book</mat-icon>
-        <span *ngIf="isExpanded" class="menu-item">Courses</span>
-      </mat-list-item>
-
-      <mat-list-item routerLink="">
-        <mat-icon>inbox</mat-icon>
-        <span *ngIf="isExpanded" class="menu-item">Inbox</span>
-      </mat-list-item>
-
-      <mat-list-item routerLink="">
-        <mat-icon>info</mat-icon>
-        <span *ngIf="isExpanded" class="menu-item">Infos</span>
-      </mat-list-item>
 
       <button mat-button class="menu-button" (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
-        <span *ngIf="isExpanded" class="material-icon-outlined menu-item" >Logout</span>
+        <span *ngIf="isExpanded" class="material-icon-outlined menu-item">Logout</span>
       </button>
     </mat-nav-list>
   </mat-sidenav>

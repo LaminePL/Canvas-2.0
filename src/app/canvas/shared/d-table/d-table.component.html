@@ -1,0 +1,54 @@
+<div class="d-flex">
+  <div class="search-div col" *ngIf="searchable">
+
+    <mat-form-field class="search-form-field" floatLabel="never">
+      <mat-icon matSuffix *ngIf="!searchKey">search</mat-icon>
+      <input matInput [(ngModel)]="searchKey" placeholder="Search" (keyup)="applyFilter()">
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchKey()">
+        <mat-icon> close </mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <ng-content select="[filters]">
+
+  </ng-content>
+</div>
+<table mat-table matSort [dataSource]="displayedRows" multiTemplateDataRows (matSortChange)="sortData($event)"
+  class="alternate-row green-header">
+
+
+  <ng-container matColumnDef="{{column.name}}" *ngFor="let column of displayedColumns">
+    <th mat-sort-header mat-header-cell *matHeaderCellDef>
+      {{column.label}}
+    </th>
+    <td mat-cell *matCellDef="let row" [class]="calculateClass(column.class, row)">
+      <ng-container *ngIf="column.type !== 'template'">
+        <div>
+          <mat-icon *ngIf="column.type === 'icon'; else textType">
+            {{getValue(row, column)}}
+          </mat-icon>
+        </div>
+        <ng-template #textType>
+          {{getValue(row, column)}}
+        </ng-template>
+      </ng-container>
+      <ng-container *ngIf="column.type === 'template'" [ngTemplateOutlet]="columnTemplate"
+        [ngTemplateOutletContext]="{$implicit: column,row:row}"></ng-container>
+    </td>
+  </ng-container>
+
+
+
+
+  <tr mat-header-row *matHeaderRowDef="columnNames; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnNames;"></tr>
+</table>
+
+<mat-paginator #paginator [pageSizeOptions]="[10, 25,50, 100]" aria-label="Select page">
+</mat-paginator>
+
+<div *ngIf="!displayedRows.data.length && !loading" class="py-3 text-center h4 bg-white mb-0 border-bottom">
+  No records found
+</div>
+
+<mat-spinner *ngIf="loading" class="m-auto"></mat-spinner>

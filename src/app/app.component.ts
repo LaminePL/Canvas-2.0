@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { KeycloakService, KeycloakAuthGuard } from 'keycloak-angular';
+import { UserService } from 'src/services/user.service';
+import { RolesEnum } from './canvas/models/roles.enum';
+import { UserModel } from './canvas/models/user.model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,45 +17,23 @@ export class AppComponent implements OnInit {
   userRole: any;
   isExpanded: boolean = false;
   showFiller = false;
-  userProfileRoute = ''
+  currentUser: UserModel
+  roles = RolesEnum;
 
-  constructor(private keycloakService: KeycloakService, public router: Router) {
+  constructor(public router: Router,private userService : UserService) {
   }
   ngOnInit(): void {
 
-    if (this.keycloakService.isUserInRole('student_role')) {
-      this.userProfileRoute = 'canvas/student'
-    }
-    if (this.keycloakService.isUserInRole('admins_role')) {
-      this.userProfileRoute = 'canvas/admin'
-    }
-    if (this.keycloakService.isUserInRole('teachers_role')) {
-      this.userProfileRoute = 'canvas/teacher'
-    }
+     this.userService.currentUser.subscribe(user =>{
+      this.currentUser = user;
+    });
+
   }
 
   logout() {
-    this.keycloakService.logout();
+    this.userService.logout();
   }
 
-  getUsername() {
-    this.keycloakService.getUsername();
-  }
-
-  async getUserInfo() {
-    let userDetails = await this.keycloakService.loadUserProfile();
-    this.firstName = userDetails.firstName;
-    this.lastName = userDetails.lastName;
-    this.email = userDetails.email;
-  }
-
-  getuserRole() {
-    if (this.keycloakService.isUserInRole('student_role')) {
-      this.userRole = "etudiant"
-    }
-
-
-  }
 
 }
 
