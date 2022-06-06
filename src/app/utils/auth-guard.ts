@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { KeycloakService, KeycloakAuthGuard } from 'keycloak-angular';
-
+import { UserService } from 'src/services/user.service';
+import { lastValueFrom } from 'rxjs';
 @Injectable()
 export class AuthGuard extends KeycloakAuthGuard {
-  constructor(protected override router: Router, protected override keycloakAngular: KeycloakService) {
+  constructor(protected override router: Router, protected override keycloakAngular: KeycloakService, private userService: UserService) {
     super(router, keycloakAngular);
   }
 
@@ -30,6 +31,18 @@ export class AuthGuard extends KeycloakAuthGuard {
 
       if (!granted) {
         this.router.navigate(['canvas/401']);
+        resolve(granted);
+      }
+
+      var profile = await this.keycloakAngular.loadUserProfile();
+
+      var userId = await lastValueFrom(this.userService.getUserIdByEmail(profile.email)).catch(e =>{
+        //console.log(e);
+      });
+
+      if (!userId) {
+        this.keycloakAngular.logout();
+        alert("You are not allowed to use this application. Please contact the admin !");
       } else {
 
         if (this.keycloakAngular.isUserInRole('student_role')) {
@@ -45,9 +58,7 @@ export class AuthGuard extends KeycloakAuthGuard {
           this.router.navigate(['canvas/academy']);
         }
 
-
       }
-
 
 
       resolve(granted);

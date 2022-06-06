@@ -7,42 +7,15 @@ import { KeycloakService} from 'keycloak-angular';
   styleUrls: ['./canvas.component.css']
 })
 export class CanvasComponent implements OnInit {
-  title = 'Canvas';  firstName: any;
-  lastName: any;
-  email: any;
-  userRole: any;
-  isExpanded: boolean = false;
-  showFiller = false;
 
-  constructor(private keycloakService: KeycloakService, public router: Router) {
+
+  constructor() {
   }
   ngOnInit(): void {
 
   }
 
 
-  logout() {
-    this.keycloakService.logout();
-  }
-
-  getUsername() {
-    this.keycloakService.getUsername();
-  }
-
-  async getUserInfo() {
-    let userDetails = await this.keycloakService.loadUserProfile();
-    this.firstName = userDetails.firstName;
-    this.lastName = userDetails.lastName;
-    this.email = userDetails.email;
-  }
-
-  getuserRole() {
-    if (this.keycloakService.isUserInRole('student_role')) {
-      this.userRole = "etudiant"
-    }
-
-
-  }
 
 }
 

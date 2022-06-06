@@ -14,6 +14,7 @@ export function initializeKeycloak(keyckloak: KeycloakService): () => Promise<an
             loadUserProfileAtStartUp:true,
             initOptions:{
               onLoad:"login-required",
+              redirectUri:"http://localhost:4200",
               checkLoginIframe: true
             },
             bearerExcludedUrls: []
