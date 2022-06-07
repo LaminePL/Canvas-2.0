@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StudentModel } from 'src/app/canvas/models/student.model';
+import { StudentNotesInfosModel } from 'src/app/canvas/models/student-notes-infos.model'
 import { environment } from 'src/environments/environment';
 
 import { KeycloakService } from 'keycloak-angular';
@@ -53,6 +54,10 @@ export class StudentsService {
 
   getStudentDetails(studentId): Observable<StudentDetailsModel>{
     return this.http.get<StudentDetailsModel>(`${API_URL}students/details/${studentId}`)
+  }
+
+  getAllStudentNotesAndInfos():Observable<StudentNotesInfosModel[]>{
+    return this.http.get<StudentNotesInfosModel[]>(`${API_URL}student_notes/infos`)
   }
 
 }

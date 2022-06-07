@@ -1,0 +1,14 @@
+<h1>Students</h1>
+<app-d-table
+[rows]="displayedRows"
+[columnsDefinition]="displayedColumns"
+[loading] = "loading"
+[searchable]="true">
+
+
+<ng-template #columnTemplate let-column let-row="row">
+  <ng-container *ngIf="column.name == 'alert'">
+    <button mat-button color="primary"  [routerLink]="['student-alert', row.id_student]">Alerter du rattrapage</button>
+  </ng-container>
+</ng-template>
+</app-d-table>

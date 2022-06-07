@@ -9,6 +9,7 @@ import { PedagogyStudentsFilterComponent } from './pedagogy-students-filter/peda
 import { PedagogyStudentDetailsComponent } from './pedagogy-student-details/pedagogy-student-details.component';
 import { PedagogyModulesComponent } from './pedagogy-modules/pedagogy-modules.component';
 import { PedagogyContributorsComponent } from './pedagogy-contributors/pedagogy-contributors.component';
+import { PedagogyNotesComponent } from './pedagogy-notes/pedagogy-notes.component';
 
 const ROUTES: Routes = [
   {
@@ -27,6 +28,10 @@ const ROUTES: Routes = [
   {
     path: 'contributors',
     component: PedagogyContributorsComponent
+  },
+  {
+    path: 'notes',
+    component: PedagogyNotesComponent
   }
   
 ]
@@ -39,7 +44,8 @@ const ROUTES: Routes = [
     PedagogyStudentsFilterComponent,
     PedagogyStudentDetailsComponent,
     PedagogyModulesComponent,
-    PedagogyContributorsComponent
+    PedagogyContributorsComponent,
+    PedagogyNotesComponent
   ],
   providers: [],
 })
