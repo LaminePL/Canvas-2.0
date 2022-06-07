@@ -25,7 +25,7 @@ export class ComptaZoomComponent implements OnInit {
   lastName: string;
   currentUser: UserModel;
   studentDetails: Array<StudentModel>
-  loading:boolean;
+  loading: boolean;
 
 
 
@@ -41,14 +41,12 @@ export class ComptaZoomComponent implements OnInit {
 
       this.currentUser = user;
       if (this.currentUser)
-      this.getUserComptaDetails(this.currentUser.userId)
-        this.studentsService.getAllStudents().subscribe(data => {
-          this.studentDetails = data.filter(user => user.id_user == this.currentUser.userId)
-          console.log(this.studentDetails)
-          this.loading = false;
-        })
-
-
+        this.getUserComptaDetails(this.currentUser.userId)
+      this.studentsService.getAllStudents().subscribe(data => {
+        this.studentDetails = data.filter(user => user.id_user == this.currentUser.userId)
+        console.log(this.studentDetails)
+        this.loading = false;
+      })
 
     })
   }
@@ -64,7 +62,5 @@ export class ComptaZoomComponent implements OnInit {
       return res
     })
   }
-
-
 
 }

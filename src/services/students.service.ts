@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { StudentModel } from 'src/app/canvas/models/student.model';
 import { environment } from 'src/environments/environment';
 
@@ -50,6 +50,29 @@ export class StudentsService {
 
   getStudentDetails(studentId): Observable<StudentDetailsModel>{
     return this.http.get<StudentDetailsModel>(`${API_URL}students/details/${studentId}`)
+  }
+  async getStudentData() {
+    let studentDetails = await this.keycloakService.loadUserProfile();
+    let email = studentDetails.email;
+    return this.getStudentInfo(email).pipe(
+      map((user) => {
+        return user[1]
+      })
+    )
+  }
+
+  async getStudentLevelData() {
+    let studentDetails = await this.keycloakService.loadUserProfile();
+    let email = studentDetails.email;
+    return this.getStudentInfo(email).pipe(
+      map((user) => {
+        return user[2]
+      })
+    )
+  }
+  getStudentYearlyGrade(user_id:number, grade:number): Observable<any[]> {
+    return this.http.get<any[]>(`${API_URL}student_notes/creditsbyyear/${user_id}/${grade}`)
+
   }
 
 }
