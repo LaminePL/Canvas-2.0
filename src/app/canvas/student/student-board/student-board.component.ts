@@ -98,6 +98,9 @@ export class StudentBoardComponent implements OnInit {
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
   }
+  getCompta() {
+    this.router.navigateByUrl('canvas/student/compta');
+  }
 
 
 }
