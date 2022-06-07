@@ -18,15 +18,6 @@ export class CanvasComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    if (this.keycloakService.isUserInRole('student_role')) {
-      this.router.navigateByUrl('canvas/student');
-    }
-    if (this.keycloakService.isUserInRole('admins_role')) {
-      this.router.navigateByUrl('canvas/admin');
-    }
-    if (this.keycloakService.isUserInRole('teachers_role')) {
-      this.router.navigateByUrl('canvas/teacher');
-    }
   }
 
 

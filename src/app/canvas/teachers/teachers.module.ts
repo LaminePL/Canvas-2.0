@@ -13,6 +13,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {NgChartsModule} from "ng2-charts";
+import { SharedModule } from '../shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 
 const ROUTES: Routes = [
@@ -40,6 +41,7 @@ const ROUTES: Routes = [
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    NgChartsModule,  ]
+    NgChartsModule,
+    SharedModule  ]
 })
 export class TeachersModule { }

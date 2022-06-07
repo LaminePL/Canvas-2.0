@@ -10,8 +10,9 @@ import { CanvasModule } from './canvas/canvas.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialModule } from './material.module';
 import { NgChartsModule } from 'ng2-charts';
-import {SideNavComponent} from './canvas/shared/side-nav/side-nav.component'
-import {NavbarComponent} from './canvas/shared/navbar/navbar.component'
+import { SharedModule } from './canvas/shared/shared.module';
+
+
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 
@@ -19,9 +20,7 @@ registerLocaleData(localeFr);
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SideNavComponent,
-    NavbarComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +32,7 @@ registerLocaleData(localeFr);
     LayoutModule,
     MaterialModule,
     NgChartsModule,
+    SharedModule
   ],
   providers: [
     {

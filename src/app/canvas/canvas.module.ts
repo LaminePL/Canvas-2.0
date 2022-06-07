@@ -7,13 +7,11 @@ import { TeachersModule } from "./teachers/teachers.module";
 import { CanvasComponent } from './canvas.component';
 import { MaterialModule } from '../material.module';
 import { HttpClientModule } from '@angular/common/http';
-import { UserProfileComponent } from './shared/user-profile/user-profile.component';
-
+import { SharedModule } from './shared/shared.module';
+import { PedagogyStudentsComponent } from './pedagogy/pedagogy-students/pedagogy-students.component';
 @NgModule({
   declarations: [
-
     CanvasComponent,
-      UserProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -21,7 +19,8 @@ import { UserProfileComponent } from './shared/user-profile/user-profile.compone
     StudentModule,
     AdminsModule,
     TeachersModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
 
   ],
   providers: [

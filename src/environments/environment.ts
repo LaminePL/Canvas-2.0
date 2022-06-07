@@ -17,10 +17,8 @@ export const environment = {
     // The SPA is registerd with this id at the auth-serverß
     clientId: 'canvas-app',
   },
-
-
-  CanvasApi:{
-    apiUrl: 'api/'
+  CanvasApi: {
+    apiUrl: 'http://localhost:5000/api/v1/'
   }
 };
 /*

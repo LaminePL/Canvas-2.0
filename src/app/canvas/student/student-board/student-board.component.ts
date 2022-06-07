@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { map, take } from 'rxjs/operators';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { ActivatedRoute, Router } from '@angular/router';
-import { StudentsService } from '../../../../services/students.service';
+import {Component, OnInit} from '@angular/core';
+import {map} from 'rxjs/operators';
+import {Breakpoints, BreakpointObserver} from '@angular/cdk/layout';
+import {ActivatedRoute, Router} from '@angular/router';
+import { StudentsService } from 'src/services/students.service';
+import { ColumnDefinition } from '../../shared/models/columnDefinition';
+import { academyStudentColumns } from '../../models/columns/academy-student-columns';
+import { StudentModel } from '../../models/student.model';
+
 
 @Component({
   selector: 'app-student-board',
@@ -46,6 +50,9 @@ export class StudentBoardComponent implements OnInit {
     })
   );
 
+
+
+
   constructor(
     private breakpointObserver: BreakpointObserver,
     private router: Router,
@@ -57,8 +64,11 @@ export class StudentBoardComponent implements OnInit {
       this.studentEmail = data['types'];
     });
   }
-  ngOnInit(): void {
+
+
+  ngOnInit(){
     this.getStudentInfos()
+
   }
   getStudentInfos(){
     console.log(this.studentEmail)
@@ -82,4 +92,7 @@ export class StudentBoardComponent implements OnInit {
     this.sideBarOpen = !this.sideBarOpen;
   }
 
+
 }
+
+

@@ -22,6 +22,8 @@ import {
   DateAdapter,
   DateFormatterParams
 } from "angular-calendar";
+
+import { SharedModule } from '../shared/shared.module';
 import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
 import { RouterModule, Routes } from "@angular/router";
 import { StudentBoardComponent } from './student-board/student-board.component';
@@ -96,6 +98,7 @@ const ROUTES: Routes = [
     MatSidenavModule,
     MatListModule,
     NgChartsModule,
+    SharedModule,
     FullCalendarModule,
 
     CalendarModule.forRoot({

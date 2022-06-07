@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
-import {KeycloakService, KeycloakAuthGuard} from 'keycloak-angular';
+import { Injectable } from '@angular/core';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { KeycloakService, KeycloakAuthGuard } from 'keycloak-angular';
 
 @Injectable()
 export class AuthGuard extends KeycloakAuthGuard {
@@ -14,8 +14,6 @@ export class AuthGuard extends KeycloakAuthGuard {
         this.keycloakAngular.login();
         return;
       }
-      console.log('role restriction given at app-routing.module for this route', route.data['roles']);
-      console.log('User roles coming after login from keycloak :', this.roles);
 
       const requiredRoles = route.data['roles'];
       let granted: boolean = false;
@@ -31,8 +29,23 @@ export class AuthGuard extends KeycloakAuthGuard {
       }
 
       if (!granted) {
-        console.log('error 401')
         this.router.navigate(['canvas/401']);
+      } else {
+
+        if (this.keycloakAngular.isUserInRole('student_role')) {
+          this.router.navigate(['canvas/student']);
+        }
+        if (this.keycloakAngular.isUserInRole('admins_role')) {
+          this.router.navigate(['canvas/admin']);
+        }
+        if (this.keycloakAngular.isUserInRole('teachers_role')) {
+          this.router.navigate(['canvas/teacher']);
+        }
+        if (this.keycloakAngular.isUserInRole('academy_role')) {
+          this.router.navigate(['canvas/academy']);
+        }
+
+
       }
 
 
