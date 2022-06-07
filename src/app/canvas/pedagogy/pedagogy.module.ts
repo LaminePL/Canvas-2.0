@@ -6,12 +6,27 @@ import { SharedModule } from '../shared/shared.module';
 import { PedagogyStudentsComponent } from './pedagogy-students/pedagogy-students.component';
 import { FormsModule } from '@angular/forms';
 import { PedagogyStudentsFilterComponent } from './pedagogy-students-filter/pedagogy-students-filter.component';
+import { PedagogyStudentDetailsComponent } from './pedagogy-student-details/pedagogy-student-details.component';
+import { PedagogyModulesComponent } from './pedagogy-modules/pedagogy-modules.component';
+import { PedagogyContributorsComponent } from './pedagogy-contributors/pedagogy-contributors.component';
 
 const ROUTES: Routes = [
   {
     path: 'students',
     component:PedagogyStudentsComponent ,
     children: []
+  },
+  {
+    path: 'students/student-details/:id',
+    component: PedagogyStudentDetailsComponent
+  },
+  {
+    path: 'modules',
+    component: PedagogyModulesComponent
+  },
+  {
+    path: 'contributors',
+    component: PedagogyContributorsComponent
   }
   
 ]
@@ -21,7 +36,10 @@ const ROUTES: Routes = [
   exports: [],
   declarations: [
     PedagogyStudentsComponent,
-    PedagogyStudentsFilterComponent
+    PedagogyStudentsFilterComponent,
+    PedagogyStudentDetailsComponent,
+    PedagogyModulesComponent,
+    PedagogyContributorsComponent
   ],
   providers: [],
 })
