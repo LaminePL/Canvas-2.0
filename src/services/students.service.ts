@@ -30,19 +30,16 @@ export class StudentsService {
   }
 
   getStudentInfo(studentEmail: string): Observable<any[]> {
-    console.log(studentEmail)
     return this.http.get<any[]>(`${API_URL}userinfos/${studentEmail}`);
   }
 
 
 
   getStudentGrade(user_id: any): Observable<any[]> {
-    console.log(user_id)
     return this.http.get<any[]>(`${API_URL}student_notes/credits/${user_id}`)
 
   }
   getComptaInfo(user_id: any): Observable<any[]> {
-    console.log(user_id)
     return this.http.get<any[]>(`${API_URL}compta/${user_id}`)
 
   }

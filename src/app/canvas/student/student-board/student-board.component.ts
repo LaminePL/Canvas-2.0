@@ -6,6 +6,8 @@ import { StudentsService } from 'src/services/students.service';
 import { ColumnDefinition } from '../../shared/models/columnDefinition';
 import { academyStudentColumns } from '../../models/columns/academy-student-columns';
 import { StudentModel } from '../../models/student.model';
+import { UserService } from 'src/services/user.service';
+import { UserModel } from '../../models/user.model';
 
 
 @Component({
@@ -51,13 +53,14 @@ export class StudentBoardComponent implements OnInit {
   );
 
 
-
+ currentUser : UserModel;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
     private router: Router,
     private route: ActivatedRoute,
-    private studentsService: StudentsService
+    private studentsService: StudentsService,
+    private userService: UserService
   ) {
     this.route.data.subscribe(data => {
       console.log(data['types'])
@@ -67,20 +70,24 @@ export class StudentBoardComponent implements OnInit {
 
 
   ngOnInit(){
-    this.getStudentInfos()
+    this.userService.currentUser.subscribe(user => {
 
-  }
-  getStudentInfos(){
-    console.log(this.studentEmail)
-
-    return this.studentsService.getStudentInfo(this.studentEmail).pipe(
-      map((user)=>{
-        return user[0].id_user
-      })
-    ).subscribe((res)=>{
-      localStorage.setItem('student_id' , res)
+      this.currentUser = user;
+      if(this.currentUser)
+      console.log(this.currentUser)
     })
+
+
   }
+
+    // en tous cas la ce que tu dois faire c'est par tous ou tu essaie de récupérer l'id dpuis le storage tu dois le remplacer par le service tu vois ce que je veux dire ?
+    // c'est comme ce que tu fais en haut, et je récuperer l'id en m'inscrivant tout à fait et avec l'id_user tu peux tous faire me^me les information de student tu peux le récupérer avec l'id_user et non pas le mail
+    // tu vois ? oui exactement c'etait ce que j'ai fais dans les 3 branches,
+    // le mail je lme recupere une fois puis le rest c'est l id_user
+    // nikel du coup il te reste juste à l'adapter avec ce que j'ai fais
+    // je dois te laisser du coup
+    // :) merci beaucpoupppppppppptkt ;)
+
 
   getCalendar() {
     this.router.navigateByUrl('canvas/student/calendar');
