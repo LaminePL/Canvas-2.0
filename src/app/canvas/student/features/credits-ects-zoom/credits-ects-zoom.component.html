@@ -1,4 +1,18 @@
+<mat-spinner *ngIf="loading" class="m-auto"></mat-spinner>
+
 <mat-tab-group animationDuration="300ms">
-  <mat-tab label="Toutes les années">résumé</mat-tab>
-  <mat-tab *ngFor="let level of studentLevels" label="{{level}}">{{level | json}}</mat-tab>
+  <mat-tab label="Toutes les années">
+
+    <app-credits-ects></app-credits-ects>
+  </mat-tab>
+  <div *ngFor="let grade of gradePerYear" >
+  <mat-tab label={{grade.level}}>
+
+  {{grade.total_credits}}
+
+
+
+  </mat-tab>
+</div>
+
 </mat-tab-group>

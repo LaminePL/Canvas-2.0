@@ -44,7 +44,6 @@ export class ComptaZoomComponent implements OnInit {
         this.getUserComptaDetails(this.currentUser.userId)
       this.studentsService.getAllStudents().subscribe(data => {
         this.studentDetails = data.filter(user => user.id_user == this.currentUser.userId)
-        console.log(this.studentDetails)
         this.loading = false;
       })
 
@@ -54,7 +53,6 @@ export class ComptaZoomComponent implements OnInit {
   getUserComptaDetails(userId) {
     this.studentsService.getComptaInfo(userId).pipe(
       map((compta) => {
-        console.log(compta)
         return compta
       })
     ).subscribe((res) => {

@@ -21,12 +21,10 @@ export class CreditsECTSComponent implements OnInit {
   ) { }
   ngOnInit(): void {
     this.userService.currentUser.subscribe(user => {
-
       this.currentUser = user;
       if (this.currentUser)
       this.studentsService.getStudentGrade(this.currentUser.userId).pipe(
         map((grades: any)=>{
-          console.log(grades)
           this.creditsValidés = grades['total_credits']
           return grades['total_credits']
 
@@ -34,7 +32,6 @@ export class CreditsECTSComponent implements OnInit {
         )
       )
       .subscribe((res)=>{
-        console.log(res)
         this.data = {
           labels: ["crédits validés", "crédits non validés"],
           datasets: [

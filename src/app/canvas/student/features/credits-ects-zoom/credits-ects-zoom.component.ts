@@ -10,11 +10,14 @@ import { StudentsService } from 'src/services/students.service';
 export class CreditsEctsZoomComponent implements OnInit {
   studentLevels = ['B.ENG 1','B.ENG 2','B.ENG 3','M.ENG 1','M.ENG 2']
   studentId:number;
-  gradePerYear: any
+  gradePerYear = []
+  loading: boolean;
 
   constructor(private studentsService: StudentsService) { }
 
   ngOnInit(): void {
+    this.loading = true;
+
     this.studentLevelPerYear()
     this.getStudentLevel(this.studentId)
 
@@ -29,6 +32,8 @@ export class CreditsEctsZoomComponent implements OnInit {
           })
         ).subscribe(
           (res)=>{
+            console.log(this.studentId)
+
             this.studentId = res
             return res
           }
@@ -41,17 +46,19 @@ export class CreditsEctsZoomComponent implements OnInit {
   getStudentLevel(studentId){
     this.studentsService.getStudentLevelData().then(
     (res)=>{
+
       res.pipe(
         map((level)=>{
           this.studentLevels.length = this.studentLevels.indexOf(level.level) + 1
           for(let year = 1; year <= this.studentLevels.length; year++){
             this.studentsService.getStudentYearlyGrade(studentId,year).subscribe(
               (res)=>{
+                this.gradePerYear.push(res)
+                this.loading = false;
 
                 return res
               }
             )
-
           }
           return  level.level
         })
