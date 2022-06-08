@@ -10,14 +10,23 @@
 
         </mat-card-title>
       </mat-card-header>
-      <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Card 1'">
+      <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'courses'">
+        <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <button   mat-menu-item (click)="getCourses()">details</button>
+        </mat-menu>
+        <div>
+          <app-compta></app-compta>
+        </div>
       </mat-card-content>
       <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Compta'">
         <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
-          <button   mat-menu-item (click)="getCompta()">details</button>
+          <button   mat-menu-item [routerLink]="['compta', studentId]">details</button>
         </mat-menu>
         <div>
           <app-compta></app-compta>

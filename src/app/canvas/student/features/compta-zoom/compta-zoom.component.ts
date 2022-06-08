@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
+import { StudentDetailsModel } from 'src/app/canvas/models/student-details.model';
 import { StudentModel } from 'src/app/canvas/models/student.model';
 import { UserModel } from 'src/app/canvas/models/user.model';
 import { StudentsService } from 'src/services/students.service';
@@ -19,7 +20,8 @@ export class ComptaZoomComponent implements OnInit {
   firstName: string;
   lastName: string;
   currentUser: UserModel;
-  studentDetails: Array<StudentModel>
+  studentDetails: StudentModel[];
+
   loading: boolean;
 
 
@@ -47,6 +49,7 @@ export class ComptaZoomComponent implements OnInit {
       })
     ).subscribe((res) => {
       this.comptaDetails = res
+      console.log(this.comptaDetails)
       return res
     })
   }
