@@ -54,6 +54,9 @@ export class StudentBoardComponent implements OnInit {
 
 
  currentUser : UserModel;
+ studentDetails: Array<StudentModel>
+ studentId:number;
+
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -65,6 +68,20 @@ export class StudentBoardComponent implements OnInit {
 
 
   ngOnInit(){
+    this.userService.currentUser.subscribe(user => {
+
+      this.currentUser = user;
+      if (this.currentUser)
+      this.studentsService.getAllStudents().subscribe(data => {
+        this.studentDetails = data.filter(user => user.id_user == this.currentUser.userId)
+        this.studentId= this.studentDetails[0].id_student
+        this.studentsService.getStudentDetails(this.studentId).subscribe((res)=>{
+          console.log(res)
+
+        })
+      })
+
+    })
   }
   getCalendar() {
     this.router.navigateByUrl('canvas/student/calendar');
@@ -77,6 +94,9 @@ export class StudentBoardComponent implements OnInit {
   }
   getCompta() {
     this.router.navigateByUrl('canvas/student/compta');
+  }
+  getCourses() {
+    this.router.navigateByUrl('canvas/student/courses');
   }
 
 

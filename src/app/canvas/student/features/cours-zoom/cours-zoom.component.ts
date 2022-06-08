@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModulesService } from 'src/services/modules.service';
+import { UserService } from 'src/services/user.service';
 import { ModuleModel } from '../../../models/module.model';
 
 @Component({
@@ -16,10 +17,12 @@ export class CoursZoomComponent implements OnInit {
   searchKey!: string;
   currantModule: Array<ModuleModel>
   constructor(private modulesService: ModulesService, private router: Router,
-    private route: ActivatedRoute) { }
+    private userService: UserService) { }
 
   ngOnInit(): void {
     this.loading = true;
+
+
     this.modulesService.getModules().subscribe(data => {
       let modules = data.filter(x =>  x.module_name.startsWith("3"))
       this.modules = modules
