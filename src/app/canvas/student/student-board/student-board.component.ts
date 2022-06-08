@@ -61,34 +61,11 @@ export class StudentBoardComponent implements OnInit {
     private route: ActivatedRoute,
     private studentsService: StudentsService,
     private userService: UserService
-  ) {
-    this.route.data.subscribe(data => {
-      console.log(data['types'])
-      this.studentEmail = data['types'];
-    });
-  }
+  ) {}
 
 
   ngOnInit(){
-    this.userService.currentUser.subscribe(user => {
-
-      this.currentUser = user;
-      if(this.currentUser)
-      console.log(this.currentUser)
-    })
-
-
   }
-
-    // en tous cas la ce que tu dois faire c'est par tous ou tu essaie de récupérer l'id dpuis le storage tu dois le remplacer par le service tu vois ce que je veux dire ?
-    // c'est comme ce que tu fais en haut, et je récuperer l'id en m'inscrivant tout à fait et avec l'id_user tu peux tous faire me^me les information de student tu peux le récupérer avec l'id_user et non pas le mail
-    // tu vois ? oui exactement c'etait ce que j'ai fais dans les 3 branches,
-    // le mail je lme recupere une fois puis le rest c'est l id_user
-    // nikel du coup il te reste juste à l'adapter avec ce que j'ai fais
-    // je dois te laisser du coup
-    // :) merci beaucpoupppppppppptkt ;)
-
-
   getCalendar() {
     this.router.navigateByUrl('canvas/student/calendar');
   }
