@@ -40,6 +40,8 @@ FullCalendarModule.registerPlugins([
 import {CoursZoomComponent} from './features/cours-zoom/cours-zoom.component'
 import { UserProfileComponent } from '../shared/user-profile/user-profile.component';
 import { ComptaZoomComponent } from './features/compta-zoom/compta-zoom.component'
+import { FormsModule } from '@angular/forms';
+
 class CustomDateFormatter extends CalendarNativeDateFormatter {
   public override dayViewHour({ date, locale }: DateFormatterParams): string {
     return new Intl.DateTimeFormat('ca', {
@@ -99,6 +101,7 @@ const ROUTES: Routes = [
     MatListModule,
     NgChartsModule,
     FullCalendarModule,
+    FormsModule,
 
     CalendarModule.forRoot({
       provide: DateAdapter,
