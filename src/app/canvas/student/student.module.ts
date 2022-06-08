@@ -75,7 +75,7 @@ const ROUTES: Routes = [
     component: CoursZoomComponent
   },
   {
-    path: 'compta/:id',
+    path: 'compta',
     component: ComptaZoomComponent
   }
 

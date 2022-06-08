@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { KeycloakService } from 'keycloak-angular';
 import { StudentDetailsModel } from 'src/app/canvas/models/student-details.model';
 import { UserService } from 'src/services/user.service';
+import { CalendarModel } from 'src/app/canvas/models/calendar.model';
 
 
 const API_URL = environment.CanvasApi.apiUrl
@@ -47,7 +48,9 @@ export class StudentsService {
     return this.http.get<any[]>(`${API_URL}compta/${user_id}`)
 
   }
-
+  getCalendar(studentId):Observable<CalendarModel[]>{
+    return this.http.get<CalendarModel[]>(`${API_URL}agenda/${studentId}`);
+  }
   getAllStudents():Observable<StudentModel[]>{
     return this.http.get<StudentModel[]>(`${API_URL}students/list`);
   }

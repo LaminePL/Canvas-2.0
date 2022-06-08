@@ -33,13 +33,11 @@ export class ComptaZoomComponent implements OnInit {
   ngOnInit(): void {
 
     this.loading = true;
-
     this.studentsService.studentDetails.subscribe(res=>{
       this.getUserComptaDetails(res[0].id_user)
       this.studentDetails = res
-      this.loading = false;
-
     })
+
   }
 
   getUserComptaDetails(userId) {
@@ -49,7 +47,8 @@ export class ComptaZoomComponent implements OnInit {
       })
     ).subscribe((res) => {
       this.comptaDetails = res
-      console.log(this.comptaDetails)
+      this.loading = false;
+
       return res
     })
   }

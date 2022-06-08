@@ -32,8 +32,6 @@ export class CreditsEctsZoomComponent implements OnInit {
           })
         ).subscribe(
           (res)=>{
-            console.log(this.studentId)
-
             this.studentId = res
             return res
           }
@@ -55,7 +53,6 @@ export class CreditsEctsZoomComponent implements OnInit {
               (res)=>{
                 this.gradePerYear.push(res)
                 this.loading = false;
-
                 return res
               }
             )

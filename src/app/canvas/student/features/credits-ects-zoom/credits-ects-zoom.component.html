@@ -1,5 +1,5 @@
-<mat-spinner *ngIf="loading" class="m-auto"></mat-spinner>
 
+<div *ngIf="!loading">
 <mat-tab-group animationDuration="300ms">
   <mat-tab label="Toutes les années">
 
@@ -16,3 +16,5 @@
 </div>
 
 </mat-tab-group>
+</div>
+<mat-spinner *ngIf="loading" class="m-auto center"></mat-spinner>

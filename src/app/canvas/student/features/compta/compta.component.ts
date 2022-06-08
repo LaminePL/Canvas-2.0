@@ -21,20 +21,15 @@ export class ComptaComponent implements OnInit {
     private userService: UserService) { }
 
   ngOnInit(): void {
-
-
-
     this.userService.currentUser.subscribe(user => {
-
       this.currentUser = user;
       if (this.currentUser)
-
        this.studentsService.getComptaInfo(this.currentUser.userId).pipe(
           map((compta) => {
+            this.comptaPaymentDue = compta[0].compta_payment_due
             return compta[0].compta_payment_due
           })
         ).subscribe((res) => {
-          this.comptaPaymentDue = res
           return res
         })
     })

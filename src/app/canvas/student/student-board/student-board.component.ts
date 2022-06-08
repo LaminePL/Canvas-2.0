@@ -67,22 +67,7 @@ export class StudentBoardComponent implements OnInit {
   ) {}
 
 
-  ngOnInit(){
-    this.userService.currentUser.subscribe(user => {
-
-      this.currentUser = user;
-      if (this.currentUser)
-      this.studentsService.getAllStudents().subscribe(data => {
-        this.studentDetails = data.filter(user => user.id_user == this.currentUser.userId)
-        this.studentId= this.studentDetails[0].id_student
-        this.studentsService.getStudentDetails(this.studentId).subscribe((res)=>{
-          console.log(res)
-
-        })
-      })
-
-    })
-  }
+  ngOnInit(){}
   getCalendar() {
     this.router.navigateByUrl('canvas/student/calendar');
   }
