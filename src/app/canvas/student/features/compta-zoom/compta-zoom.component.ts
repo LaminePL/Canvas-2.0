@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, mergeMap } from 'rxjs';
+import { BehaviorSubject, map, mergeMap } from 'rxjs';
 import { StudentDetailsModel } from 'src/app/canvas/models/student-details.model';
 import { StudentModel } from 'src/app/canvas/models/student.model';
 import { UserModel } from 'src/app/canvas/models/user.model';
@@ -24,16 +24,22 @@ export class ComptaZoomComponent implements OnInit {
   firstName: string;
   lastName: string;
   currentUser: UserModel;
-  studentDetails: Array<StudentModel>
+  studentDetails: StudentDetailsModel;
+
   loading: boolean;
 
 
 
-  constructor(
-    private studentsService: StudentsService,
-    private userService: UserService,
-    private route: ActivatedRoute
-  ) { }
+  constructor(private studentsService: StudentsService, private route: ActivatedRoute, private userService: UserService ) {
+    this.route.paramMap.subscribe(params => {
+      this.studentsService.getStudentDetails(Number(params.get('id'))).subscribe(data => {
+        this.studentDetails = data;
+        this.loading = false;
+
+        console.log(this.studentDetails);
+      })
+    });
+  }
 
   ngOnInit(): void {
     this.loading = true;
@@ -42,10 +48,7 @@ export class ComptaZoomComponent implements OnInit {
       this.currentUser = user;
       if (this.currentUser)
         this.getUserComptaDetails(this.currentUser.userId)
-      this.studentsService.getAllStudents().subscribe(data => {
-        this.studentDetails = data.filter(user => user.id_user == this.currentUser.userId)
-        this.loading = false;
-      })
+
 
     })
   }
@@ -57,6 +60,7 @@ export class ComptaZoomComponent implements OnInit {
       })
     ).subscribe((res) => {
       this.comptaDetails = res
+      console.log(this.comptaDetails)
       return res
     })
   }
