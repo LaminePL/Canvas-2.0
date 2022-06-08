@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { StudentModel } from 'src/app/canvas/models/student.model';
 import { environment } from 'src/environments/environment';
 
 import { KeycloakService } from 'keycloak-angular';
 import { StudentDetailsModel } from 'src/app/canvas/models/student-details.model';
+import { UserService } from 'src/services/user.service';
 
 
 const API_URL = environment.CanvasApi.apiUrl
@@ -16,10 +17,13 @@ const API_URL = environment.CanvasApi.apiUrl
 export class StudentsService {
 
 
+  studentDetails: BehaviorSubject<StudentModel[]> = new BehaviorSubject<StudentModel[]>({} as StudentModel[]);
 
-  constructor(private keycloakService: KeycloakService,
-    private http: HttpClient) { }
-  userId: any;
+  constructor(private keycloakService: KeycloakService, private userService:UserService,
+    private http: HttpClient) {
+      this.getStudent()
+     }
+
 
   getStudentId() {
     return this.keycloakService.loadUserProfile()
@@ -50,6 +54,16 @@ export class StudentsService {
 
   getStudentDetails(studentId): Observable<StudentDetailsModel>{
     return this.http.get<StudentDetailsModel>(`${API_URL}students/details/${studentId}`)
+  }
+
+  getStudent(){
+    this.userService.currentUser.subscribe(res => {
+     if (res)
+      this.getAllStudents().subscribe(data => {
+        this.studentDetails.next(data.filter(user => user.id_user == res.userId));
+         return this.studentDetails
+      })
+    })
   }
   async getStudentData() {
     let studentDetails = await this.keycloakService.loadUserProfile();
