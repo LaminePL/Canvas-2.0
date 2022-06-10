@@ -6,7 +6,6 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import frLocale from '@fullcalendar/core/locales/fr';
 import Swal from 'sweetalert2'
 import { StudentsService } from 'src/services/students.service';
-import { CalendarModel } from 'src/app/canvas/models/calendar.model';
 
 @Component({
   selector: 'app-student-calendar',
@@ -36,8 +35,6 @@ export class StudentCalendarComponent implements OnInit {
   ngOnInit(): void {
     this.studentService.getCalendar(8955).subscribe(res=>{
       this.events = res
-      console.log(this.events)
-
       this.calendarOptions= {
         plugins: [timeGridPlugin, dayGridPlugin],
         selectable: true,
