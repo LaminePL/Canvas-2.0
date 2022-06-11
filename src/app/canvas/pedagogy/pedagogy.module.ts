@@ -10,6 +10,7 @@ import { PedagogyStudentDetailsComponent } from './pedagogy-student-details/peda
 import { PedagogyModulesComponent } from './pedagogy-modules/pedagogy-modules.component';
 import { PedagogyContributorsComponent } from './pedagogy-contributors/pedagogy-contributors.component';
 import { PedagogyNotesComponent } from './pedagogy-notes/pedagogy-notes.component';
+import { PedagogyNotesFiltersComponent } from './pedagogy-notes-filters/pedagogy-notes-filters.component';
 
 const ROUTES: Routes = [
   {
@@ -45,7 +46,8 @@ const ROUTES: Routes = [
     PedagogyStudentDetailsComponent,
     PedagogyModulesComponent,
     PedagogyContributorsComponent,
-    PedagogyNotesComponent
+    PedagogyNotesComponent,
+    PedagogyNotesFiltersComponent
   ],
   providers: [],
 })

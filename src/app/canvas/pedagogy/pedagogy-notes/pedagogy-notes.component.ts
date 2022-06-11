@@ -29,6 +29,8 @@ export class PedagogyNotesComponent implements OnInit {
   displayedRows: Array<StudentNotesInfosModel>
   displayedColumns: Array<ColumnDefinition>
   loading:boolean;
+  subject:string;
+  body: string;
   
 
 
@@ -41,7 +43,13 @@ export class PedagogyNotesComponent implements OnInit {
       this.rows = data;
       this.loading = false;
     })
+    this.subject = "Rattrapage de la matière";
+    this.body = "Bonjour, \n Votre note étant inférieure à 10, vous êtes prié de vous présenter aux rattrapages de la matière qui se dérouleront du 7 au 12 juillet 2022";
 
+  }
+
+  sendMailToStudent(module){
+    window.open('mailto:test@example.com?subject='+this.subject+' : '+module+'&body='+this.body);
   }
   
 

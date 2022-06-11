@@ -9,7 +9,7 @@ import { ColumnDefinition } from '../../shared/models/columnDefinition';
 @Component({
   selector: 'app-pedagogy-contributors',
   templateUrl: './pedagogy-contributors.component.html',
-  styleUrls: ['./pedadogy-contributors.component.scss']
+  styleUrls: ['./pedagogy-contributors.component.css']
 })
 export class PedagogyContributorsComponent implements OnInit {
 
