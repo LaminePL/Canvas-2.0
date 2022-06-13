@@ -1,0 +1,26 @@
+
+<h1 class="m-1">All modules</h1>
+
+<div class="search-div col m-1" >
+
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <mat-icon matSuffix *ngIf="!searchKey">search</mat-icon>
+    <input matInput [(ngModel)]="searchKey" placeholder="Search" (keyup)="applyFilter()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchKey()">
+      <mat-icon> close </mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+
+<mat-card class="custom-flex m-1">
+  <mat-card matRipple class="custom-item" *ngFor="let module of displayedModules" (click)="onCardClick(module.module_canvas)">
+    <mat-card-title class="card-title">{{module.module_name | uppercase}}</mat-card-title>
+    <mat-card-subtitle>
+      {{module.module_description}}
+    </mat-card-subtitle>
+  </mat-card>
+</mat-card>
+
+<mat-spinner *ngIf="loading" class="m-auto"></mat-spinner>
+
+

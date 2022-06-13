@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>Filters</h1>
+
+<mat-dialog-content>
+
+  <p>
+    <mat-form-field class="m-1">
+      <mat-label>Admission</mat-label>
+      <mat-select [(ngModel)]="admissionFilter">
+        <mat-option selected [value]="admissionFilterEnum.Tous">Tous</mat-option>
+        <mat-option [value]="admissionFilterEnum.Admis">Admis</mat-option>
+        <mat-option [value]="admissionFilterEnum.Ajourne">Ajourné</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="m-1">
+      <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="statusFilter">
+        <mat-option selected [value]="statusFilterEnum.Tous">Tous</mat-option>
+        <mat-option [value]="statusFilterEnum.EnCours">En cours</mat-option>
+        <mat-option [value]="statusFilterEnum.Ancien">Ancien</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+
+
+    <p>
+    <mat-checkbox [(ngModel)]="contratProFilter" class="m-1">Contrat pro</mat-checkbox>
+    <mat-checkbox [(ngModel)]="hiredFilter" class="m-1">Hired</mat-checkbox>
+    </p>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Quitter</button>
+  <button class="mat-raised-button mat-primary" (click)="applyFilter()">Appliquer</button>
+</mat-dialog-actions>
+
+</mat-dialog-content>

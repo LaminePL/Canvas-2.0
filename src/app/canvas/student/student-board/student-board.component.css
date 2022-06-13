@@ -1,0 +1,40 @@
+.grid-container {
+  margin: 20px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+
+.credits-ects {
+  display: block;
+}
+
+.mat-h1 {
+  margin-left: 15px;
+}
+
+.mat-card-content {
+  height: 90%;
+}
+
+.dashboard-img {
+  border-radius: 3px;
+  padding: 21px;
+  margin-top: -53px !important;
+  float: left;
+  height: 100px;
+  margin-left: -2em;
+
+}

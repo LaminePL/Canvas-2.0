@@ -1,0 +1,17 @@
+.positif-sold-compta {
+  font-weight: 700;
+font-size: 2.5rem;
+line-height: 1;
+color: #3ac47d !important;
+}
+.negatif-sold-compta {
+  font-weight: 700;
+font-size: 2.5rem;
+line-height: 1;
+color: #d41414 !important;
+}
+.compta-label{
+  color: darkgray;
+font-size: 0.8rem;
+}
+

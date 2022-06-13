@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <div class="logo">
+      <span>SUPINFO</span>
+    </div>
+    <span class="spacer"></span>
+
+    <div class='nav-right'>
+      <div class="nav-email">
+        <span> Bonjour, {{firstName}}</span>
+      </div>
+      <div class="nav-logout">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+          <mat-icon (click)="logout()">account_circle</mat-icon>
+        </button>
+      </div>
+    </div>
+    <!-- responsive toolbar-->
+    <div class="responsive-menu">
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon (click)="logout()">account_circle</mat-icon>
+          <span>logout</span>
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar-row>
+
+  <!-- end of  responsive toolbar-->
+
+</mat-toolbar>
+    <app-side-nav></app-side-nav>
+

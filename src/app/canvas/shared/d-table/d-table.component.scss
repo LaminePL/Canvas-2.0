@@ -1,0 +1,41 @@
+table {
+  width: 100%;
+}
+
+tr.detail-row {
+  height: 0;
+}
+
+tr.element-row:not(.student-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.element-row:not(.student-expanded-row):active {
+  background: #efefef;
+}
+
+.element-row td {
+  border-bottom-width: 0;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-input[placeholder] {
+  text-overflow: ellipsis;
+  width: 80%;
+}
+
+.search-div {
+  max-width: 50%;
+  margin-right: 3%;
+  .search-form-field {
+
+    width: 100%;
+
+  }
+}

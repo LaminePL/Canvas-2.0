@@ -1,0 +1,20 @@
+
+<h1>Students</h1>
+<app-d-table
+[rows]="displayedRows"
+[columnsDefinition]="displayedColumns"
+[loading] = "loading"
+[searchable]="true">
+
+<div filters class="m-auto ms-0">
+    <button mat-button (click)="onFilterClick()">Filter <mat-icon>filter_list</mat-icon></button>
+</div>
+
+<ng-template #columnTemplate let-column let-row="row">
+  <ng-container *ngIf="column.name == 'details'">
+    <button mat-button color="primary"  [routerLink]="['student-details', row.id_student]">Afficher les détails</button>
+  </ng-container>
+</ng-template>
+</app-d-table>
+
+
