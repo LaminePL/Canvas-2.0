@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ChartType, DatasetController, ChartDataset, ChartOptions } from 'chart.js';
-import { forkJoin, map, merge, mergeMap, pipe, zip } from 'rxjs';
-import { NotesModel } from 'src/app/canvas/models/notes.models';
-import { ModulesService } from 'src/services/modules.service';
-import { StudentsService } from 'src/services/students.service';
-import { UserService } from 'src/services/user.service';
+import {Component, OnInit} from '@angular/core';
+import {ChartType, DatasetController, ChartDataset, ChartOptions} from 'chart.js';
+import {forkJoin, map, merge, mergeMap, pipe, zip} from 'rxjs';
+import {NotesModel} from 'src/app/canvas/models/notes.models';
+import {ModulesService} from 'src/services/modules.service';
+import {StudentsService} from 'src/services/students.service';
+import {UserService} from 'src/services/user.service';
 
 @Component({
   selector: 'app-credits-ects-zoom',
@@ -19,22 +19,23 @@ export class CreditsEctsZoomComponent implements OnInit {
   loading: boolean;
   level: string
   year: string
+  exit_level: string
   notePerYear = []
   total_credits;
   max_credits;
   barChartOptions: ChartOptions = {
     responsive: true,
   };
-   barChartType: ChartType = 'bar';
-   barChartLegend = true;
-   barChartPlugins = [];
-   public barChartData: ChartDataset[] = [
-
-  ];
+  barChartType: ChartType = 'bar';
+  barChartLegend = true;
+  barChartPlugins = [];
+  public barChartData: ChartDataset[] = [];
   modules = []
   modulesList: NotesModel[] = []
+
   constructor(private studentsService: StudentsService, private userService: UserService,
-    ) { }
+  ) {
+  }
 
   ngOnInit(): void {
 
@@ -42,9 +43,11 @@ export class CreditsEctsZoomComponent implements OnInit {
     this.loading = true;
     this.studentsService.studentDetails.subscribe(
       (res) => {
-        console.log(res)
         this.studentId = res[0].id_student
         this.year = res[0].study_length
+        this.level = res[0]?.level
+        this.exit_level = res[0]?.exit_level
+
 
       }
     )
@@ -53,61 +56,57 @@ export class CreditsEctsZoomComponent implements OnInit {
   }
 
   getStudentCreditsPerYear(studentId) {
-    this.studentsService.getStudentLevelData().then(
-      (res) => {
-        res.pipe(
-          map((level) => {
-            debugger
-            let creditsAvailable =[]
-            let maxCredits =[]
-            this.studentLevels.length = this.studentLevels.indexOf(level.level) + 1
-            for (let year = 1; year <= this.studentLevels.length; year++) {
-              this.studentsService.getStudentCreditsPerYear(studentId, year).pipe(
-                map((data)=>{
-                  console.log(data)
-                  this.total_credits = data
-                  this.max_credits = data
-                    creditsAvailable.push(this.total_credits.total_credits)
-                    maxCredits.push(this.total_credits.max_credits)
-                 this.barChartData = [
-                    { data: creditsAvailable, label: 'Series A' },
-                    { data: maxCredits, label: 'Series B' }
-                  ]
-                  return data
-                })
-              )
-              .subscribe(
-                (res) => {
-                  this.gradePerYear.push(res)
-
-                  this.loading = false;
-                }
-              )
-            }
-            return level.level
-          })
-        ).subscribe(
-          ((res) => {
-            return res
-          })
+    let creditsAvailable = []
+    let maxCredits = []
+    this.studentLevels.length = this.studentLevels.indexOf(this.level ? this.level : this.exit_level) + 1
+    for (let year = 1; year <= this.studentLevels.length; year++) {
+      this.studentsService.getStudentCreditsPerYear(studentId, year).pipe(
+        map((data) => {
+          this.total_credits = data
+          this.max_credits = data
+          creditsAvailable.unshift(this.total_credits.total_credits)
+          maxCredits.unshift(60)
+          this.barChartData = [
+            {data: creditsAvailable, label: 'Validated'},
+            {data: maxCredits, label: 'Still to validate'}
+          ]
+          return data
+        })
+      )
+        .subscribe(
+          (res) => {
+            this.gradePerYear.push(res)
+            this.loading = false;
+          }
         )
+    }
 
-      })
 
   }
 
-  getStudentNotesPerYear(studentId: number, year) {
-    for (let item = 1; item <= Number(year); item++) {
-      this.studentsService.getStudentNotesPerYear(studentId, item).subscribe((res) => {
-        this.notePerYear.push(res)
-        this.notePerYear.map((module:Array<any>) => {
-          module.sort(function (a, b) { return b.year - a.year; });
+  getStudentNotesPerYear(studentId, year) {
+    for (let item = 1; item <= year; item++) {
+      console.log(item)
+      this.studentsService.getStudentNotesPerYear(studentId, item).pipe(
+        map((data) => {
+          this.notePerYear.unshift(data)
+          this.notePerYear.map((module: Array<any>) => {
+            module.sort(function (a, b) {
+              return b.year - a.year;
+            });
+          })
+          return this.notePerYear
         })
-      })
+      )
+        .subscribe((res) => {
+          return res
+
+        })
 
     }
 
   }
+
 // ratrappage
 // liste des cours et prof
 
@@ -130,6 +129,7 @@ export class CreditsEctsZoomComponent implements OnInit {
 
 
   }
+
   public onCardClick(url) {
     window.open(url, "_blank");
   }
