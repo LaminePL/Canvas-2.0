@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ModulesService } from 'src/services/modules.service';
 import { academyModuleColumns } from '../../models/columns/academy-module-columns';
 import { ModuleModel } from '../../models/module.model';
+import { StudentDetailsModel } from '../../models/student-details.model';
 import { ColumnDefinition } from '../../shared/models/columnDefinition';
 
 @Component({
@@ -17,8 +18,12 @@ export class AcademyModulesComponent implements OnInit {
   //displayedColumns: Array<ColumnDefinition>
   loading: boolean;
   searchKey!: string;
+  studentDetails: StudentDetailsModel;
+
   constructor(private modulesService: ModulesService, private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) {
+
+  }
 
   ngOnInit(): void {
     //this.displayedColumns = academyModuleColumns;
@@ -31,7 +36,8 @@ export class AcademyModulesComponent implements OnInit {
   }
 
   public onCardClick(url) {
-    window.open(url, "_blank");
+    // window.open(url, "_blank");
+    // this.router.navigateByUrl('/canvas/academy/students-status')
   }
 
   onSearchKey() {
@@ -40,9 +46,11 @@ export class AcademyModulesComponent implements OnInit {
   }
 
   applyFilter() {
-    this.displayedModules = this.modules.filter(x => !!this.searchKey ? x.module_name.toLocaleLowerCase().includes(this.searchKey.toLocaleLowerCase()): true)
+    this.displayedModules = this.modules.filter(x => !!this.searchKey ? x.module_name.toLocaleLowerCase().includes(this.searchKey.toLocaleLowerCase()) : true)
   }
 
-
+  moduleDescription(url) {
+    window.open(url, "_blank");
+  }
 
 }

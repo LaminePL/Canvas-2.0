@@ -1,4 +1,5 @@
 
+<div class="container">
 <h1>Students</h1>
 <app-d-table
 [rows]="displayedRows"
@@ -12,9 +13,14 @@
 
 <ng-template #columnTemplate let-column let-row="row">
   <ng-container *ngIf="column.name == 'details'">
-    <button mat-button color="primary"  [routerLink]="['student-details', row.id_student]">Afficher les détails</button>
+
+    <button mat-icon-button color="primary"  [routerLink]="['student-details', row.id_student]">
+      <mat-icon matTooltip="Details">
+        description
+        </mat-icon>
+    </button>
   </ng-container>
 </ng-template>
 </app-d-table>
 
-
+</div>
