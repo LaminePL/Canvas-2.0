@@ -36,5 +36,8 @@ export class StudentDetailsModel{
   //hiring
   h_lenght_month_hired: number
   h_company_hired: string
+  //Resit
+  has_resit:boolean;
+  nb_resit:number;
 
 }

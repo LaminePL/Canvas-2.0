@@ -1,0 +1,17 @@
+<h1>Students</h1>
+<app-d-table
+[rows]="displayedRows"
+[columnsDefinition]="displayedColumns"
+[loading] = "loading"
+[searchable]="true">
+
+<div filters>
+  <mat-form-field>
+    <mat-label>Campus</mat-label>
+    <mat-select [(ngModel)]="campusFilter" (selectionChange)="onCampusFilterChanged()">
+      <mat-option selected [value]="null">All</mat-option>
+      <mat-option *ngFor="let campusFltr of campusFilterValues"  [value]="campusFltr" >{{campusFltr.campus_name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+</app-d-table>
