@@ -13,12 +13,13 @@ import { UserService } from 'src/services/user.service';
 })
 export class CreditsEctsZoomComponent implements OnInit {
   studentLevels = ['B.ENG 1', 'B.ENG 2', 'B.ENG 3', 'M.ENG 1', 'M.ENG 2']
+  // studentLevels = ['M.ENG 2', 'M.ENG 1', 'B.ENG 3', 'B.ENG 2', 'B.ENG 1']
   studentId: number;
   gradePerYear = []
   loading: boolean;
   level: string
   year: string
-  notePerYear: any[] = []
+  notePerYear = []
   total_credits;
   max_credits;
   barChartOptions: ChartOptions = {
@@ -28,8 +29,7 @@ export class CreditsEctsZoomComponent implements OnInit {
    barChartLegend = true;
    barChartPlugins = [];
    public barChartData: ChartDataset[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+
   ];
   modules = []
   modulesList: NotesModel[] = []
@@ -42,6 +42,7 @@ export class CreditsEctsZoomComponent implements OnInit {
     this.loading = true;
     this.studentsService.studentDetails.subscribe(
       (res) => {
+        console.log(res)
         this.studentId = res[0].id_student
         this.year = res[0].study_length
 
@@ -49,10 +50,6 @@ export class CreditsEctsZoomComponent implements OnInit {
     )
     this.getStudentCreditsPerYear(this.studentId)
     this.getStudentNotesPerYear(this.studentId, this.year)
-
-
-
-
   }
 
   getStudentCreditsPerYear(studentId) {
@@ -60,23 +57,23 @@ export class CreditsEctsZoomComponent implements OnInit {
       (res) => {
         res.pipe(
           map((level) => {
+            debugger
+            let creditsAvailable =[]
+            let maxCredits =[]
             this.studentLevels.length = this.studentLevels.indexOf(level.level) + 1
             for (let year = 1; year <= this.studentLevels.length; year++) {
               this.studentsService.getStudentCreditsPerYear(studentId, year).pipe(
                 map((data)=>{
+                  console.log(data)
                   this.total_credits = data
                   this.max_credits = data
-                  console.log(this.total_credits.total_credits)
-                  this.barChartData = [
-                    { data: [this.total_credits.total_credits], label: 'Series A' },
-                    { data: [this.max_credits.max_credits], label: 'Series B' }
+                    creditsAvailable.push(this.total_credits.total_credits)
+                    maxCredits.push(this.total_credits.max_credits)
+                 this.barChartData = [
+                    { data: creditsAvailable, label: 'Series A' },
+                    { data: maxCredits, label: 'Series B' }
                   ]
-
-
-
-
                   return data
-
                 })
               )
               .subscribe(
@@ -85,13 +82,10 @@ export class CreditsEctsZoomComponent implements OnInit {
 
                   this.loading = false;
                 }
-
               )
-
             }
             return level.level
           })
-
         ).subscribe(
           ((res) => {
             return res
@@ -105,7 +99,6 @@ export class CreditsEctsZoomComponent implements OnInit {
   getStudentNotesPerYear(studentId: number, year) {
     for (let item = 1; item <= Number(year); item++) {
       this.studentsService.getStudentNotesPerYear(studentId, item).subscribe((res) => {
-
         this.notePerYear.push(res)
         this.notePerYear.map((module:Array<any>) => {
           module.sort(function (a, b) { return b.year - a.year; });

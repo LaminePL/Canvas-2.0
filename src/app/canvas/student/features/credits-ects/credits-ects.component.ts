@@ -39,7 +39,7 @@ export class CreditsECTSComponent implements OnInit {
           datasets: [
             {
               label: "CREDITS ECTS",
-              data: [this.total_credits, this.max_credits],
+              data: [this.total_credits, this.max_credits-this.total_credits],
               backgroundColor: [
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 99, 132, 0.2)',

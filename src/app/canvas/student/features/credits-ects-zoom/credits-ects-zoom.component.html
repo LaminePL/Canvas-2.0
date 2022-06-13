@@ -1,6 +1,13 @@
 <div *ngIf="!loading">
   <mat-tab-group animationDuration="300ms">
-
+    <mat-tab label="Overview">
+      <div style="display: block; width: 800px; ">
+        <canvas baseChart [datasets]="barChartData" [labels]="studentLevels" [options]="barChartOptions"
+          [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType"
+          style="display: block;">
+        </canvas>
+      </div>
+    </mat-tab>
     <ng-container *ngFor="let notes of notePerYear ">
 
       <mat-tab label={{getYearById(notes[0].year)}}>
@@ -10,7 +17,6 @@
               <mat-expansion-panel-header>
                 <mat-panel-title>
                   <div class="header-pannel" (click)="onCardClick(note.module_canvas)">
-
                     {{note.module_name}}
                   </div>
                 </mat-panel-title>
@@ -37,18 +43,7 @@
 
       </mat-tab>
     </ng-container>
-    <mat-tab label="Overview">
-      <div style="display: block;">
-        <canvas baseChart
-          [datasets]="barChartData"
-          [labels]="barChartLabels"
-          [options]="barChartOptions"
-          [plugins]="barChartPlugins"
-          [legend]="barChartLegend"
-          [chartType]="barChartType">
-        </canvas>
-      </div>
-          </mat-tab>
+
   </mat-tab-group>
 </div>
 <mat-spinner *ngIf="loading" class="m-auto center"></mat-spinner>
