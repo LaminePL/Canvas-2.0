@@ -69,6 +69,10 @@ body {
 
 @media screen and (max-width: 767px) {
 
+ /* .responsive-hide-col{
+    display: none;
+  }*/
+
   .responsive-menu {
     display: block !important;
   }

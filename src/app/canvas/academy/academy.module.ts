@@ -10,8 +10,17 @@ import { AcademyContributorsComponent } from './academy-contributors/academy-con
 import { AcademyModulesComponent } from './academy-modules/academy-modules.component';
 import { AcademyPartnershipsComponent } from './academy-partnerships/academy-partnerships.component';
 import { AcademyStudentsFilterComponent } from './academy-students-filter/academy-students-filter.component';
+import { AcademyStudentsStatusComponent } from './academy-students-status/academy-students-status.component';
+import { AcademyDashboardComponent } from './academy-dashboard/academy-dashboard.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { AcademyDocumentsComponent } from './academy-documents/academy-documents.component';
+import { AcademyResitDetailsComponent } from './academy-resit-details/academy-resit-details.component';
 
 const ROUTES: Routes = [
+  {
+    path: '',
+    component: AcademyDashboardComponent
+  },
   {
     path: 'students',
     component:AcademyStudentsComponent ,
@@ -33,10 +42,14 @@ const ROUTES: Routes = [
     path: 'partnerships',
     component: AcademyPartnershipsComponent
   },
+  {
+    path: 'modules/students-status/:id',
+    component: AcademyStudentsStatusComponent
+  },
 ]
 
 @NgModule({
-  imports: [RouterModule.forChild(ROUTES),SharedModule,MaterialModule,CommonModule,FormsModule],
+  imports: [RouterModule.forChild(ROUTES),SharedModule,MaterialModule,CommonModule,FormsModule,MatDialogModule],
   exports: [],
   declarations: [
     AcademyStudentsComponent,
@@ -44,7 +57,11 @@ const ROUTES: Routes = [
     AcademyContributorsComponent,
     AcademyModulesComponent,
     AcademyPartnershipsComponent,
-    AcademyStudentsFilterComponent
+    AcademyStudentsFilterComponent,
+    AcademyStudentsStatusComponent,
+    AcademyDashboardComponent,
+    AcademyDocumentsComponent,
+    AcademyResitDetailsComponent,
   ],
   providers: [],
 })
