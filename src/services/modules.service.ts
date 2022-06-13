@@ -20,4 +20,9 @@ export class ModulesService {
   }
 
 
+  getModulebyId(id):Observable<ModuleModel[]>{
+    return this.httpClient.get<ModuleModel[]>(`${API_URL}modules/${id}`);
+  }
+
+
 }

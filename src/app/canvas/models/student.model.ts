@@ -14,4 +14,5 @@ export class StudentModel{
   is_hired:boolean;
   has_contrat_pro:boolean;
   has_resit:boolean;
+  study_length?:string
 }

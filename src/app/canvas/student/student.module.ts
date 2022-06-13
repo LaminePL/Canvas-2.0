@@ -22,8 +22,6 @@ import {
   DateAdapter,
   DateFormatterParams
 } from "angular-calendar";
-
-import { SharedModule } from '../shared/shared.module';
 import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
 import { RouterModule, Routes } from "@angular/router";
 import { StudentBoardComponent } from './student-board/student-board.component';
@@ -33,7 +31,6 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { StudentResolver } from './student.resolver';
 import { ComptaComponent } from './features/compta/compta.component';
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -41,7 +38,11 @@ FullCalendarModule.registerPlugins([
   timeGridPlugin
 ]);
 import {CoursZoomComponent} from './features/cours-zoom/cours-zoom.component'
-import { UserProfileComponent } from '../shared/user-profile/user-profile.component'
+import { UserProfileComponent } from '../shared/user-profile/user-profile.component';
+import { ComptaZoomComponent } from './features/compta-zoom/compta-zoom.component'
+import { FormsModule } from '@angular/forms';
+import { CoursesComponent } from './features/courses/courses.component';
+
 class CustomDateFormatter extends CalendarNativeDateFormatter {
   public override dayViewHour({ date, locale }: DateFormatterParams): string {
     return new Intl.DateTimeFormat('ca', {
@@ -55,9 +56,7 @@ const ROUTES: Routes = [
   {
     path: '',
     component: StudentBoardComponent,
-    resolve: {
-      types: StudentResolver
-    }
+
 
   },
   {
@@ -75,13 +74,17 @@ const ROUTES: Routes = [
   {
     path: 'courses',
     component: CoursZoomComponent
+  },
+  {
+    path: 'compta',
+    component: ComptaZoomComponent
   }
 
 
 ]
 
 @NgModule({
-  declarations: [CreditsECTSComponent, StudentBoardComponent, CanvasCalendarComponent, CanvasCalendarZoomComponent, CreditsEctsZoomComponent, StudentCalendarComponent, ComptaComponent,CoursZoomComponent],
+  declarations: [CreditsECTSComponent, StudentBoardComponent, CanvasCalendarComponent, CanvasCalendarZoomComponent, CreditsEctsZoomComponent, StudentCalendarComponent, ComptaComponent,CoursZoomComponent, ComptaZoomComponent, CoursesComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(ROUTES),
@@ -98,8 +101,8 @@ const ROUTES: Routes = [
     MatSidenavModule,
     MatListModule,
     NgChartsModule,
-    SharedModule,
     FullCalendarModule,
+    FormsModule,
 
     CalendarModule.forRoot({
       provide: DateAdapter,

@@ -8,7 +8,7 @@ export function initializeKeycloak(keyckloak: KeycloakService): () => Promise<an
           {
             config :{
               url: environment.keycloak.issuer,
-              realm:environment.keycloak.realm, //CANVAS //canvas-bis
+              realm:'canvas-bis', //CANVAS //canvas-bis
               clientId:environment.keycloak.clientId
             },
             loadUserProfileAtStartUp:true,

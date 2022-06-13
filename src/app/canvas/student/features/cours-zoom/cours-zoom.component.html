@@ -1,44 +1,26 @@
-<h1> Liste des Cours</h1>
-<mat-card class="custom-flex">
-  <mat-card matRipple class="custom-item" *ngFor="let card of cards" (click)="onCardClick(card.id)">
-    <mat-card-title class="card-title">{{card.title | uppercase}}</mat-card-title>
+
+<h1 class="m-1">All modules</h1>
+
+<div class="search-div col m-1" >
+
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <mat-icon matSuffix *ngIf="!searchKey">search</mat-icon>
+    <input matInput [(ngModel)]="searchKey" placeholder="Search" (keyup)="applyFilter()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchKey()">
+      <mat-icon> close </mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+
+<mat-card class="custom-flex m-1">
+  <mat-card matRipple class="custom-item" *ngFor="let module of displayedModules" (click)="onCardClick(module.module_canvas)">
+    <mat-card-title class="card-title">{{module.module_name | uppercase}}</mat-card-title>
     <mat-card-subtitle>
-      Learn Web Development with Easy Tutorials
+      {{module.module_description}}
     </mat-card-subtitle>
-    <img mat-card-image style="width: 150px;" src="https://angular.io/assets/images/logos/angularjs/AngularJS-Shield.svg" alt="Angular Logo">
-
-
   </mat-card>
 </mat-card>
 
-  <div class="card-wrapper">
+<mat-spinner *ngIf="loading" class="m-auto"></mat-spinner>
 
-    <!--   <mat-card class="custom-flex " >
-      <mat-card matRipple class="custom-card" *ngFor="let card of cards" (click)="onCardClick(card.id)">
 
-        <mat-card-header>
-     <img
-          src="https://www.freakyjolly.com/wp-content/uploads/2021/07/cropped-cropped-fj-logo-192-removebg-preview-e1625997712615-1.png"
-          mat-card-avatar />
-
-        <mat-card-title class="cours-card-title">{{card.title}}</mat-card-title>
-        <mat-card-subtitle>
-          Learn Web Development with Easy Tutorials
-        </mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image style="width: 150px;" src="https://angular.io/assets/images/logos/angularjs/AngularJS-Shield.svg" alt="Angular Logo">
-      <mat-card-content>
-        <p>
-          {{card.desc}}
-        </p>
-      </mat-card-content>
-
-      <mat-card-actions>
-        <button mat-raised-button color="accent">LIKE</button>
-        <button mat-raised-button color="primary">SHARE</button>
-      </mat-card-actions>
-    </mat-card>
-    </mat-card>
-
-  </div>
- -->

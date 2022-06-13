@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { KeycloakService, KeycloakAuthGuard } from 'keycloak-angular';
 import { UserService } from 'src/services/user.service';
 import { RolesEnum } from './canvas/models/roles.enum';
 import { UserModel } from './canvas/models/user.model';
@@ -10,7 +9,7 @@ import { UserModel } from './canvas/models/user.model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Canvas';
+  title = 'SUPINFO';
   firstName: any;
   lastName: any;
   email: any;
@@ -27,7 +26,6 @@ export class AppComponent implements OnInit {
      this.userService.currentUser.subscribe(user =>{
       this.currentUser = user;
     });
-
   }
 
   logout() {
