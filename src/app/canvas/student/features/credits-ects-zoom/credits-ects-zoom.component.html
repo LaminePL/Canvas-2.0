@@ -1,20 +1,54 @@
-
 <div *ngIf="!loading">
-<mat-tab-group animationDuration="300ms">
-  <mat-tab label="Toutes les années">
+  <mat-tab-group animationDuration="300ms">
 
-    <app-credits-ects></app-credits-ects>
-  </mat-tab>
-  <div *ngFor="let grade of gradePerYear" >
-  <mat-tab label={{grade.level}}>
+    <ng-container *ngFor="let notes of notePerYear ">
 
-  {{grade.total_credits}}
+      <mat-tab label={{getYearById(notes[0].year)}}>
+        <div *ngFor="let note of notes" class=" mr-3">
+          <mat-accordion>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <div class="header-pannel" (click)="onCardClick(note.module_canvas)">
+
+                    {{note.module_name}}
+                  </div>
+                </mat-panel-title>
+
+                <mat-panel-description>
+                  {{note.notes}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <mat-panel-description>
+                Module description: {{note.module_description}}
+              </mat-panel-description>
+              <div class="credit-num-label">Module credits: {{note.credits}}</div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+        <ng-container *ngFor="let ects of gradePerYear">
+          <div *ngIf="ects.id_year == notes[0]?.year">
+            <mat-card class="total-credits mt-3"> totale credit : <div>{{ects.total_credits}}</div>
+            </mat-card>
+          </div>
+        </ng-container>
 
 
 
-  </mat-tab>
-</div>
-
-</mat-tab-group>
+      </mat-tab>
+    </ng-container>
+    <mat-tab label="Overview">
+      <div style="display: block;">
+        <canvas baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+        </canvas>
+      </div>
+          </mat-tab>
+  </mat-tab-group>
 </div>
 <mat-spinner *ngIf="loading" class="m-auto center"></mat-spinner>

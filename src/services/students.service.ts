@@ -8,6 +8,7 @@ import { KeycloakService } from 'keycloak-angular';
 import { StudentDetailsModel } from 'src/app/canvas/models/student-details.model';
 import { UserService } from 'src/services/user.service';
 import { CalendarModel } from 'src/app/canvas/models/calendar.model';
+import { NotesModel } from 'src/app/canvas/models/notes.models';
 
 
 const API_URL = environment.CanvasApi.apiUrl
@@ -87,9 +88,11 @@ export class StudentsService {
       })
     )
   }
-  getStudentYearlyGrade(user_id:number, grade:number): Observable<any[]> {
+  getStudentCreditsPerYear(user_id:number, grade:number): Observable<any[]> {
     return this.http.get<any[]>(`${API_URL}student_notes/creditsbyyear/${user_id}/${grade}`)
-
+  }
+  getStudentNotesPerYear(user_id:number, grade:number): Observable<NotesModel[]> {
+    return this.http.get<NotesModel[]>(`${API_URL}student_notes/byyear/${user_id}/${grade}`)
   }
 
 }

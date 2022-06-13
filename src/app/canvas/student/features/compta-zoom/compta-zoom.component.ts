@@ -34,6 +34,7 @@ export class ComptaZoomComponent implements OnInit {
 
     this.loading = true;
     this.studentsService.studentDetails.subscribe(res=>{
+      console.log(res)
       this.getUserComptaDetails(res[0].id_user)
       this.studentDetails = res
     })

@@ -41,6 +41,7 @@ import {CoursZoomComponent} from './features/cours-zoom/cours-zoom.component'
 import { UserProfileComponent } from '../shared/user-profile/user-profile.component';
 import { ComptaZoomComponent } from './features/compta-zoom/compta-zoom.component'
 import { FormsModule } from '@angular/forms';
+import { CoursesComponent } from './features/courses/courses.component';
 
 class CustomDateFormatter extends CalendarNativeDateFormatter {
   public override dayViewHour({ date, locale }: DateFormatterParams): string {
@@ -83,7 +84,7 @@ const ROUTES: Routes = [
 ]
 
 @NgModule({
-  declarations: [CreditsECTSComponent, StudentBoardComponent, CanvasCalendarComponent, CanvasCalendarZoomComponent, CreditsEctsZoomComponent, StudentCalendarComponent, ComptaComponent,CoursZoomComponent, ComptaZoomComponent],
+  declarations: [CreditsECTSComponent, StudentBoardComponent, CanvasCalendarComponent, CanvasCalendarZoomComponent, CreditsEctsZoomComponent, StudentCalendarComponent, ComptaComponent,CoursZoomComponent, ComptaZoomComponent, CoursesComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(ROUTES),

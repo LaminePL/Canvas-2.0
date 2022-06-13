@@ -1,3 +1,16 @@
-<h4>Il vous reste à ce jour :</h4>
-{{comptaPaymentDue}} €
-<h4>à régler</h4>
+<div *ngIf="comptaPaymentDue >= 0 ">
+  <div class="positif-compta">
+   <span class="positif-sold-compta"> {{comptaPaymentDue}} € </span>
+   <div class="compta-label"> Remaining to be paid  </div>
+
+  </div>
+
+</div>
+<div *ngIf="comptaPaymentDue < 0 ">
+  <div class="negatif-sold-compta">
+    {{comptaPaymentDue}} €
+  </div>
+  <div class="compta-label">Remaining to be paid </div>
+
+
+</div>

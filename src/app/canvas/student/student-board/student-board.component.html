@@ -1,6 +1,6 @@
 <h1 class="mat-h1">Dashboard</h1>
 
-<mat-grid-list cols="8" rowHeight="250px">
+<mat-grid-list cols="6" rowHeight="250px">
   <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
     <mat-card class="dashboard-card">
       <mat-card-header>
@@ -18,7 +18,7 @@
           <button   mat-menu-item (click)="getCourses()">details</button>
         </mat-menu>
         <div>
-          <app-compta></app-compta>
+          <app-courses></app-courses>
         </div>
       </mat-card-content>
       <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Compta'">
@@ -39,7 +39,7 @@
         <mat-menu #menu="matMenu" xPosition="before">
           <button mat-menu-item (click)="getCreditEcts()">details</button>
         </mat-menu>
-        <div>
+        <div class="ects-container">
           <app-credits-ects></app-credits-ects>
         </div>
       </mat-card-content>

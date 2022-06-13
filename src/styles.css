@@ -74,6 +74,10 @@ body {
 
 }
 
+.mat-tab-body-content{
+  padding: 20px;
+}
+
 @media screen and (max-width: 767px) {
 
   .responsive-menu {
@@ -94,4 +98,14 @@ body {
     align-items: center;
     flex-direction: column;
   }
+}
+
+body > app-root > mat-sidenav-container > mat-sidenav-content > div > app-student-board > mat-grid-list > div > mat-grid-tile:nth-child(4) > div > mat-card > mat-card-content > div > app-credits-ects > div > div{
+  position: absolute;
+  top: 50%;
+  right: 48%;
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 1;
+  color: #3ac47d
 }

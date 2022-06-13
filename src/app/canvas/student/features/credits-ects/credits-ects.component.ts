@@ -2,7 +2,6 @@ import { Component,OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { UserService } from 'src/services/user.service';
 import { StudentsService } from '../../../../../services/students.service';
-import { UserModel } from '../../../models/user.model';
 
 @Component({
   selector: 'app-credits-ects',
@@ -11,21 +10,24 @@ import { UserModel } from '../../../models/user.model';
 })
 export class CreditsECTSComponent implements OnInit {
   studentgrade: any
-  creditsValidés: number | undefined;
+  total_credits: number;
+  max_credits: number;
+
   creditsNonValidés: number = 60;
   data : any;
-  currentUser: UserModel;
+  currentStudent: any;
 
   constructor(private studentsService: StudentsService,
-    private userService: UserService
+    private userService: UserService, private studentService : StudentsService
   ) { }
   ngOnInit(): void {
-    this.userService.currentUser.subscribe(user => {
-      this.currentUser = user;
-      if (this.currentUser)
-      this.studentsService.getStudentGrade(this.currentUser.userId).pipe(
+    this.studentService.studentDetails.subscribe(user => {
+      this.currentStudent = user;
+      if (this.currentStudent)
+      this.studentsService.getStudentGrade(this.currentStudent[0]?.id_student).pipe(
         map((grades: any)=>{
-          this.creditsValidés = grades['total_credits']
+          this.total_credits = grades['total_credits']
+          this.max_credits = grades['max_credits']
           return grades['total_credits']
 
         }
@@ -37,7 +39,7 @@ export class CreditsECTSComponent implements OnInit {
           datasets: [
             {
               label: "CREDITS ECTS",
-              data: [res, this.creditsNonValidés],
+              data: [this.total_credits, this.max_credits],
               backgroundColor: [
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 99, 132, 0.2)',
@@ -60,7 +62,7 @@ export class CreditsECTSComponent implements OnInit {
 
    }
 
-  type = 'pie';
+  type = 'doughnut';
 
   options = {
     responsive: true,
