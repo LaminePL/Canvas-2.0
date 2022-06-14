@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { StudentModel } from 'src/app/canvas/models/student.model';
 import { environment } from 'src/environments/environment';
-
+import { StudentNotesInfosModel } from 'src/app/canvas/models/student-notes-infos.model';
 import { KeycloakService } from 'keycloak-angular';
 import { StudentDetailsModel } from 'src/app/canvas/models/student-details.model';
 import { UserService } from 'src/services/user.service';
@@ -93,6 +93,10 @@ export class StudentsService {
   }
   getStudentNotesPerYear(user_id:number, grade:number): Observable<NotesModel[]> {
     return this.http.get<NotesModel[]>(`${API_URL}student_notes/byyear/${user_id}/${grade}`)
+  }
+
+  getAllStudentNotesAndInfos():Observable<StudentNotesInfosModel[]>{
+    return this.http.get<StudentNotesInfosModel[]>(`${API_URL}student_notes/infos`)
   }
 
 }

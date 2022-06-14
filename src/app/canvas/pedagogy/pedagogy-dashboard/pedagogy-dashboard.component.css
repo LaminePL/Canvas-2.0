@@ -1,0 +1,48 @@
+.custom-item{
+    height: 80px;
+      width: 30%;
+      margin: 10px;
+      padding: 0;
+      background: #ffd740;}
+
+.card-title{
+        text-align: center;
+      }
+.mat-card-header{
+        padding: 5%;
+        justify-content: center;
+        height: inherit;
+      }
+
+  
+  
+  .custom{
+    display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      flex-direction: row;
+      align-content: center;
+  
+  }
+  
+  .custom-item:hover{
+    transition: all 0.3s ease 0s;
+    border-style: solid;
+    border-color: gray;
+    transform: scale(1.05, 1.05);
+    box-shadow: 0 0 30px rgb(0 0 0 / 50%);
+    cursor: pointer;
+  }
+  
+  
+  @media (max-width: 991px) {
+     .custom-item{
+      width: 45%;
+    }
+  }
+  @media (max-width: 767px) {
+    .custom-item{
+      width: 100%;
+    }
+  }
+  
