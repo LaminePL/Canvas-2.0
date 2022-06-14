@@ -6,7 +6,8 @@ export class StudentNotesInfosModel{
     module_credits: number;
     first_name: string;
     last_name: string;
-    email: string
+    email: string;
+    is_admitted: boolean;
 
     
   }

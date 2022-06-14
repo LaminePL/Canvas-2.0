@@ -40,6 +40,41 @@
 
         </ng-container>
 
+        <ng-container *ngIf="currentUser?.role == roles.Pedagogy">
+
+          <mat-list-item routerLink="canvas/pedagogy/dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+            <mat-icon>dashboard</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Dashboard</span>
+          </mat-list-item>
+
+          <mat-list-item routerLink="canvas/pedagogy/dashboard/students" routerLinkActive="active-link">
+            <mat-icon>school</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Students</span>
+          </mat-list-item>
+
+          <mat-list-item routerLink="canvas/pedagogy/dashboard/notes" routerLinkActive="active-link">
+            <mat-icon>assignment</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Notes</span>
+          </mat-list-item>
+
+          <mat-list-item routerLink="canvas/pedagogy/dashboard/contributors" routerLinkActive="active-link">
+            <mat-icon>supervisor_account</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Contributors</span>
+          </mat-list-item>
+
+          <mat-list-item routerLink="canvas/pedagogy/dashboard/modules" routerLinkActive="active-link">
+            <mat-icon>library_books</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Modules</span>
+          </mat-list-item>
+
+          <mat-list-item routerLink="canvas/pedagogy/dashboard/partnerships" routerLinkActive="active-link">
+            <mat-icon>handshake</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Partnerships</span>
+          </mat-list-item>
+
+        </ng-container>
+
+
 
         <ng-container *ngIf="currentUser?.role == roles.Admin">
 
