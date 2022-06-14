@@ -28,10 +28,15 @@ export const pedagogyStudentNotesColumns = [
     label: 'Note'
   },
   {
+    name:'status',
+    label:'Admis',
+    field: (row : StudentNotesInfosModel) => row.is_admitted ? 'Oui' : 'Non'
+
+  },
+  {
     name:'alert',
     label:'',
-    type:'template',
-    field: (row : StudentNotesInfosModel) => {if(row.notes <10){return 'Alerter'}else{return ''}},
+    type:'template'
   }
 
 ] as Array<ColumnDefinition>

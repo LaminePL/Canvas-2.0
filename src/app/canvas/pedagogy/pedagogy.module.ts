@@ -12,6 +12,8 @@ import { PedagogyContributorsComponent } from './pedagogy-contributors/pedagogy-
 import { PedagogyNotesComponent } from './pedagogy-notes/pedagogy-notes.component';
 import { PedagogyNotesFiltersComponent } from './pedagogy-notes-filters/pedagogy-notes-filters.component';
 import { PedagogyDashboardComponent } from './pedagogy-dashboard/pedagogy-dashboard.component';
+import { PedagogyDocumentsComponent } from './pedagogy-documents/pedagogy-documents.component';
+import { PedagogyResitDetailsComponent } from './pedagogy-resit-details/pedagogy-resit-details.component';
 
 const ROUTES: Routes = [
   {
@@ -24,15 +26,15 @@ const ROUTES: Routes = [
     component: PedagogyStudentDetailsComponent
   },
   {
-    path: 'modules',
+    path: 'dashboard/modules',
     component: PedagogyModulesComponent
   },
   {
-    path: 'contributors',
+    path: 'dashboard/contributors',
     component: PedagogyContributorsComponent
   },
   {
-    path: 'notes',
+    path: 'dashboard/notes',
     component: PedagogyNotesComponent
   },
   {
@@ -53,7 +55,9 @@ const ROUTES: Routes = [
     PedagogyContributorsComponent,
     PedagogyNotesComponent,
     PedagogyNotesFiltersComponent,
-    PedagogyDashboardComponent
+    PedagogyDashboardComponent,
+    PedagogyDocumentsComponent,
+    PedagogyResitDetailsComponent
   ],
   providers: [],
 })
