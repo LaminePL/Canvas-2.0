@@ -5,6 +5,7 @@ mat-sidenav-container {
   }
   mat-sidenav {
     mat-nav-list {
+
       .menu-item {
         margin-left: 8px;
       }
@@ -36,16 +37,6 @@ mat-sidenav-container {
 }
 .main-contrainer{
   margin-left: 3em;
-}
-.name {
-  margin-top: 8px;
-  font-weight: normal;
-}
-
-.designation {
-  margin-top: 2px;
-  font-size: 0.7rem;
-  color: lightgrey;
 }
 
 mat-divider {
@@ -96,11 +87,9 @@ mat-icon {
   }
 }
 
-button:hover,
 .active-link {
-  color: blueviolet;
+  background: rgb(255 243 243 / 18%)  !important;
 }
-
 
 @media screen and (max-width: 767px) {
   .main-contrainer{

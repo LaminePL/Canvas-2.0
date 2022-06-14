@@ -4,6 +4,8 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
+
+
 }
 
 .custom-flex .custom-item {
@@ -18,6 +20,11 @@
   img {
     height: 190px;
   }
+
+  mat-card-content{
+    height: inherit;
+  }
+
 }
 
 .custom-flex .custom-item:hover span {
@@ -41,6 +48,7 @@
 @media (max-width: 991px) {
   .custom-flex .custom-item {
     width: 45%;
+
   }
 }
 

@@ -25,7 +25,7 @@ export class StudentBoardComponent implements OnInit {
     map(({ matches }) => {
       if (matches) {
         return [
-        //  { title: 'courses', cols: 8, rows: 1, img: '../../../../assets//img//book.png' },
+         // { title: 'contributors', cols: 8, rows: 1, img: '../../../../assets//img//book.png' },
           { title: 'notes', cols: 6, rows: 1 },
           { title: 'stages', cols: 6, rows: 1, img: '../../../../assets//img//loupe.png'},
           { title: 'Compta', cols: 6, rows: 1, img: '../../../../assets//img//calculatrice.png' },
@@ -33,12 +33,12 @@ export class StudentBoardComponent implements OnInit {
           { title: 'Calendrier journalier', cols: 6, rows: 3, img: '../../../../assets//img//calendar.png' },
           { title: 'administration', cols: 6, rows: 1 },
           { title: 'ratrappage', cols: 6, rows: 1 },
-          { title: 'contact', cols: 6, rows: 1 },
+          { title: 'contributors', cols: 6, rows: 1 },
         ];
       }
 
       return [
-       // { title: 'courses', cols: 2, rows: 1, img: '../../../../assets//img//book.png' },
+       // { title: 'contributors', cols: 2, rows: 1, img: '../../../../assets//img//book.png' },
         { title: 'notes', cols: 2, rows: 1 },
         { title: 'stages', cols: 2, rows: 1, img: '../../../../assets//img//loupe.png' },
         { title: 'Compta', cols: 2, rows: 1, img: '../../../../assets//img//calculatrice.png' },
@@ -46,7 +46,7 @@ export class StudentBoardComponent implements OnInit {
         { title: 'Calendrier journalier', cols: 3, rows: 2, img: '../../../../assets//img//calendar.png' },
         { title: 'administration', cols: 2, rows: 1 },
         { title: 'ratrappage', cols: 2, rows: 1 },
-        { title: 'contact', cols: 2, rows: 1 },
+        { title: 'contributors', cols: 2, rows: 1 },
 
       ];
     })
@@ -83,7 +83,9 @@ export class StudentBoardComponent implements OnInit {
   getCourses() {
     this.router.navigateByUrl('canvas/student/courses');
   }
-
+  getContributors() {
+    this.router.navigateByUrl('canvas/student/contributors');
+  }
 
 }
 
