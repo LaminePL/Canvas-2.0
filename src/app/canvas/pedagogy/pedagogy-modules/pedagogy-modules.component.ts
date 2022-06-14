@@ -8,7 +8,7 @@ import { ColumnDefinition } from '../../shared/models/columnDefinition';
 @Component({
   selector: 'app-pedagogy-modules',
   templateUrl: './pedagogy-modules.component.html',
-  styleUrls: ['./pedagogy-modules.component.scss']
+  styleUrls: ['./pedagogy-modules.component.css']
 })
 export class PedagogyModulesComponent implements OnInit {
 

@@ -13,7 +13,12 @@
 </div>
 <ng-template #columnTemplate let-column let-row="row">
   <ng-container *ngIf="column.name == 'details'">
-    <button mat-button color="primary"  [routerLink]="['student-details', row.id_student]">Afficher les détails</button>
+
+    <button mat-icon-button color="primary"  [routerLink]="['student-details', row.id_student]">
+      <mat-icon matTooltip="Details">
+        description
+        </mat-icon>
+    </button>
   </ng-container>
 </ng-template>
 <div filters class="m-auto ms-0">

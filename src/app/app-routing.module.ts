@@ -45,7 +45,7 @@ const routes: Routes = [
         path: 'pedagogy',
         loadChildren: () => import('./canvas/pedagogy/pedagogy.module').then(mod => mod.PedagogyModule),
         canActivate: [RouteGuard],
-        data: { roles: ['admins_role'] }
+        data: { roles: ['pedagogy-role'] }
       },
       { path: '401', component: UnauthorizedComponent },
 
