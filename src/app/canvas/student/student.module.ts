@@ -41,8 +41,9 @@ import {CoursZoomComponent} from './features/cours-zoom/cours-zoom.component'
 import { UserProfileComponent } from '../shared/user-profile/user-profile.component';
 import { ComptaZoomComponent } from './features/compta-zoom/compta-zoom.component'
 import { FormsModule } from '@angular/forms';
-import { CoursesComponent } from './features/courses/courses.component';
-
+import { ContributorsComponent } from './features/contributors/contributors.component'
+import {SharedModule} from "../shared/shared.module";
+import { ContributorsZoomComponent } from './features/contributors-zoom/contributors-zoom.component';
 class CustomDateFormatter extends CalendarNativeDateFormatter {
   public override dayViewHour({ date, locale }: DateFormatterParams): string {
     return new Intl.DateTimeFormat('ca', {
@@ -76,15 +77,20 @@ const ROUTES: Routes = [
     component: CoursZoomComponent
   },
   {
+    path: 'contributors',
+    component: ContributorsZoomComponent
+  },
+  {
     path: 'compta',
     component: ComptaZoomComponent
-  }
+  },
+
 
 
 ]
 
 @NgModule({
-  declarations: [CreditsECTSComponent, StudentBoardComponent, CanvasCalendarComponent, CanvasCalendarZoomComponent, CreditsEctsZoomComponent, StudentCalendarComponent, ComptaComponent,CoursZoomComponent, ComptaZoomComponent, CoursesComponent],
+  declarations: [CreditsECTSComponent, StudentBoardComponent, CanvasCalendarComponent, CanvasCalendarZoomComponent, CreditsEctsZoomComponent, StudentCalendarComponent, ComptaComponent,CoursZoomComponent, ComptaZoomComponent, ContributorsComponent, ContributorsZoomComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(ROUTES),
@@ -113,6 +119,7 @@ const ROUTES: Routes = [
         useClass: CustomDateFormatter
       }
     }),
+    SharedModule,
 
   ],
   exports: [

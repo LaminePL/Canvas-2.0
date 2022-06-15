@@ -5,59 +5,111 @@
         <div class="card shadow-sm">
           <div class="card-header bg-transparent text-center">
             <img class="profile_img" src="https://source.unsplash.com/600x300/?student" alt="student dp">
-            <h3>{{studentProfile[0]?.first_name}} {{studentProfile[0]?.last_name}} </h3>
+            <h3>{{studentDetails?.first_name}} {{studentDetails?.last_name}}</h3>
           </div>
           <div class="card-body">
-            <p class="mb-0"><strong class="pr-1">Student ID:</strong>{{studentProfile[0]?.id_student}}</p>
-            <p class="mb-0"><strong class="pr-1">Class:</strong>{{studentProfile[0]?.level}}</p>
-            <p  *ngIf="studentProfile[0]?.exit_level != null " class="mb-0"><strong class="pr-1">Exit level:</strong>{{studentProfile[0]?.exit_level}}</p>
-            <p class="mb-0"><strong class="pr-1">Campus:</strong>{{studentProfile[0]?.campus_name}}</p>
+            <p class="mb-0"><strong class="pr-1">Gender: </strong>{{studentDetails?.gender}}</p>
+            <p class="mb-0"><strong class="pr-1">Adress: </strong>{{studentDetails?.adress}}</p>
+            <p class="mb-0"><strong class="pr-1">Region: </strong>{{studentDetails?.region}}</p>
+            <p class="mb-0"><strong class="pr-1">Email: </strong>{{studentDetails?.email}}</p>
+
+          </div>
+        </div>
+        <div style="height: 26px"></div>
+        <div class="card shadow-sm">
+          <div class="card-header bg-transparent border-0">
+            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Administrative informations</h3>
+          </div>
+          <div class="card-body ">
+            <div class="d-grid">
+              <button mat-raised-button color="accent" class="mb-1" (click)="onGradeBulletinsClick()" >
+                <mat-icon> grading</mat-icon> Grade bulletins
+              </button>
+              <button mat-raised-button color="accent" (click)="onAchievmentCertificateClick()">
+                <mat-icon> text_snippet</mat-icon> Achievement certificates
+              </button>
+            </div>
           </div>
         </div>
       </div>
       <div class="col-lg-8">
         <div class="card shadow-sm">
           <div class="card-header bg-transparent border-0">
-            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Informations Generales</h3>
+            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Academic informations</h3>
           </div>
           <div class="card-body pt-0">
             <div class="table">
               <tr class="d-flex">
-                <th width="30%">Total credits</th>
+                <th width="30%">Campus</th>
                 <td width="2%">:</td>
-                <td>12</td>
+                <td>{{studentDetails?.campus_name}}</td>
               </tr>
-              <tr class="d-flex">
-                <th width="30%">Année Academique</th>
+              <tr class="d-flex" *ngIf="studentDetails?.still_student">
+                <th width="30%">Current study year</th>
                 <td width="2%">:</td>
-                <td>2022</td>
+                <td>{{studentDetails?.level}}</td>
               </tr>
-              <tr class="d-flex">
-                <th width="30%">Adresse</th>
+              <tr class="d-flex" *ngIf="studentDetails?.has_speciality">
+                <th width="30%">Speciality</th>
                 <td width="2%">:</td>
-                <td>430 Rue Leon Gambetta Lille</td>
+                <td>{{studentDetails?.speciality_name}}</td>
               </tr>
-              <tr class="d-flex">
-                <th width="30%">Email</th>
+
+              <tr class="d-flex" *ngIf="studentDetails?.still_student">
+                <th width="30%">Training type</th>
                 <td width="2%">:</td>
-                <td>Lamine_lnlby@hotmail.com</td>
+                <td><span *ngIf="studentDetails?.has_contrat_pro"> Intership </span> <span
+                  *ngIf="!studentDetails?.has_contrat_pro && !studentDetails?.is_hired "> Initial</span> </td>
               </tr>
+
+              <tr class="d-flex" *ngIf="!studentDetails?.still_student">
+                <th width="30%">Entry level</th>
+                <td width="2%">:</td>
+                <td>{{studentDetails?.entry_level}}</td>
+              </tr>
+              <tr class="d-flex" *ngIf="!studentDetails?.still_student">
+                <th width="30%">Exit level </th>
+                <td width="2%">:</td>
+                <td>{{studentDetails?.exit_level}}</td>
+              </tr>
+              <tr class="d-flex" *ngIf="!studentDetails?.still_student">
+                <th width="30%">University course</th>
+                <td width="2%">:</td>
+                <td>{{studentDetails?.year_of_entry}} - {{studentDetails?.year_of_exit}}</td>
+              </tr>
+              <tr class="d-flex" *ngIf="studentDetails?.still_student==true">
+                <th width="30%">Number of absences</th>
+                <td width="2%">:</td>
+                <td>{{studentDetails?.number_absence}}</td>
+              </tr>
+
+
             </div>
           </div>
         </div>
         <div style="height: 26px"></div>
-        <div class="card shadow-sm">
+        <div class="card shadow-sm" *ngIf="studentDetails?.has_contrat_pro ||studentDetails?.is_hired">
           <div class="card-header bg-transparent border-0">
-            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Autres Informations</h3>
+            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Professional informations</h3>
           </div>
           <div class="card-body pt-0">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat.</p>
+            <p class="mb-0" *ngIf="studentDetails?.has_contrat_pro"><strong class="pr-1"> Company :
+            </strong>{{studentDetails?.cp_company_name}} </p>
+            <p class="mb-0" *ngIf="studentDetails?.has_contrat_pro"><strong class="pr-1"> Adress :
+            </strong>{{studentDetails?.cp_company_adress}} </p>
+            <p class="mb-0" *ngIf="studentDetails?.has_contrat_pro"><strong class="pr-1"> Line of business :
+            </strong>{{studentDetails?.cp_activity_sector}} </p>
+            <p class="mb-0" *ngIf="studentDetails?.has_contrat_pro"><strong class="pr-1"> Start Date :
+            </strong>{{studentDetails?.cp_start_date | date:'dd/MM/yyyy'}} </p>
+            <p class="mb-0" *ngIf="studentDetails?.is_hired"><strong class="pr-1">Company :
+            </strong>{{studentDetails?.h_company_hired}} </p>
+            <p class="mb-0" *ngIf="studentDetails?.is_hired"><strong class="pr-1">Hiring duration :
+            </strong>{{studentDetails?.h_lenght_month_hired}} mois</p>
+
           </div>
         </div>
+
       </div>
     </div>
   </div>
 </div>
-<mat-spinner *ngIf="loading" class="m-auto"></mat-spinner>
