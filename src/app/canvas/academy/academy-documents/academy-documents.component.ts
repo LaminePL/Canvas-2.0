@@ -29,4 +29,13 @@ export class AcademyDocumentsComponent implements OnInit {
   }
 
 
+  download(file){
+    this.fileService.download(file);
+  }
+
+  view(file){
+    this.fileService.view(file);
+  }
+
+
 }
