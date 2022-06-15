@@ -3,6 +3,9 @@ import { StudentsService } from 'src/services/students.service';
 import { UserService } from 'src/services/user.service';
 import { StudentModel } from '../../models/student.model';
 import {StudentDetailsModel} from "../../models/student-details.model";
+import {AcademyDocumentsComponent} from "../../academy/academy-documents/academy-documents.component";
+import {FileType} from "../../models/file.model";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-user-profile',
@@ -12,8 +15,9 @@ import {StudentDetailsModel} from "../../models/student-details.model";
 export class UserProfileComponent implements OnInit {
   loading: boolean;
   studentDetails: StudentDetailsModel;
+  studentId:number = 1;
 
-  constructor(private userService : UserService, private studentService : StudentsService) { }
+  constructor(private userService : UserService, private studentService : StudentsService, private dialogRef : MatDialog) { }
 
   ngOnInit(): void {
     this.loading = true;
@@ -30,6 +34,20 @@ export class UserProfileComponent implements OnInit {
       return res
     })
 
+  }
+
+  onGradeBulletinsClick(){
+    this.dialogRef.open(AcademyDocumentsComponent, {
+      width: '40vw',
+      data:{id_student : this.studentId,title:'Grade bulletins',fileType: FileType.BULLETIN_GRADE}
+    })
+  }
+
+  onAchievmentCertificateClick(){
+    this.dialogRef.open(AcademyDocumentsComponent, {
+      width: '40vw',
+      data:{id_student : this.studentId,title:'Achievement certificates',fileType: FileType.ACHIEVEMENT_CERTIFIATE}
+    })
   }
 
 }

@@ -67,8 +67,8 @@ export class CreditsEctsZoomComponent implements OnInit {
           creditsAvailable.unshift(this.total_credits.total_credits)
           maxCredits.unshift(60)
           this.barChartData = [
-            {data: creditsAvailable, label: 'Validated'},
-            {data: maxCredits, label: 'Still to validate'}
+            {data: creditsAvailable, label: 'ECTS obtained'},
+            {data: maxCredits, label: 'ECTS missing'}
           ]
           return data
         })

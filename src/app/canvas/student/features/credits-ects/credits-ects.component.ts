@@ -40,7 +40,7 @@ export class CreditsECTSComponent implements OnInit {
       )
       .subscribe((res)=>{
         this.data = {
-          labels: ["crédits validés", "crédits non validés"],
+          labels: ["ECTS obtained", "ECTS missing"],
           datasets: [
             {
               label: "CREDITS ECTS",

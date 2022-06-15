@@ -1,14 +1,14 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
-import { StudentModel } from 'src/app/canvas/models/student.model';
-import { environment } from 'src/environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, map, Observable} from 'rxjs';
+import {StudentModel} from 'src/app/canvas/models/student.model';
+import {environment} from 'src/environments/environment';
 
-import { KeycloakService } from 'keycloak-angular';
-import { StudentDetailsModel } from 'src/app/canvas/models/student-details.model';
-import { UserService } from 'src/services/user.service';
-import { CalendarModel } from 'src/app/canvas/models/calendar.model';
-import { NotesModel } from 'src/app/canvas/models/notes.models';
+import {KeycloakService} from 'keycloak-angular';
+import {StudentDetailsModel} from 'src/app/canvas/models/student-details.model';
+import {UserService} from 'src/services/user.service';
+import {CalendarModel} from 'src/app/canvas/models/calendar.model';
+import {NotesModel} from 'src/app/canvas/models/notes.models';
 
 
 const API_URL = environment.CanvasApi.apiUrl
@@ -21,10 +21,10 @@ export class StudentsService {
 
   studentDetails: BehaviorSubject<StudentModel[]> = new BehaviorSubject<StudentModel[]>({} as StudentModel[]);
 
-  constructor(private keycloakService: KeycloakService, private userService:UserService,
-    private http: HttpClient) {
-      this.getStudent()
-     }
+  constructor(private keycloakService: KeycloakService, private userService: UserService,
+              private http: HttpClient) {
+    this.getStudent()
+  }
 
 
   getStudentId() {
@@ -32,7 +32,9 @@ export class StudentsService {
       .then(profile => {
         return profile.email
       })
-      .catch(reason => { console.log("reason =>" + reason) });
+      .catch(reason => {
+        console.log("reason =>" + reason)
+      });
   }
 
   getStudentInfo(studentEmail: string): Observable<any[]> {
@@ -40,35 +42,42 @@ export class StudentsService {
   }
 
 
-
   getStudentGrade(user_id: any): Observable<any[]> {
     return this.http.get<any[]>(`${API_URL}student_notes/credits/${user_id}`)
 
   }
+
   getComptaInfo(user_id: any): Observable<any[]> {
     return this.http.get<any[]>(`${API_URL}compta/${user_id}`)
 
   }
-  getCalendar(studentId):Observable<CalendarModel[]>{
-    return this.http.get<CalendarModel[]>(`${API_URL}agenda/${studentId}`);
+
+  getAgendaByLevel(levelId): Observable<CalendarModel[]> {
+    return this.http.get<CalendarModel[]>(`${API_URL}agenda/${levelId}`);
   }
-  getAllStudents():Observable<StudentModel[]>{
+
+  getAgendaAllLevel(): Observable<CalendarModel[]> {
+    return this.http.get<CalendarModel[]>(`${API_URL}agenda`);
+  }
+
+  getAllStudents(): Observable<StudentModel[]> {
     return this.http.get<StudentModel[]>(`${API_URL}students/list`);
   }
 
-  getStudentDetails(studentId): Observable<StudentDetailsModel>{
+  getStudentDetails(studentId): Observable<StudentDetailsModel> {
     return this.http.get<StudentDetailsModel>(`${API_URL}students/details/${studentId}`)
   }
 
-  getStudent(){
+  getStudent() {
     this.userService.currentUser.subscribe(res => {
-     if (res)
-      this.getAllStudents().subscribe(data => {
-        this.studentDetails.next(data.filter(user => user.id_user == res.userId));
-         return this.studentDetails
-      })
+      if (res)
+        this.getAllStudents().subscribe(data => {
+          this.studentDetails.next(data.filter(user => user.id_user == res.userId));
+          return this.studentDetails
+        })
     })
   }
+
   async getStudentData() {
     let studentDetails = await this.keycloakService.loadUserProfile();
     let email = studentDetails.email;
@@ -88,10 +97,12 @@ export class StudentsService {
       })
     )
   }
-  getStudentCreditsPerYear(user_id:number, grade:number): Observable<any[]> {
+
+  getStudentCreditsPerYear(user_id: number, grade: number): Observable<any[]> {
     return this.http.get<any[]>(`${API_URL}student_notes/creditsbyyear/${user_id}/${grade}`)
   }
-  getStudentNotesPerYear(user_id:number, grade:number): Observable<NotesModel[]> {
+
+  getStudentNotesPerYear(user_id: number, grade: number): Observable<NotesModel[]> {
     return this.http.get<NotesModel[]>(`${API_URL}student_notes/byyear/${user_id}/${grade}`)
   }
 
