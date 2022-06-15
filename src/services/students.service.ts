@@ -49,8 +49,8 @@ export class StudentsService {
     return this.http.get<any[]>(`${API_URL}compta/${user_id}`)
 
   }
-  getCalendar(studentId):Observable<CalendarModel[]>{
-    return this.http.get<CalendarModel[]>(`${API_URL}agenda/${studentId}`);
+  getCalendar(levelId):Observable<CalendarModel[]>{
+    return this.http.get<CalendarModel[]>(`${API_URL}agenda/${levelId}`);
   }
   getAllStudents():Observable<StudentModel[]>{
     return this.http.get<StudentModel[]>(`${API_URL}students/list`);
