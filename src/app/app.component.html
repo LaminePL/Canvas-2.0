@@ -67,9 +67,14 @@
             <span *ngIf="isExpanded" class="menu-item">Modules</span>
           </mat-list-item>
 
-          <mat-list-item routerLink="canvas/pedagogy/dashboard/partnerships" routerLinkActive="active-link">
-            <mat-icon>handshake</mat-icon>
-            <span *ngIf="isExpanded" class="menu-item">Partnerships</span>
+          <mat-list-item routerLink="canvas/pedagogy/dashboard/calendar" routerLinkActive="active-link">
+            <mat-icon>calendar_today</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Calendar</span>
+          </mat-list-item>
+
+          <mat-list-item routerLink="canvas/pedagogy/dashboard/mailing" routerLinkActive="active-link">
+            <mat-icon>email icon</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Mailing</span>
           </mat-list-item>
 
         </ng-container>

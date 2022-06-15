@@ -14,6 +14,29 @@ import { PedagogyNotesFiltersComponent } from './pedagogy-notes-filters/pedagogy
 import { PedagogyDashboardComponent } from './pedagogy-dashboard/pedagogy-dashboard.component';
 import { PedagogyDocumentsComponent } from './pedagogy-documents/pedagogy-documents.component';
 import { PedagogyResitDetailsComponent } from './pedagogy-resit-details/pedagogy-resit-details.component';
+import { PedagogyCalendarComponent } from './pedagogy-calendar/pedagogy-calendar.component';
+import { CanvasCalendarComponent } from './canvas-calendar/canvas-calendar.component';
+import { PedagogyMailingComponent } from './pedagogy-mailing/pedagogy-mailing.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import { CalendarDateFormatter, CalendarModule, CalendarNativeDateFormatter, DateAdapter, DateFormatterParams } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  interactionPlugin,
+  timeGridPlugin
+]);
+
+class CustomDateFormatter extends CalendarNativeDateFormatter {
+  public override dayViewHour({ date, locale }: DateFormatterParams): string {
+    return new Intl.DateTimeFormat('ca', {
+      hour: 'numeric',
+      minute: 'numeric'
+    }).format(date);
+  }
+}
 
 const ROUTES: Routes = [
   {
@@ -38,6 +61,14 @@ const ROUTES: Routes = [
     component: PedagogyNotesComponent
   },
   {
+    path: 'dashboard/calendar',
+    component: CanvasCalendarComponent
+  },
+  {
+    path: 'dashboard/mailing',
+    component: PedagogyMailingComponent
+  },
+  {
     path: 'dashboard',
     component: PedagogyDashboardComponent
   }
@@ -45,7 +76,17 @@ const ROUTES: Routes = [
 ]
 
 @NgModule({
-  imports: [RouterModule.forChild(ROUTES),SharedModule,MaterialModule,CommonModule,FormsModule],
+  imports: [RouterModule.forChild(ROUTES),SharedModule,MaterialModule,CommonModule,FormsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }, {
+      dateFormatter: {
+        provide: CalendarDateFormatter,
+        useClass: CustomDateFormatter
+      }
+    }),
+  ],
   exports: [],
   declarations: [
     PedagogyStudentsComponent,
@@ -57,7 +98,9 @@ const ROUTES: Routes = [
     PedagogyNotesFiltersComponent,
     PedagogyDashboardComponent,
     PedagogyDocumentsComponent,
-    PedagogyResitDetailsComponent
+    PedagogyResitDetailsComponent,
+    PedagogyCalendarComponent,
+    PedagogyMailingComponent
   ],
   providers: [],
 })
