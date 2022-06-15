@@ -33,7 +33,7 @@ export class PedagogyCalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.studentService.getCalendar(4).subscribe(res=>{
+  /*  this.studentService.getCalendar(4).subscribe(res=>{
       this.events = res
       this.calendarOptions= {
         plugins: [timeGridPlugin, dayGridPlugin],
@@ -83,6 +83,8 @@ export class PedagogyCalendarComponent implements OnInit {
       }
       console.log(this.calendarOptions)
     })
+    */
   }
+
 
 }

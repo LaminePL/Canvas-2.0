@@ -9,6 +9,7 @@ import {StudentDetailsModel} from 'src/app/canvas/models/student-details.model';
 import {UserService} from 'src/services/user.service';
 import {CalendarModel} from 'src/app/canvas/models/calendar.model';
 import {NotesModel} from 'src/app/canvas/models/notes.models';
+import { StudentNotesInfosModel } from 'src/app/canvas/models/student-notes-infos.model';
 
 
 

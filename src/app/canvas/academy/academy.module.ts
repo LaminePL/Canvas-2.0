@@ -15,6 +15,7 @@ import { AcademyDashboardComponent } from './academy-dashboard/academy-dashboard
 import {MatDialogModule} from '@angular/material/dialog';
 import { AcademyDocumentsComponent } from './academy-documents/academy-documents.component';
 import { AcademyResitDetailsComponent } from './academy-resit-details/academy-resit-details.component';
+import { AcademyProfileComponent } from './academy-profile/academy-profile.component';
 
 const ROUTES: Routes = [
   {
@@ -46,6 +47,11 @@ const ROUTES: Routes = [
     path: 'modules/students-status/:id',
     component: AcademyStudentsStatusComponent
   },
+  {
+    path: 'user-profile',
+    component:AcademyProfileComponent ,
+    children: []
+  },
 ]
 
 @NgModule({
@@ -62,6 +68,7 @@ const ROUTES: Routes = [
     AcademyDashboardComponent,
     AcademyDocumentsComponent,
     AcademyResitDetailsComponent,
+    AcademyProfileComponent,
   ],
   providers: [],
 })

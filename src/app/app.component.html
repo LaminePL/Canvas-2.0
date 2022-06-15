@@ -38,6 +38,11 @@
             <span *ngIf="isExpanded" class="menu-item">Partnerships</span>
           </mat-list-item>
 
+          <mat-list-item routerLink="{{currentUser?.route}}/user-profile">
+            <mat-icon>person</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Profile</span>
+          </mat-list-item>
+
         </ng-container>
 
         <ng-container *ngIf="currentUser?.role == roles.Pedagogy">
@@ -75,6 +80,11 @@
           <mat-list-item routerLink="canvas/pedagogy/dashboard/mailing" routerLinkActive="active-link">
             <mat-icon>email icon</mat-icon>
             <span *ngIf="isExpanded" class="menu-item">Mailing</span>
+          </mat-list-item>
+
+          <mat-list-item routerLink="{{currentUser?.route}}/user-profile">
+            <mat-icon>person</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Profile</span>
           </mat-list-item>
 
         </ng-container>
@@ -117,14 +127,16 @@
             <mat-icon>info</mat-icon>
             <span *ngIf="isExpanded" class="menu-item">Infos</span>
           </mat-list-item>
+
+          <mat-list-item routerLink="{{currentUser?.route}}/user-profile">
+            <mat-icon>person</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Profile</span>
+          </mat-list-item>
+
         </ng-container>
 
 
 
-        <mat-list-item routerLink="{{currentUser?.route}}/user-profile">
-          <mat-icon>person</mat-icon>
-          <span *ngIf="isExpanded" class="menu-item">Profile</span>
-        </mat-list-item>
 
 
         <button mat-button class="menu-button" (click)="logout()">

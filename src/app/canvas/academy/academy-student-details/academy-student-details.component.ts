@@ -35,14 +35,14 @@ export class AcademyStudentDetailsComponent implements OnInit {
 
   onGradeBulletinsClick(){
     this.dialogRef.open(AcademyDocumentsComponent, {
-      width: '40vw',
+      width: '50vw',
       data:{id_student : this.studentId,title:'Grade bulletins',fileType: FileType.BULLETIN_GRADE}
     })
   }
 
   onAchievmentCertificateClick(){
     this.dialogRef.open(AcademyDocumentsComponent, {
-      width: '40vw',
+      width: '50vw',
       data:{id_student : this.studentId,title:'Achievement certificates',fileType: FileType.ACHIEVEMENT_CERTIFIATE}
     })
   }
