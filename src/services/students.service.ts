@@ -62,7 +62,9 @@ export class StudentsService {
     return this.http.get<CalendarModel[]>(`${API_URL}agenda`);
 
   }
+
   getAllStudents(): Observable<StudentModel[]> {
+
     return this.http.get<StudentModel[]>(`${API_URL}students/list`);
   }
 
