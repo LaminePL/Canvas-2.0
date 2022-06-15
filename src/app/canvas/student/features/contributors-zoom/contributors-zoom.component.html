@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Contributors</h1>
+  <app-d-table
+    [rows]="displayedRows"
+    [columnsDefinition]="displayedColumns"
+    [loading] = "loading"
+    [searchable]="true">
+
+    <div filters>
+      <mat-form-field>
+        <mat-label>Module</mat-label>
+        <mat-select [(ngModel)]="moduleFilter" (selectionChange)="onModuleFilterChanged()">
+          <mat-option selected [value]="null">All</mat-option>
+          <mat-option *ngFor="let moduleFltr of moduleFilterValues"  [value]="moduleFltr" >{{moduleFltr.module_name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </app-d-table>
+</div>
