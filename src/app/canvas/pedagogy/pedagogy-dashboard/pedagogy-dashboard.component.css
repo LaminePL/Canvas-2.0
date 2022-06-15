@@ -3,7 +3,10 @@
       width: 30%;
       margin: 10px;
       padding: 0;
-      background: #ffd740;}
+      background: white;
+      
+    }
+
 
 .card-title{
         text-align: center;
@@ -12,6 +15,7 @@
         padding: 5%;
         justify-content: center;
         height: inherit;
+        border-color: #673ab7 ;
       }
 
   
@@ -28,7 +32,7 @@
   .custom-item:hover{
     transition: all 0.3s ease 0s;
     border-style: solid;
-    border-color: gray;
+    border-color: #673ab7 ;
     transform: scale(1.05, 1.05);
     box-shadow: 0 0 30px rgb(0 0 0 / 50%);
     cursor: pointer;

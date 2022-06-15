@@ -52,6 +52,9 @@ export class StudentsService {
   getCalendar(levelId):Observable<CalendarModel[]>{
     return this.http.get<CalendarModel[]>(`${API_URL}agenda/${levelId}`);
   }
+  getAllCalendar():Observable<CalendarModel[]>{
+    return this.http.get<CalendarModel[]>(`${API_URL}agenda`);
+  }
   getAllStudents():Observable<StudentModel[]>{
     return this.http.get<StudentModel[]>(`${API_URL}students/list`);
   }
