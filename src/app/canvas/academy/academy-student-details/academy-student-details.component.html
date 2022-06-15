@@ -82,7 +82,7 @@
                 <td width="2%">:</td>
                 <td>{{studentDetails?.number_absence}}</td>
               </tr>
-              <tr class="d-flex" >
+              <tr class="d-flex" *ngIf="studentDetails?.still_student==true">
                 <th width="30%">Resit</th>
                 <td width="2%">:</td>
                 <td>
