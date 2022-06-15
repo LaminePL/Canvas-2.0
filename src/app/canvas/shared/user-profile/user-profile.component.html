@@ -22,10 +22,10 @@
           </div>
           <div class="card-body ">
             <div class="d-grid">
-              <button mat-raised-button color="accent" class="mb-1" >
+              <button mat-raised-button color="accent" class="mb-1" (click)="onGradeBulletinsClick()" >
                 <mat-icon> grading</mat-icon> Grade bulletins
               </button>
-              <button mat-raised-button color="accent">
+              <button mat-raised-button color="accent" (click)="onAchievmentCertificateClick()">
                 <mat-icon> text_snippet</mat-icon> Achievement certificates
               </button>
             </div>
