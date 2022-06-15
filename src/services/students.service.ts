@@ -11,6 +11,7 @@ import {CalendarModel} from 'src/app/canvas/models/calendar.model';
 import {NotesModel} from 'src/app/canvas/models/notes.models';
 
 
+
 const API_URL = environment.CanvasApi.apiUrl
 
 @Injectable({
@@ -58,8 +59,8 @@ export class StudentsService {
 
   getAgendaAllLevel(): Observable<CalendarModel[]> {
     return this.http.get<CalendarModel[]>(`${API_URL}agenda`);
-  }
 
+  }
   getAllStudents(): Observable<StudentModel[]> {
     return this.http.get<StudentModel[]>(`${API_URL}students/list`);
   }
@@ -104,6 +105,10 @@ export class StudentsService {
 
   getStudentNotesPerYear(user_id: number, grade: number): Observable<NotesModel[]> {
     return this.http.get<NotesModel[]>(`${API_URL}student_notes/byyear/${user_id}/${grade}`)
+  }
+
+  getAllStudentNotesAndInfos():Observable<StudentNotesInfosModel[]>{
+    return this.http.get<StudentNotesInfosModel[]>(`${API_URL}student_notes/infos`)
   }
 
 }

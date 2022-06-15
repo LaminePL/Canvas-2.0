@@ -1,0 +1,40 @@
+<h1>Students</h1>
+<app-d-table
+[rows]="displayedRows"
+[columnsDefinition]="displayedColumns"
+[loading] = "loading"
+[searchable]="true">
+
+<div filters class="m-auto ms-0">
+
+    <!--<mat-checkbox  [(ngModel)]="filterContratPro" class="m-1" (change)="onFilterContratProChange()">Contrat pro</mat-checkbox>
+    <mat-checkbox  [(ngModel)]="filterHired" class="m-1" (change)="onFilterHiredChange()">Hired</mat-checkbox>-->
+    <button mat-button (click)="onFilterClick()">Filter <mat-icon>filter_list</mat-icon></button>
+</div>
+<ng-template #columnTemplate let-column let-row="row">
+  <ng-container *ngIf="column.name == 'details'">
+
+    <button mat-icon-button color="primary"  [routerLink]="['student-details', row.id_student]">
+      <mat-icon matTooltip="Details">
+        description
+        </mat-icon>
+    </button>
+  </ng-container>
+</ng-template>
+<div filters class="m-auto ms-0">
+  <mat-form-field class='filter'>
+    <mat-label>Campus</mat-label>
+    <mat-select [(ngModel)]="campusFilter" (selectionChange)="onCampusFilterChanged()">
+      <mat-option selected [value]="null">All</mat-option>
+      <mat-option *ngFor="let campusFltr of campusFilterValues"  [value]="campusFltr" >{{campusFltr.campus_name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Année</mat-label>
+    <mat-select [(ngModel)]="levelFilter" (selectionChange)="onLevelFilterChanged()">
+      <mat-option selected [value]="null">All</mat-option>
+      <mat-option *ngFor="let levelFltr of levelFilterValues"  [value]="levelFltr" >{{levelFltr.level}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+</app-d-table>

@@ -36,6 +36,7 @@
     "keycloak-js": "^17.0.1",
     "moment": "^2.29.2",
     "ng2-charts": "^3.0.8",
+    "ng2-pdf-viewer": "^9.0.0",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.4.10",
     "tslib": "^2.3.0",

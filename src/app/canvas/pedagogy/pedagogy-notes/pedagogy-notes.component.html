@@ -1,0 +1,34 @@
+<h1>Students</h1>
+<app-d-table
+[rows]="displayedRows"
+[columnsDefinition]="displayedColumns"
+[loading] = "loading"
+[searchable]="true">
+
+
+<ng-template #columnTemplate let-column let-row="row">
+  <ng-container *ngIf="row.is_admitted == 0">
+    <button mat-icon-button color="primary"  (click)="sendMailToStudent(row.module_name, row.email)"><mat-icon matTooltip="Alert">
+      add_alert
+      </mat-icon>
+    </button>
+    <button mat-icon-button color="primary" *ngIf="row.is_admitted == 0" (click)="resitDetails(row.id_student)">
+      <mat-icon matTooltip="Resit details" >
+        list_alt
+        </mat-icon>
+    </button>
+    
+  </ng-container>
+  
+</ng-template>
+
+<div filters class="m-auto ms-0">
+  <mat-form-field class='filter'>
+    <mat-label>Module</mat-label>
+    <mat-select [(ngModel)]="moduleFilter" (selectionChange)="onModuleFilterChanged()">
+      <mat-option selected [value]="null">All</mat-option>
+      <mat-option *ngFor="let moduleFltr of moduleFilterValues"  [value]="moduleFltr" >{{moduleFltr.module_name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+</app-d-table>

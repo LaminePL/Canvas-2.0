@@ -57,6 +57,9 @@ export class AuthGuard extends KeycloakAuthGuard {
         if (this.keycloakAngular.isUserInRole('academy_role')) {
           this.router.navigate(['canvas/academy']);
         }
+        if (this.keycloakAngular.isUserInRole('pedagogy-role')) {
+          this.router.navigate(['canvas/pedagogy/dashboard']);
+        }
 
       }
 

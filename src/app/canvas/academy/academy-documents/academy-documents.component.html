@@ -9,10 +9,10 @@
     <div class="table">
       <tr class="d-flex" *ngFor="let file of files">
         <th width="30%">{{file.file_description}}</th>
-        <td> <button mat-button color="primary"> View</button>
-          <button mat-button color="primary"> Download</button>
+        <td> <button mat-button color="primary" (click)="view(file)"> View</button>
+          <button mat-button color="primary" (click)="download(file)"> Download</button>
         </td>
-      </tr>
+
 
       <tr *ngIf="!files?.length">
 
