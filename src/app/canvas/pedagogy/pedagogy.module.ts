@@ -14,6 +14,21 @@ import { PedagogyNotesFiltersComponent } from './pedagogy-notes-filters/pedagogy
 import { PedagogyDashboardComponent } from './pedagogy-dashboard/pedagogy-dashboard.component';
 import { PedagogyDocumentsComponent } from './pedagogy-documents/pedagogy-documents.component';
 import { PedagogyResitDetailsComponent } from './pedagogy-resit-details/pedagogy-resit-details.component';
+import { PedagogyMailingComponent } from './pedagogy-mailing/pedagogy-mailing.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import { CalendarDateFormatter, CalendarModule, CalendarNativeDateFormatter, DateAdapter, DateFormatterParams } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
+import {PedagogyCalendarComponent} from './pedagogy-calendar/pedagogy-calendar.component'
+
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  interactionPlugin,
+  timeGridPlugin
+]);
 
 const ROUTES: Routes = [
   {
@@ -38,16 +53,25 @@ const ROUTES: Routes = [
     component: PedagogyNotesComponent
   },
   {
+    path: 'dashboard/calendar',
+    component: PedagogyCalendarComponent
+  },
+  {
+    path: 'dashboard/mailing',
+    component: PedagogyMailingComponent
+  },
+  {
     path: 'dashboard',
     component: PedagogyDashboardComponent
   }
-  
+
 ]
 
 @NgModule({
-  imports: [RouterModule.forChild(ROUTES),SharedModule,MaterialModule,CommonModule,FormsModule],
+  imports: [RouterModule.forChild(ROUTES),SharedModule,MaterialModule,CommonModule,FormsModule,FullCalendarModule,
+  ],
   exports: [],
-  declarations: [
+    declarations: [
     PedagogyStudentsComponent,
     PedagogyStudentsFilterComponent,
     PedagogyStudentDetailsComponent,
@@ -57,7 +81,9 @@ const ROUTES: Routes = [
     PedagogyNotesFiltersComponent,
     PedagogyDashboardComponent,
     PedagogyDocumentsComponent,
-    PedagogyResitDetailsComponent
+    PedagogyResitDetailsComponent,
+    PedagogyMailingComponent,
+    PedagogyCalendarComponent
   ],
   providers: [],
 })

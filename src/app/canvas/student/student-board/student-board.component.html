@@ -10,15 +10,15 @@
 
         </mat-card-title>
       </mat-card-header>
-      <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'courses'">
+      <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'contributors'">
         <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
-          <button   mat-menu-item (click)="getCourses()">details</button>
+          <button   mat-menu-item (click)="getContributors()">details</button>
         </mat-menu>
         <div>
-          <app-courses></app-courses>
+          <app-contributors></app-contributors>
         </div>
       </mat-card-content>
       <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Compta'">

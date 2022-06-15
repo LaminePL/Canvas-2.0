@@ -12,8 +12,8 @@ export class CreditsECTSComponent implements OnInit {
   studentgrade: any
   total_credits: number;
   max_credits: number;
+  years: number
 
-  creditsNonValidés: number = 60;
   data : any;
   currentStudent: any;
 
@@ -21,6 +21,9 @@ export class CreditsECTSComponent implements OnInit {
     private userService: UserService, private studentService : StudentsService
   ) { }
   ngOnInit(): void {
+    this.studentService.studentDetails.subscribe((res)=>{
+      this.years = Number(res[0]?.study_length)
+    })
     this.studentService.studentDetails.subscribe(user => {
       this.currentStudent = user;
       if (this.currentStudent)
@@ -28,6 +31,8 @@ export class CreditsECTSComponent implements OnInit {
         map((grades: any)=>{
           this.total_credits = grades['total_credits']
           this.max_credits = grades['max_credits']
+          console.log(grades)
+          console.log(this.total_credits)
           return grades['total_credits']
 
         }
@@ -35,11 +40,11 @@ export class CreditsECTSComponent implements OnInit {
       )
       .subscribe((res)=>{
         this.data = {
-          labels: ["crédits validés", "crédits non validés"],
+          labels: ["ECTS obtained", "ECTS missing"],
           datasets: [
             {
               label: "CREDITS ECTS",
-              data: [this.total_credits, this.max_credits-this.total_credits],
+              data: [this.total_credits, 60*this.years -this.total_credits],
               backgroundColor: [
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 99, 132, 0.2)',
