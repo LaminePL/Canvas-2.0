@@ -15,7 +15,7 @@ import { AcademyDashboardComponent } from './academy-dashboard/academy-dashboard
 import {MatDialogModule} from '@angular/material/dialog';
 import { AcademyDocumentsComponent } from './academy-documents/academy-documents.component';
 import { AcademyResitDetailsComponent } from './academy-resit-details/academy-resit-details.component';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 const ROUTES: Routes = [
   {
     path: '',
@@ -49,7 +49,7 @@ const ROUTES: Routes = [
 ]
 
 @NgModule({
-  imports: [RouterModule.forChild(ROUTES),SharedModule,MaterialModule,CommonModule,FormsModule,MatDialogModule,PdfViewerModule],
+  imports: [RouterModule.forChild(ROUTES),SharedModule,MaterialModule,CommonModule,FormsModule,MatDialogModule],
   exports: [],
   declarations: [
     AcademyStudentsComponent,
