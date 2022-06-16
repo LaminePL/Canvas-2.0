@@ -16,6 +16,9 @@ export class FileService {
     return this.httpClient.get<FileModel[]>(`${API_URL}file/byStudent/${studentId}/byType/${fileTypeId}`)
   }
 
+  getFilesByInternshipByType(internshipId, fileTypeId): Observable<FileModel[]> {
+    return this.httpClient.get<FileModel[]>(`${API_URL}file/byInternship/${internshipId}/byType/${fileTypeId}`)
+  }
 
   download(file: FileModel) {
     let queryParams = new HttpParams();
