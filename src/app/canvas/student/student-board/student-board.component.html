@@ -1,12 +1,15 @@
+
+<div *ngIf="!loading">
+
 <h1 class="mat-h1">Dashboard</h1>
 
-<mat-grid-list cols="6" rowHeight="250px">
+<mat-grid-list cols="6" rowHeight="250px" >
   <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
     <mat-card class="dashboard-card">
       <mat-card-header>
         <mat-card-title>
 
-          <img class="dashboard-img" src="{{card.img}}" />
+          {{card.title}}
 
         </mat-card-title>
       </mat-card-header>
@@ -21,7 +24,7 @@
           <app-contributors></app-contributors>
         </div>
       </mat-card-content>
-      <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Compta'">
+      <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Accounting'">
         <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
           <mat-icon>more_vert</mat-icon>
         </button>
@@ -32,7 +35,7 @@
           <app-compta></app-compta>
         </div>
       </mat-card-content>
-      <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Credits ECTS'">
+      <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'ECTS'">
         <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
           <mat-icon>more_vert</mat-icon>
         </button>
@@ -43,7 +46,7 @@
           <app-credits-ects></app-credits-ects>
         </div>
       </mat-card-content>
-      <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Calendrier journalier'">
+      <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Agenda'">
         <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
           <mat-icon>more_vert</mat-icon>
         </button>
@@ -52,11 +55,33 @@
         </mat-menu>
         <app-canvas-calendar></app-canvas-calendar>
       </mat-card-content>
-      <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Card 4'">
+      <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Documents'">
+        <app-administratif-doc></app-administratif-doc>
+      </mat-card-content>
+      <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Internship'">
+        <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <button mat-menu-item (click)="getInternship()">details</button>
+        </mat-menu>
+        <app-internship></app-internship>
+      </mat-card-content>
+      <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Resits'">
+        <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <button mat-menu-item (click)="getResits()">details</button>
+        </mat-menu>
+        <app-resits></app-resits>
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
 
 
+</div>
+
+<mat-spinner *ngIf="loading" class="m-auto loading-spinner"></mat-spinner>
 

@@ -30,6 +30,8 @@ export class ContributorsZoomComponent implements OnInit {
     this.loading = true;
     this.modulesService.getModules().subscribe(data => {
       this.moduleFilterValues = data;
+      console.log(this.moduleFilterValues)
+
     })
     this.contributorsService.getContributors().subscribe(data => {
       this.rows = data;

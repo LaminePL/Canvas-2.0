@@ -26,7 +26,6 @@ export class ContributorsComponent implements OnInit {
 
     this.contributorsService.getContributors().subscribe(data => {
       this.contributorsLength = data.length;
-      //console.log(this.rows.length)
       this.loading = false;
     })
   }

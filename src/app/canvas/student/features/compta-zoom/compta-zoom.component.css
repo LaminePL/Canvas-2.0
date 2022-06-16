@@ -50,3 +50,11 @@
 
   margin: auto;
 }
+
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  right: 50%;
+  left: 50%;
+}
