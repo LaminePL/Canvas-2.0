@@ -13,7 +13,6 @@ import {UserService} from 'src/services/user.service';
 })
 export class CreditsEctsZoomComponent implements OnInit {
   studentLevels = ['B.ENG 1', 'B.ENG 2', 'B.ENG 3', 'M.ENG 1', 'M.ENG 2']
-  // studentLevels = ['M.ENG 2', 'M.ENG 1', 'B.ENG 3', 'B.ENG 2', 'B.ENG 1']
   studentId: number;
   gradePerYear = []
   loading: boolean;
@@ -86,7 +85,6 @@ export class CreditsEctsZoomComponent implements OnInit {
 
   getStudentNotesPerYear(studentId, year) {
     for (let item = 1; item <= year; item++) {
-      console.log(item)
       this.studentsService.getStudentNotesPerYear(studentId, item).pipe(
         map((data) => {
           this.notePerYear.unshift(data)

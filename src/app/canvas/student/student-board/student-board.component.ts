@@ -29,8 +29,8 @@ export class StudentBoardComponent implements OnInit {
           {title: 'Grades', cols: 6, rows: 1},
           {title: 'Internship', cols: 6, rows: 1, img: '../../../../assets//img//loupe.png'},
           {title: 'Accounting', cols: 6, rows: 1, img: '../../../../assets//img//calculatrice.png'},
-          {title: 'ECTS', cols: 6, rows: 2},
           {title: 'Agenda', cols: 6, rows: 3, img: '../../../../assets//img//calendar.png'},
+          {title: 'ECTS', cols: 6, rows: 2},
           {title: 'Documents', cols: 6, rows: 1},
           {title: 'Resits', cols: 6, rows: 1},
           {title: 'contributors', cols: 6, rows: 1},
@@ -38,14 +38,15 @@ export class StudentBoardComponent implements OnInit {
       }
 
       return [
-        {title: 'Grades', cols: 2, rows: 1},
         {title: 'Internship', cols: 2, rows: 1, img: '../../../../assets//img//loupe.png'},
-        {title: 'Accounting', cols: 2, rows: 1, img: '../../../../assets//img//calculatrice.png'},
-        {title: 'ECTS', cols: 3, rows: 2},
-        {title: 'Agenda', cols: 3, rows: 2, img: '../../../../assets//img//calendar.png'},
-        {title: 'Documents', cols: 2, rows: 1},
         {title: 'Resits', cols: 2, rows: 1},
+        {title: 'Grades', cols: 2, rows: 1},
+        {title: 'Agenda', cols: 3, rows: 2, img: '../../../../assets//img//calendar.png'},
+        {title: 'ECTS', cols: 3, rows: 2},
+        {title: 'Accounting', cols: 2, rows: 1, img: '../../../../assets//img//calculatrice.png'},
         {title: 'contributors', cols: 2, rows: 1},
+        {title: 'Documents', cols: 2, rows: 1},
+
 
       ];
     })
@@ -101,6 +102,9 @@ export class StudentBoardComponent implements OnInit {
 
   getInternship() {
     this.router.navigateByUrl('canvas/student/internship');
+  }
+  getDocument() {
+    this.router.navigateByUrl('canvas/student/documents');
   }
 
 }

@@ -31,8 +31,7 @@ export class CreditsECTSComponent implements OnInit {
         map((grades: any)=>{
           this.total_credits = grades['total_credits']
           this.max_credits = grades['max_credits']
-          console.log(grades)
-          console.log(this.total_credits)
+
           return grades['total_credits']
 
         }

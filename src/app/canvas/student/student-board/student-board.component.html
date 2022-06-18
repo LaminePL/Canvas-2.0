@@ -56,6 +56,12 @@
         <app-canvas-calendar></app-canvas-calendar>
       </mat-card-content>
       <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Documents'">
+        <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <button mat-menu-item (click)="getDocument()">details</button>
+        </mat-menu>
         <app-administratif-doc></app-administratif-doc>
       </mat-card-content>
       <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Internship'">

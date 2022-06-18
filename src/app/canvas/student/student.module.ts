@@ -100,6 +100,10 @@ const ROUTES: Routes = [
     path: 'internship',
     component: InternshipZoomComponent
   },
+  {
+    path: 'documents',
+    component: AdministratifDocZoomComponent
+  },
 
 
 ]
