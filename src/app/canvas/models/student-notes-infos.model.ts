@@ -9,6 +9,4 @@ export class StudentNotesInfosModel{
     email: string;
     is_admitted: boolean;
 
-    
   }
-  

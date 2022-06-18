@@ -1,0 +1,28 @@
+<div filters>
+  <mat-form-field>
+    <mat-label>Module</mat-label>
+    <mat-select (selectionChange)="onChangeLevel($event)">
+      <mat-option selected [value]="null">All</mat-option>
+      <mat-option *ngFor="let filter of levelList" [value]="filter">{{filter.level}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<mat-card class="custom-flex">
+  <mat-card *ngFor="let offer of offersFilter" class="custom-item">
+    <mat-card-title>{{offer.internship_title}}</mat-card-title>
+    <mat-card-subtitle>{{offer.internship_type}}</mat-card-subtitle>
+    <mat-card-content>
+      <p>{{offer.internship_adress}}
+      </p>
+      {{offer.internship_path}}
+    </mat-card-content>
+    <mat-card-actions class="flex_icons">
+      <mat-icon class="view_file" (click)="view(offer?.internship_path)">remove_red_eye</mat-icon>
+      <mat-icon class="download_file" (click)="download(offer?.internship_path)">picture_as_pdf</mat-icon>
+    </mat-card-actions>
+  </mat-card>
+
+
+</mat-card>
+<mat-spinner *ngIf="loading" class="m-auto"></mat-spinner>
