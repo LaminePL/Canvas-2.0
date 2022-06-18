@@ -3,6 +3,8 @@ import {StudentsService} from "../../../../../services/students.service";
 import {InternshipModel} from "../../../models/internship.model";
 import {FileService} from "../../../../../services/file.service";
 import {LevelModel} from "../../../models/level.model";
+import {FileModel} from "../../../models/file.model";
+import {zip, map, forkJoin} from 'rxjs';
 
 
 @Component({
@@ -22,23 +24,28 @@ export class InternshipZoomComponent implements OnInit {
     {id_level: 4, level: 'M.ENG 1'},
     {id_level: 5, level: 'M.ENG 2'}
   ]
+  files: Array<any>
 
   constructor(private studentService: StudentsService, private fileService: FileService) {
   }
 
   ngOnInit(): void {
     this.loading = true;
+    let objects = [];
 
-    this.studentService.getInternship().subscribe((offer) => {
-      this.offers = offer
-      this.offersFilter = offer
-      this.loading = false;
+    zip(this.studentService.getInternship(), this.fileService.getAllFilesByInternship(3)).pipe(
+      map(([interShip, files]) => {
+        return interShip.map((data, index) => Object.assign(data, files[index]))
+      })
+    ).subscribe((res) => {
+      this.offers = res
+      this.loading = false
+      this.offersFilter = res
+      this.files = res
     })
-
   }
 
   download(file) {
-    console.log(file)
     this.fileService.download(file);
   }
 
@@ -48,6 +55,12 @@ export class InternshipZoomComponent implements OnInit {
 
 
   onChangeLevel(level) {
-    this.offersFilter = this.offers.filter(offer => offer?.internship_level === level?.value?.id_level);
+    this.offersFilter = this.offers?.filter(offer => offer?.internship_level === level?.value?.id_level);
+    if (level.value == null) {
+      this.offersFilter = this.offers
+
+    }
+
   }
+
 }

@@ -1,3 +1,8 @@
 .calendar {
   margin: 0 auto;
 }
+.warning-msg{
+  background-color: #F44336 !important;
+  border-color: #F44336 !important;
+  color: white !important;
+}

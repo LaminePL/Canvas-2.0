@@ -2,7 +2,7 @@
   <mat-tab-group animationDuration="300ms">
     <div >
     <mat-tab class="chart-tab-content"  label="Overview">
-      <div style="display: block; width: 800px; ">
+      <div class="chart-note-overview" style=" ">
         <canvas baseChart [datasets]="barChartData" [labels]="studentLevels" [options]="barChartOptions"
           [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType"
           style="display: block;">
@@ -10,29 +10,29 @@
       </div>
     </mat-tab>
     </div>
-    <ng-container *ngFor="let notes of notePerYear ">
-
-      <mat-tab label={{getYearById(notes[0].year)}}>
+    <ng-container  *ngIf="notePerYear.length > 0">
+    <ng-container  *ngFor="let notes of notePerYear ">
+      <mat-tab *ngIf="notes.length > 0" label={{getYearById(notes[0]?.year)}}>
         <div *ngFor="let note of notes" class=" mr-3">
           <mat-accordion>
             <mat-expansion-panel hideToggle>
               <mat-expansion-panel-header>
                 <mat-panel-title>
                   <div class="header-pannel" >
-                    {{note.module_name}}
+                    {{note?.module_name}}
                   </div>
                 </mat-panel-title>
 
-                <mat-panel-description>
-                  {{note.notes}}
+                <mat-panel-description class="module_grades">
+                  Grade : {{note?.notes}}
                 </mat-panel-description>
               </mat-expansion-panel-header>
               <mat-panel-description>
-                Module description: {{note.module_description}}
+                Module description: {{note?.module_description}}
               </mat-panel-description>
               <div class="panel-footer">
-              <div class="credit-num-label">Module credits: {{note.credits}}</div>
-              <mat-icon style="margin-right: 12px; cursor: pointer;" (click)="onCardClick(note.module_canvas)">keyboard_arrow_right</mat-icon>
+              <div class="credit-num-label">Module credits: {{note?.credits}}</div>
+              <mat-icon style="margin-right: 12px; cursor: pointer;" (click)="onCardClick(note?.module_canvas)">keyboard_arrow_right</mat-icon>
               </div>
 
             </mat-expansion-panel>
@@ -40,7 +40,7 @@
         </div>
         <ng-container *ngFor="let ects of gradePerYear">
           <div *ngIf="ects.id_year == notes[0]?.year">
-            <mat-card class="total-credits mt-3"> totale credit : <div>{{ects.total_credits}}</div>
+            <mat-card class="total-credits mt-3"> totale credit : <div>{{ects?.total_credits}}</div>
             </mat-card>
           </div>
         </ng-container>
@@ -49,7 +49,7 @@
 
       </mat-tab>
     </ng-container>
-
+    </ng-container>
   </mat-tab-group>
 </div>
 <mat-spinner *ngIf="loading" class="m-auto center"></mat-spinner>

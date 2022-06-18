@@ -1,7 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarDateFormatter, CalendarEvent, CalendarView } from 'angular-calendar';
+import { CalendarEvent, CalendarView } from 'angular-calendar';
 import { endOfHour, startOfHour } from 'date-fns';
 import { StudentsService } from 'src/services/students.service';
+
+
+const colors: any = {
+  red: {
+    primary: '#ad2121',
+    secondary: '#FAE3E3',
+  },
+  blue: {
+    primary: '#1e90ff',
+    secondary: '#D1E8FF',
+  },
+  yellow: {
+    primary: '#e3bc08',
+    secondary: '#FDF1BA',
+  },
+}
 @Component({
   selector: 'app-canvas-calendar',
   templateUrl: './canvas-calendar.component.html',
@@ -33,7 +49,8 @@ export class CanvasCalendarComponent implements OnInit {
       this.stillStudent = res[0]?.still_student
       if (this.stillStudent === 0){
         return this.events = [{
-          title: 'please contact the Admin to have access ',
+          title: 'Please contact the Admin to have access',
+          color: colors.yellow,
           start: new Date(),
           allDay: true,
         }]

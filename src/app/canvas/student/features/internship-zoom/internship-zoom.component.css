@@ -48,5 +48,6 @@
 @media (max-width: 767px) {
   .custom-flex .custom-item{
     width: 100%;
+    height: auto;
   }
 }
