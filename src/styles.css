@@ -87,7 +87,9 @@ div.ng-tns-c290-47{
   padding: 20px;
 }
 
-
+.mat-drawer-content{
+  background: 	#E8E8E8;
+}
 
 @media screen and (max-width: 767px) {
 
@@ -102,11 +104,7 @@ div.ng-tns-c290-47{
   .nav-right {
     display: none !important;
   }
-  .mat-card>:last-child:not(.mat-card-footer), .mat-card-content>:last-child:not(.mat-card-footer) {
-    margin-bottom: 0;
-    height: 536px;
-    /* width: 105%; */
-  }
+
   .fc .fc-toolbar {
     display: flex;
     justify-content: space-between;
@@ -115,12 +113,12 @@ div.ng-tns-c290-47{
   }
 }
 
-body > app-root > mat-sidenav-container > mat-sidenav-content > div > app-student-board > mat-grid-list > div > mat-grid-tile:nth-child(4) > div > mat-card > mat-card-content > div > app-credits-ects > div > div{
+.total-credits{
   position: absolute;
   font-weight: 700;
   font-size: 2.5rem;
   line-height: 1;
-  color: #3ac47d;
+
   left: 0;
   right: 0;
   top: 50%;

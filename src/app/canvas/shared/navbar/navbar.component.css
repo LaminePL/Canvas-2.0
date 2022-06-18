@@ -8,10 +8,22 @@
 .nav-bar {
   background-color: #487c64;
 }
+
+.supinf-logo{
+  width: 87px;
+  height: auto;
+  margin-top: 11px;
+}
 @media screen and (max-width: 767px) {
   .mat-toolbar-row, .mat-toolbar-single-row {
     display: flex;
     flex-direction: row;
+  }
+  .supinf-logo{
+    width: 30%;
+    margin: auto;
+    display: block;
+    margin-top: 1em;
   }
 
 }

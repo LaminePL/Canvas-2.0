@@ -33,11 +33,11 @@ export class ResitsZoomComponent implements OnInit {
     this.studentsService.studentDetails.subscribe((res)=>{
       if(res[0]?.has_resit){
         this.studentNotesService.getResitsDetails(res[0]?.id_student).subscribe( data => {
+          this.loading = false;
+
           this.moduleFilterValues = data;
           this.rows = data;
-          console.log(this.rows)
           this.displayedRows = data;
-          this.loading = false;
         })
       }
 
