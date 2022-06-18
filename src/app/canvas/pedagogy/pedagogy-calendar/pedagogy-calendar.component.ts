@@ -57,7 +57,7 @@ export class PedagogyCalendarComponent implements OnInit {
           center: 'title',
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
-        dayHeaderFormat: {weekday: 'short', month: 'short', day: '2-digit', omitCommas: true},
+        dayHeaderFormat: {weekday: 'long', omitCommas: true},
         businessHours: {
           daysOfWeek: [1, 2, 3, 4, 5], // lundi - vendredi
           startTime: '09:00',
