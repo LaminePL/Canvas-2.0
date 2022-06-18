@@ -4,7 +4,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { StudentFilterModel } from '../../models/studentFilter.model';
 
 enum AdmissionFilterEnum  {
-  All,Resit,Project
+  All,Resit,Graduation
 }
 
 enum StatusFilterEnum  {
@@ -36,8 +36,8 @@ export class AcademyStudentsFilterComponent implements OnInit {
       let filter = new StudentFilterModel();
       filter.hasContratPro = this.contratProFilter ? true : null;
       filter.isHired = this.hiredFilter ? true : null;
-      filter.hasResitExams = this.admissionFilter == this.admissionFilterEnum.All ? null : this.admissionFilter == this.admissionFilterEnum.Resit;
-      filter.hasProjects = this.admissionFilter == this.admissionFilterEnum.All ? null : this.admissionFilter == this.admissionFilterEnum.Project;
+      filter.hasResitExams = this.admissionFilter == this.admissionFilterEnum.All ? null : (this.admissionFilter == this.admissionFilterEnum.Resit ? true : null);
+      filter.hasGraduation = this.admissionFilter == this.admissionFilterEnum.All ? null : (this.admissionFilter == this.admissionFilterEnum.Graduation ? true : null);
       //filter.isAdmitted = this.admissionFilter == this.admissionFilterEnum.All ? null : this.admissionFilter == this.admissionFilterEnum.Admis;
       filter.isOldStudent = this.statusFilter == this.statusFilterEnum.All ? null : this.statusFilter == this.statusFilterEnum.OldStudents;
       this.dialog.close(filter);

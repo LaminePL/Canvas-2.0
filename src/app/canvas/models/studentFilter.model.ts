@@ -4,6 +4,6 @@ export class StudentFilterModel{
     isOldStudent: boolean;
     hasResitExams: boolean;
     isAdmitted: boolean;
-    hasProjects: boolean;
+    hasGraduation: boolean;
 
 }
