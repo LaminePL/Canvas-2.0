@@ -22,6 +22,7 @@ export class StudentDetailsModel{
   has_speciality:boolean;
   is_hired:boolean;
   has_contrat_pro:boolean;
+  has_projects:boolean;
   //compta
   compta_paid: boolean
   compta_payment_due: boolean

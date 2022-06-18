@@ -8,4 +8,5 @@ export interface UserModel{
   lastName?: string;
   role?: RolesEnum;
   route?:string;
+  roleName?:string;
 }

@@ -1,25 +1,27 @@
-<div class="modal-header">
-  <h1>{{title}}</h1>
-  <button type="button" class="btn-close" aria-label="Close" mat-dialog-close></button>
+
+
+
+<div mat-dialog-title class="dialog-title">
+  <h2 mat-dialog-title> {{title}}</h2>
+<button type="button" class="btn-close" aria-label="Close" mat-dialog-close></button>
 </div>
 
-
-<div class="modal-body">
-  <div class="card-body pt-0">
-    <div class="table">
-      <tr class="d-flex" *ngFor="let file of files">
-        <th width="30%">{{file.file_description}}</th>
-        <td> <button mat-button color="primary" (click)="view(file)"> View</button>
-          <button mat-button color="primary" (click)="download(file)"> Download</button>
-        </td>
+<mat-dialog-content>
 
 
-      <tr *ngIf="!files?.length">
-
-        <td>
-          <h4>No records found</h4>
-        </td>
-      </tr>
+  <div class="row rows me-0 ms-0" *ngFor="let file of files">
+    <span class="fw-bold col">{{file.file_description}}</span>
+    <div class="col">
+        <button mat-icon-button color="primary" matTooltip="View" (click)="view(file)"><mat-icon>
+          remove_red_eye
+        </mat-icon></button>
+        <button mat-icon-button color="primary" matTooltip="Download" (click)="download(file)"> <mat-icon>
+          file_download
+        </mat-icon></button>
     </div>
+
   </div>
-</div>
+
+
+    <h4 *ngIf="!files?.length">No records found</h4>
+</mat-dialog-content>

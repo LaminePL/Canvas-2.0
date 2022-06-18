@@ -87,6 +87,12 @@ div.ng-tns-c290-47{
   padding: 20px;
 }
 
+.ellipsis{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .mat-drawer-content{
   background: 	#E8E8E8;
 }

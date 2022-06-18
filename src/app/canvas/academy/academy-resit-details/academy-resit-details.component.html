@@ -1,28 +1,30 @@
-<div class="modal-header">
-  <button type="button" class="btn-close" aria-label="Close" mat-dialog-close></button>
+<div mat-dialog-title class="dialog-title">
+  <h2 mat-dialog-title>  Resit details </h2>
+<button type="button" class="btn-close" aria-label="Close" mat-dialog-close></button>
 </div>
 
+<mat-dialog-content>
 
-
-<div class="modal-body">
-
-  <tr class="d-flex">
-    <th width="30%">Number of resits</th>
-    <td width="2%">:</td>
-    <td>{{studentDetails?.nb_resit}}</td>
-  </tr>
-
-  <tr class="d-flex">
-    <th width="30%">Modules of resit </th>
-    <td width="2%">:</td>
-  </tr>
-  <div class="card-body pt-0">
-    <div class="table">
-      <tr class="d-flex" *ngFor="let resit of resits">
-        <th width="30%">{{resit.module_name}}</th>
-        <td>{{resit.resit_date | date:'dd/MM/yyyy'}}</td>
-      </tr>
-    </div>
+  <div class="row rows mb-3" >
+    <span class="fw-bold col">Number of resits : </span>
+    <span class="col"> {{resits?.length}}</span>
   </div>
 
-</div>
+  <div class="row rows  table-header ms-0 me-0 mb-1" >
+    <span class="fw-bold col">Module of resit</span>
+    <span class="fw-bold col">Date of resit</span>
+  </div>
+
+
+  <div class="row rows border-bottom ms-0 me-0" *ngFor="let resit of resits">
+    <span class="fw-bold col">{{resit.module_name}}</span>
+    <div class="col">
+      {{resit.resit_date | date:'dd/MM/yyyy'}}
+    </div>
+
+  </div>
+
+
+    <h4 *ngIf="!resits?.length">No records found</h4>
+</mat-dialog-content>
+

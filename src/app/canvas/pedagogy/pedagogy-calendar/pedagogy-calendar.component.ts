@@ -83,6 +83,8 @@ export class PedagogyCalendarComponent implements OnInit {
       }
       console.log(this.calendarOptions)
     })
+
   }
+
 
 }
