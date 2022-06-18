@@ -1,18 +1,22 @@
 <div *ngIf="!loading">
   <mat-tab-group animationDuration="300ms">
-    <div >
-    <mat-tab class="chart-tab-content"  label="Overview">
-      <div class="chart-note-overview" style=" ">
-        <canvas baseChart [datasets]="barChartData" [labels]="studentLevels" [options]="barChartOptions"
-          [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType"
-          style="display: block;">
-        </canvas>
-      </div>
+
+    <mat-tab class="chart-tab-content" label="Overview">
+      <mat-card>
+
+        <div class="chart-note-overview" style=" ">
+          <canvas baseChart [datasets]="barChartData" [labels]="studentLevels" [options]="barChartOptions"
+                  [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType"
+                  style="display: block;">
+          </canvas>
+        </div>
+      </mat-card>
     </mat-tab>
-    </div>
+
     <ng-container  *ngIf="notePerYear.length > 0">
     <ng-container  *ngFor="let notes of notePerYear ">
       <mat-tab *ngIf="notes.length > 0" label={{getYearById(notes[0]?.year)}}>
+        <mat-card>
         <div *ngFor="let note of notes" class=" mr-3">
           <mat-accordion>
             <mat-expansion-panel hideToggle>
@@ -46,7 +50,7 @@
         </ng-container>
 
 
-
+        </mat-card>>
       </mat-tab>
     </ng-container>
     </ng-container>
