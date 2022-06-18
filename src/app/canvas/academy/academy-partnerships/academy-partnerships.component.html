@@ -4,7 +4,12 @@
     <img mat-card-image [src]="partnership.partnership_image" [alt]="partnership.partnership_name">
     <mat-card-content>
        Date de début de partenariat: <strong>{{ partnership.partnership_date | date:'dd/MM/yyyy' }}</strong>
+
     </mat-card-content>
+    <mat-card-content>
+    Type du partenariat: <strong>{{ partnership.partnership_type }}</strong>
+  </mat-card-content>
+
   </mat-card>
 </div>
 

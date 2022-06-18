@@ -14,28 +14,20 @@ export const academyStudentColumns = [
   {
     name: 'date_of_birth',
     label: 'Date of birth',
-    field: (row : StudentModel) => row.date_of_birth ? formatDate(row.date_of_birth, 'dd/MM/yyyy', 'en') : undefined,
-    class:'responsive-hide-col',
-    headerClass:'responsive-hide-col'
+    field: (row : StudentModel) => row.date_of_birth ? formatDate(row.date_of_birth, 'dd/MM/yyyy', 'en') : undefined
   },
   {
     name: 'email',
-    label: 'Email',
-    class:'responsive-hide-col',
-    headerClass:'responsive-hide-col'
+    label: 'Email'
   },
   {
     name: 'campus_name',
-    label: 'Campus',
-    class:'responsive-hide-col',
-    headerClass:'responsive-hide-col'
+    label: 'Campus'
   },
   {
     name: 'level',
     label: 'Année',
-    field: (row : StudentModel) => row.level ? row.level : '/',
-    class:'responsive-hide-col',
-    headerClass:'responsive-hide-col'
+    field: (row : StudentModel) => row.level ? row.level : '/'
   },
   {
     name:'details',

@@ -1,4 +1,4 @@
-<div class="student-profile py-4">
+<div class="student-profile py-4" [class]="loading ? 'd-none' : ''">
   <div class="container">
     <div class="row">
       <div class="col-lg-4 mb-3">
@@ -11,22 +11,25 @@
             <p class="mb-0"><strong class="pr-1">Gender: </strong>{{studentDetails?.gender}}</p>
             <p class="mb-0"><strong class="pr-1">Adress: </strong>{{studentDetails?.adress}}</p>
             <p class="mb-0"><strong class="pr-1">Region: </strong>{{studentDetails?.region}}</p>
-            <p class="mb-0"><strong class="pr-1">Email: </strong>{{studentDetails?.email}}</p>
+            <p class="mb-0 ellipsis"><strong class="pr-1">Email: </strong> {{studentDetails?.email}}</p>
 
           </div>
         </div>
         <div style="height: 26px"></div>
         <div class="card shadow-sm">
           <div class="card-header bg-transparent border-0">
-            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Administrative informations</h3>
+            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Administrative Documents</h3>
           </div>
-          <div class="card-body ">
+          <div class="card-body pt-0">
             <div class="d-grid">
               <button mat-raised-button color="accent" class="mb-1" (click)="onGradeBulletinsClick()">
                 <mat-icon> grading</mat-icon> Grade bulletins
               </button>
-              <button mat-raised-button color="accent" (click)="onAchievmentCertificateClick()">
+              <button mat-raised-button color="accent" class="mb-1"  (click)="onAchievmentCertificateClick()">
                 <mat-icon> text_snippet</mat-icon> Achievement certificates
+              </button>
+              <button mat-raised-button color="accent" (click)="onDissertationClick()">
+                <mat-icon> task</mat-icon> Projects
               </button>
             </div>
           </div>
@@ -82,16 +85,27 @@
                 <td width="2%">:</td>
                 <td>{{studentDetails?.number_absence}}</td>
               </tr>
-              <tr class="d-flex" *ngIf="studentDetails?.still_student==true">
-                <th width="30%">Resit</th>
+              <tr class="d-flex" >
+                <th width="30%">Resits</th>
                 <td width="2%">:</td>
                 <td>
-                  <span *ngIf="studentDetails?.has_resit"> Yes</span>
                   <span *ngIf="!studentDetails?.has_resit"> No</span>
-
                 </td>
                 <button mat-icon-button color="primary" *ngIf="studentDetails?.has_resit" (click)="resitDetails()">
                   <mat-icon matTooltip="Resit details" style="margin-bottom: 6px;
+                  margin-top: -6px;">
+                    list_alt
+                    </mat-icon>
+                </button>
+              </tr>
+              <tr class="d-flex" >
+                <th width="30%">Projects</th>
+                <td width="2%">:</td>
+                <td>
+                  <span *ngIf="!studentDetails?.has_projects"> No</span>
+                </td>
+                <button mat-icon-button color="primary" *ngIf="studentDetails?.has_projects" (click)="projectsDetails()">
+                  <mat-icon matTooltip="Projects details" style="margin-bottom: 6px;
                   margin-top: -6px;">
                     list_alt
                     </mat-icon>
@@ -128,3 +142,5 @@
     </div>
   </div>
 </div>
+
+<mat-spinner *ngIf="loading" class="m-auto"></mat-spinner>

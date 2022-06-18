@@ -1,10 +1,7 @@
-.saveChanges{
-  background-color: green;
-  color: white;
-}
 
 .btn-close{
-  margin-left: 20pc;
+
+  margin: 0 0 16px;
 }
 
 h2{
@@ -12,4 +9,29 @@ h2{
 }
 mat-toolbar{
  background-color:  #e5dee8;
+}
+
+
+
+.dialog-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: thistle;
+  padding: 5px;
+}
+
+.rows{
+  align-items: center;
+  border-bottom: solid 1px;
+  button{
+    float: right;
+  }
+}
+
+
+@media (min-width: 700px) {
+  mat-dialog-content {
+    width: 80vh;
+  }
 }

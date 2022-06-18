@@ -10,30 +10,32 @@ import { FileModel, FileType } from '../../models/file.model';
 export class AcademyDocumentsComponent implements OnInit {
 
   files: Array<FileModel>
-  title:string;
+
+  title: string;
   fileType: FileType;
-  id_student:number;
-  constructor(public dialogRef: MatDialogRef<AcademyDocumentsComponent>,private fileService : FileService,
+  id_student: number;
+  constructor(public dialogRef: MatDialogRef<AcademyDocumentsComponent>, private fileService: FileService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
-      this.title = data.title;
-      this.fileType = data.fileType;
-      this.id_student = data.id_student;
-    }
+    this.title = data.title;
+    this.fileType = data.fileType;
+    this.id_student = data.id_student;
+  }
 
   ngOnInit(): void {
-
-    this.fileService.getFilesByStudentByType(this.id_student,this.fileType).subscribe(res =>{
-        this.files = res;
+    this.fileService.getFilesByStudentByType(this.id_student, this.fileType).subscribe(res => {
+      this.files = res;
     })
+
+
   }
 
 
-  download(file){
+  download(file) {
     this.fileService.download(file);
   }
 
-  view(file){
+  view(file) {
     this.fileService.view(file);
   }
 

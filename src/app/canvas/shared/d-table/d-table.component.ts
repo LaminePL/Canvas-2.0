@@ -3,6 +3,7 @@ import {
   Component,
   ContentChild,
   EventEmitter,
+  HostListener,
   Input,
   OnChanges,
   OnInit,
@@ -41,7 +42,7 @@ export class DTableComponent implements OnInit, OnChanges {
   displayedColumns: Array<ColumnDefinition>
   columnNames: Array<string>
   searchKey!: string;
-
+  isMobile: boolean;
 
   @ContentChild('columnTemplate') columnTemplate: TemplateRef<any>
   @ViewChild('paginator', { static: false }) paginator: MatPaginator
@@ -60,7 +61,7 @@ export class DTableComponent implements OnInit, OnChanges {
     if (this.rows)
       this.displayedRows.data = [...this.rows]
 
-    //this.displayPaginator = this.pagination?.totalRows > 0;
+    this.isMobile = window.innerWidth < 767;
 
   }
 
@@ -140,7 +141,10 @@ export class DTableComponent implements OnInit, OnChanges {
     this.displayedRows.filter = this.searchKey.trim().toLocaleLowerCase();
   }
 
-
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+    this.isMobile = window.innerWidth < 767;
+  }
 
 
 

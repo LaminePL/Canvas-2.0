@@ -12,25 +12,20 @@ import { StudentDetailsModel } from '../../models/student-details.model';
 })
 export class AcademyResitDetailsComponent implements OnInit {
 
-studentId;
-studentDetails: StudentDetailsModel;
-resits: Array<ResitModel>
-  constructor(public dialogRef: MatDialogRef<AcademyResitDetailsComponent>, private studentsService:StudentsService, private studentNotesService:StudentNotesService,
+  studentId;
+  resits: Array<ResitModel>
+  constructor(public dialogRef: MatDialogRef<AcademyResitDetailsComponent>, private studentNotesService: StudentNotesService,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   ) {
   }
 
 
   ngOnInit(): void {
-    this.studentId= this.data
-    this.studentsService.getStudentDetails(this.studentId).subscribe(data => {
-      this.studentDetails = data;
-      if(this.studentDetails?.has_resit){
-        this.studentNotesService.getResitsDetails(this.studentId).subscribe( res => {
-          this.resits = res;
-        })
-      }
+    this.studentId = this.data
+    this.studentNotesService.getResitsDetails(this.studentId).subscribe(res => {
+      this.resits = res;
     })
+
   }
 
 }

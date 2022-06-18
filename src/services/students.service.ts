@@ -10,6 +10,7 @@ import {UserService} from 'src/services/user.service';
 import {CalendarModel} from 'src/app/canvas/models/calendar.model';
 import {NotesModel} from 'src/app/canvas/models/notes.models';
 import { StudentNotesInfosModel } from 'src/app/canvas/models/student-notes-infos.model';
+import { StudentProjectModel } from 'src/app/canvas/models/student-project.model';
 
 
 
@@ -112,6 +113,11 @@ export class StudentsService {
 
   getAllStudentNotesAndInfos():Observable<StudentNotesInfosModel[]>{
     return this.http.get<StudentNotesInfosModel[]>(`${API_URL}student_notes/infos`)
+  }
+
+
+  getProjects(studentId:number):Observable<StudentProjectModel[]>{
+    return this.http.get<StudentProjectModel[]>(`${API_URL}students/${studentId}/projects`)
   }
 
 }
