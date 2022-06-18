@@ -22,7 +22,9 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { CalendarDateFormatter, CalendarModule, CalendarNativeDateFormatter, DateAdapter, DateFormatterParams } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
-import {PedagogyCalendarComponent} from './pedagogy-calendar/pedagogy-calendar.component'
+import {PedagogyCalendarComponent} from './pedagogy-calendar/pedagogy-calendar.component';
+import { PedagogyInternshipComponent } from './pedagogy-internship/pedagogy-internship.component';
+import { PedagogyInternshipZoomComponent } from './pedagogy-internship-zoom/pedagogy-internship-zoom.component'
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -61,6 +63,10 @@ const ROUTES: Routes = [
     component: PedagogyMailingComponent
   },
   {
+    path: 'dashboard/internship',
+    component: PedagogyInternshipZoomComponent
+  },
+  {
     path: 'dashboard',
     component: PedagogyDashboardComponent
   }
@@ -83,7 +89,9 @@ const ROUTES: Routes = [
     PedagogyDocumentsComponent,
     PedagogyResitDetailsComponent,
     PedagogyMailingComponent,
-    PedagogyCalendarComponent
+    PedagogyCalendarComponent,
+    PedagogyInternshipComponent,
+    PedagogyInternshipZoomComponent
   ],
   providers: [],
 })
