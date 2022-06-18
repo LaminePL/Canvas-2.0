@@ -26,7 +26,6 @@ export class UserProfileComponent implements OnInit {
 
       this.studentService.getStudentDetails(this.studentId).subscribe((res)=>{
         this.studentDetails = res
-        console.log(res)
         this.loading = false;
 
         return res

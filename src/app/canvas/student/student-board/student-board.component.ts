@@ -20,32 +20,35 @@ export class StudentBoardComponent implements OnInit {
   studentEmail = ""
   creditEtudiants: any;
   loading: boolean
+  today = new Date()
 
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({matches}) => {
       if (matches) {
         return [
-          {title: 'Grades', cols: 6, rows: 1},
+          {title: 'Modules', cols: 6, rows: 1, img: '../../../../assets//img//book.png'},
           {title: 'Internship', cols: 6, rows: 1, img: '../../../../assets//img//loupe.png'},
+          {title: 'Resits', cols: 6, rows: 1, img: '../../../../assets//img//resit.png'},
+          {title: 'Calendar', cols: 6, rows: 3, img: '../../../../assets//img//calendar.png'},
+          {title: 'ECTS', cols: 6, rows: 2, img: '../../../../assets//img//ECTS.png'},
           {title: 'Accounting', cols: 6, rows: 1, img: '../../../../assets//img//calculatrice.png'},
-          {title: 'Agenda', cols: 6, rows: 3, img: '../../../../assets//img//calendar.png'},
-          {title: 'ECTS', cols: 6, rows: 2},
-          {title: 'Documents', cols: 6, rows: 1},
-          {title: 'Resits', cols: 6, rows: 1},
-          {title: 'contributors', cols: 6, rows: 1},
+          {title: 'Contributors', cols: 6, rows: 1, img: '../../../../assets//img//contributors.png'},
+          {title: 'Documents', cols: 6, rows: 1,  img: '../../../../assets//img//document.png'},
+
         ];
       }
 
       return [
-        {title: 'Internship', cols: 2, rows: 1, img: '../../../../assets//img//loupe.png'},
-        {title: 'Resits', cols: 2, rows: 1},
-        {title: 'Grades', cols: 2, rows: 1},
-        {title: 'Agenda', cols: 3, rows: 2, img: '../../../../assets//img//calendar.png'},
-        {title: 'ECTS', cols: 3, rows: 2},
+        {title: 'Modules', cols: 2, rows: 1, img: '../../../../assets//img//book.png'},
+        {title: 'Resits', cols: 2, rows: 1, img: '../../../../assets//img//resit.png'},
+        {title: 'Documents', cols: 2, rows: 1,  img: '../../../../assets//img//document.png'},
+        {title: 'Calendar', cols: 3, rows: 2, img: '../../../../assets//img//calendar.png'},
+        {title: 'ECTS', cols: 3, rows: 2, img: '../../../../assets//img//ECTS.png'},
         {title: 'Accounting', cols: 2, rows: 1, img: '../../../../assets//img//calculatrice.png'},
-        {title: 'contributors', cols: 2, rows: 1},
-        {title: 'Documents', cols: 2, rows: 1},
+        {title: 'Contributors', cols: 2, rows: 1 , img: '../../../../assets//img//contributors.png'},
+        {title: 'Internship', cols: 2, rows: 1, img: '../../../../assets//img//loupe.png'},
+
 
 
       ];
@@ -63,8 +66,10 @@ export class StudentBoardComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private studentsService: StudentsService,
-    private userService: UserService
+    private userService: UserService,
+
   ) {
+
   }
 
 

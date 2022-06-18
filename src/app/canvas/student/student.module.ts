@@ -51,19 +51,21 @@ import {InternshipComponent} from './features/internship/internship.component';
 import {InternshipZoomComponent} from './features/internship-zoom/internship-zoom.component';
 import {ResitsComponent} from './features/resits/resits.component';
 import {ResitsZoomComponent} from './features/resits-zoom/resits-zoom.component';
+import { ModulesComponent } from './features/modules/modules.component';
 
 class CustomDateFormatter extends CalendarNativeDateFormatter {
   public override dayViewHour({date, locale}: DateFormatterParams): string {
-    return new Intl.DateTimeFormat('ca', {
+    return new Intl.DateTimeFormat('fr-FR', {
       hour: 'numeric',
       minute: 'numeric'
     }).format(date);
+
   }
 }
 
 const ROUTES: Routes = [
   {
-    path: '',
+    path: 'dashboard',
     component: StudentBoardComponent,
 
 
@@ -104,7 +106,11 @@ const ROUTES: Routes = [
     path: 'documents',
     component: AdministratifDocZoomComponent
   },
-
+  {
+    path: '',
+    redirectTo:'dashboard',
+    pathMatch: 'full'
+  },
 
 ]
 
@@ -125,7 +131,8 @@ const ROUTES: Routes = [
     InternshipComponent,
     InternshipZoomComponent,
     ResitsComponent,
-    ResitsZoomComponent
+    ResitsZoomComponent,
+    ModulesComponent
 
 
   ],

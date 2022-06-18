@@ -2,7 +2,7 @@
   <mat-tab-group animationDuration="300ms">
     <div >
     <mat-tab class="chart-tab-content"  label="Overview">
-      <div class="chart-note-overview" style="display: block; width: 800px; margin: 0 auto; ">
+      <div class="chart-note-overview" style=" ">
         <canvas baseChart [datasets]="barChartData" [labels]="studentLevels" [options]="barChartOptions"
           [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType"
           style="display: block;">
@@ -23,8 +23,8 @@
                   </div>
                 </mat-panel-title>
 
-                <mat-panel-description>
-                  {{note?.notes}}
+                <mat-panel-description class="module_grades">
+                  Grade : {{note?.notes}}
                 </mat-panel-description>
               </mat-expansion-panel-header>
               <mat-panel-description>

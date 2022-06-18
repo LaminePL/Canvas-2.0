@@ -19,11 +19,12 @@
       <p>{{offer.internship_adress}}
       </p>
       {{offer.internship_path}}
+      <mat-card-actions class="flex_icons">
+        <mat-icon class="view_file"  (click)="view(offer);">remove_red_eye</mat-icon>
+        <mat-icon class="download_file" (click)="download(offer)">picture_as_pdf</mat-icon>
+      </mat-card-actions>
     </mat-card-content >
-    <mat-card-actions class="flex_icons">
-      <mat-icon class="view_file"  (click)="view(offer);">remove_red_eye</mat-icon>
-      <mat-icon class="download_file" (click)="download(offer)">picture_as_pdf</mat-icon>
-    </mat-card-actions>
+
   </mat-card>
 
 </mat-card>
