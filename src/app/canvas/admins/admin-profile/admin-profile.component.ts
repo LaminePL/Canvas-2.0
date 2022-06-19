@@ -3,11 +3,11 @@ import { UserService } from 'src/services/user.service';
 import { UserModel } from '../../models/user.model';
 
 @Component({
-  selector: 'app-academy-profile',
-  templateUrl: './academy-profile.component.html',
-  styleUrls: ['./academy-profile.component.css']
+  selector: 'app-admin-profile',
+  templateUrl: './admin-profile.component.html',
+  styleUrls: ['./admin-profile.component.css']
 })
-export class AcademyProfileComponent implements OnInit {
+export default class AdminProfileComponent implements OnInit {
 
   currentUser: UserModel
   constructor(private userService: UserService) { }
@@ -17,5 +17,4 @@ export class AcademyProfileComponent implements OnInit {
       this.currentUser = user;
     });
   }
-
 }

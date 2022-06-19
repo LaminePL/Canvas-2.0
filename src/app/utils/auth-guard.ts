@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, NavigationEnd } from '@angular/router';
 import { KeycloakService, KeycloakAuthGuard } from 'keycloak-angular';
 import { UserService } from 'src/services/user.service';
-import { lastValueFrom } from 'rxjs';
+import { filter, lastValueFrom } from 'rxjs';
 @Injectable()
 export class AuthGuard extends KeycloakAuthGuard {
   constructor(protected override router: Router, protected override keycloakAngular: KeycloakService, private userService: UserService) {
@@ -15,6 +15,8 @@ export class AuthGuard extends KeycloakAuthGuard {
         this.keycloakAngular.login();
         return;
       }
+
+      var t = this.router.getCurrentNavigation();
 
       const requiredRoles = route.data['roles'];
       let granted: boolean = false;
@@ -36,11 +38,11 @@ export class AuthGuard extends KeycloakAuthGuard {
 
       var profile = await this.keycloakAngular.loadUserProfile();
 
-      var userId = await lastValueFrom(this.userService.getUserIdByEmail(profile.email)).catch(e =>{
+      var user = await lastValueFrom(this.userService.getUserByEmail(profile.email)).catch(e => {
         //console.log(e);
       });
 
-      if (!userId) {
+      if (!user || !user.userId || user.isActive == false) {
         this.keycloakAngular.logout();
         alert("You are not allowed to use this application. Please contact the admin !");
       } else {

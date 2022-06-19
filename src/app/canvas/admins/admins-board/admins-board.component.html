@@ -1,30 +1,27 @@
+<div class="container">
+  <h1>Users</h1>
+  <app-d-table
+  [rows]="displayedRows"
+  [columnsDefinition]="displayedColumns"
+  [loading] = "loading"
+  [searchable]="true">
 
-<div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Card 1'">
-        </mat-card-content>
-        <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Card 2'">
-        </mat-card-content>
-        <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Card 3'">
-        </mat-card-content>
-        <mat-card-content class="dashboard-card-content" *ngIf="card.title == 'Card 4'">
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
+  <!--<div filters>
+    <mat-form-field>
+      <mat-label>Role</mat-label>
+      <mat-select [(ngModel)]="roleFilter" (selectionChange)="onRoleFilterChanged()">
+        <mat-option selected [value]="null">All</mat-option>
+        <mat-option *ngFor="let rolFltr of roleFilterValues"  [value]="rolFltr" >{{rolFltr.type}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>-->
+
+  <ng-template #columnTemplate let-column let-row="row">
+    <ng-container *ngIf="column.name == 'activation'">
+
+      <mat-slide-toggle [checked]="row.isActive" color="primary" (change)="editActivationUser(row.userId,$event.source.checked)"></mat-slide-toggle>
+    </ng-container>
+  </ng-template>
+
+  </app-d-table>
+  </div>

@@ -25,7 +25,7 @@ export const academyStudentStatusColumns = [
   {
     name:'status',
     label:'Admis',
-    field: (row : StudentStatusModel) => row.is_admitted ? 'Non' : 'Oui'
+    field: (row : StudentStatusModel) => row.is_admitted ? 'Oui' : 'Non'
 
   }
 

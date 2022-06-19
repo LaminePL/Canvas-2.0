@@ -13,11 +13,13 @@ export function initializeKeycloak(keyckloak: KeycloakService): () => Promise<an
             },
             loadUserProfileAtStartUp:true,
             initOptions:{
-              onLoad:"login-required",
+              onLoad:"check-sso",
+              silentCheckSsoRedirectUri: window.origin + '/assets/silent-check-sso.html',
               redirectUri:"http://localhost:4200",
-              checkLoginIframe: true
+              checkLoginIframe: false,
+
             },
-            bearerExcludedUrls: []
+            bearerExcludedUrls: ['/assets']
           }
         );
         resolve()

@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { UserModel } from '../../models/user.model';
+import { ColumnDefinition } from '../../shared/models/columnDefinition';
+import { UserService } from 'src/services/user.service';
+import { userColumns } from '../../models/columns/user-columns';
+import { UserTypeModel } from '../../models/user-type.model';
 
 @Component({
   selector: 'app-admins-board',
@@ -8,26 +13,43 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
   styleUrls: ['./admins-board.component.css']
 })
 export class AdminsBoardComponent {
-  /** Based on the screen size, switch from standard to one column per row */
-  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map(({ matches }) => {
-      if (matches) {
-        return [
-          { title: 'Card 1', cols: 2, rows:1 },
-          { title: 'Card 2', cols: 2, rows: 1 },
-          { title: 'Card 3', cols: 2, rows: 1 },
-          { title: 'Card 4', cols: 2, rows: 1 }
-        ];
-      }
+  rows: Array<UserModel>
+  displayedRows: Array<UserModel>
+  displayedColumns: Array<ColumnDefinition>
+  loading: boolean;
+  roleFilterValues: Array<UserTypeModel>
+  roleFilter: UserTypeModel;
 
-      return [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 2 },
-        { title: 'Card 4', cols: 1, rows: 1 }
-      ];
+  constructor(private userService: UserService) {
+    this.displayedRows = []
+  }
+
+
+  ngOnInit(): void {
+
+    this.displayedColumns = userColumns;
+    this.loading = true;
+
+    /*this.userService.getUserTypes().subscribe(data => {
+      this.roleFilterValues = data;
+    })*/
+
+    this.userService.getAllUsers().subscribe(data => {
+      this.rows = data;
+      this.displayedRows = data;
+      this.loading = false;
     })
-  );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+
+  }
+
+  editActivationUser(id:number,activate:boolean){
+    this.userService.editUserActivation(id,activate).subscribe();
+  }
+
+  onRoleFilterChanged(){
+    this.displayedRows = this.rows.filter(x => !!this.roleFilter ? x.userTypeId == this.roleFilter.id : true);
+  }
+
+
 }
