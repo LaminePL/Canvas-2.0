@@ -40,19 +40,24 @@ export class CreditsEctsZoomComponent implements OnInit {
 
 
     this.loading = true;
-    this.studentsService.studentDetails.subscribe(
-      (res) => {
-        this.studentId = res[0]?.id_student
-        this.year = res[0]?.study_length
-        this.level = res[0]?.level
-        this.exit_level = res[0]?.exit_level
+    this.userService.currentUser.subscribe(res => {
+      if (res)
+        this.studentsService.getAllStudents().subscribe(data => {
+          let student = data.find((user)=>{ return   user.id_user == res.userId})
+          this.studentId = student?.id_student
+          this.year = student?.study_length
+          this.level = student?.level
+          this.exit_level = student?.exit_level
+
+          this.getStudentCreditsPerYear(this.studentId)
+          this.getStudentNotesPerYear(this.studentId, this.year)
+
+        })
+    })
 
 
-      }
-    )
-    this.getStudentCreditsPerYear(this.studentId)
-    this.getStudentNotesPerYear(this.studentId, this.year)
-  }
+
+}
 
   getStudentCreditsPerYear(studentId) {
     let creditsAvailable = []
