@@ -43,21 +43,21 @@ export class PedagogyCalendarComponent implements OnInit {
         //  weekNumbers: true,
         timeZone: 'Europe/Paris',
         locales: [frLocale],
-        locale: 'fr',
+        locale: 'eng',
         initialView: 'timeGridWeek',
         weekends: false,
         buttonText: {
-          today: `Aujourd'hui`,
-          month: 'Mois',
-          week: 'Semaine',
-          day: 'Jour'
+          today: `Today`,
+          month: 'Month',
+          week: 'Week',
+          day: 'Day'
         },
         headerToolbar: {
           left: 'today prev,next',
           center: 'title',
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
-        dayHeaderFormat: {weekday: 'short', month: 'short', day: '2-digit', omitCommas: true},
+        dayHeaderFormat: {weekday: 'long', omitCommas: true},
         businessHours: {
           daysOfWeek: [1, 2, 3, 4, 5], // lundi - vendredi
           startTime: '09:00',
