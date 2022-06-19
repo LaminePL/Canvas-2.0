@@ -34,8 +34,8 @@ export class PedagogyInternshipZoomComponent implements OnInit {
     let objects = [];
 
     zip(this.studentService.getInternship(), this.fileService.getAllFilesByInternship(3)).pipe(
-      map(([interShip, files]) => {
-        return interShip.map((data, index) => Object.assign(data, files[index]))
+      map(([internShip, files]) => {
+        return internShip.map((data, index) => Object.assign(data, files[index]))
       })
     ).subscribe((res) => {
       this.offers = res
