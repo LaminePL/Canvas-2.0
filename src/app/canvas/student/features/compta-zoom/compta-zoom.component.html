@@ -41,17 +41,22 @@
           </div>
           <div class="card-body pt-0">
             <div class="table">
-              <tr class="d-flex">
+              <tr class="d-flex"  *ngIf="comptaDetails[0]?.compta_paid == 1">
                 <th width="30%">Balance</th>
                 <td width="2%">:</td>
                 <td>{{comptaDetails[0]?.compta_payment_due}} €</td>
+              </tr>
+              <tr class="d-flex"  *ngIf="comptaDetails[0]?.compta_paid == 0">
+                <th width="30%">Balance</th>
+                <td width="2%">:</td>
+                <td style="color: red">- {{comptaDetails[0]?.compta_payment_due}} €</td>
               </tr>
               <tr class="d-flex">
                 <th width="30%">Type of Payement </th>
                 <td width="2%">:</td>
                 <td>{{comptaDetails[0]?.compta_payment_type}}</td>
               </tr>
-              <tr class="d-flex"  *ngIf="comptaDetails[0]?.compta_relance ==true ">
+              <tr class="d-flex"  *ngIf="comptaDetails[0]?.compta_relance > 0 ">
                 <th width="30%">relance</th>
                 <td width="2%">:</td>
                 <td>{{comptaDetails[0]?.compta_relance}}</td>

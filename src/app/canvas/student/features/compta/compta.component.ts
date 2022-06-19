@@ -18,6 +18,7 @@ export class ComptaComponent implements OnInit {
   comptaPaymentDue: number | undefined
   currentUser: Array<StudentModel>;
   studentDetails:Array<StudentModel>
+  comptaPaid :number;
 
   constructor(private studentsService: StudentsService,
     private userService: UserService, ) { }
@@ -27,6 +28,7 @@ export class ComptaComponent implements OnInit {
       this.currentUser = user;
        this.studentsService.getComptaInfo(this.currentUser[0]?.id_student).pipe(
           map((compta) => {
+            this.comptaPaid = compta[0]?.compta_paid
             this.comptaPaymentDue = compta[0]?.compta_payment_due
             return compta[0]?.compta_payment_due
           })
