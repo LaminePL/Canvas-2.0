@@ -37,6 +37,9 @@ export class StudentCalendarComponent implements OnInit {
       if (this.stillStudent === 1) {
         this.studentService.getAgendaByLevel(this.level).subscribe(res => {
           this.events = res
+
+
+
           this.calendarOptions = {
             plugins: [timeGridPlugin, dayGridPlugin,],
             selectable: true,
@@ -69,6 +72,8 @@ export class StudentCalendarComponent implements OnInit {
             // api call
             dateClick: this.handleDateClick.bind(this),
             eventClick: function (info) {
+
+
               Swal.fire({
                 title: info.event.title,
                 text: info.event.extendedProps['description'],
@@ -77,9 +82,10 @@ export class StudentCalendarComponent implements OnInit {
               })
               info.el.style.borderColor = 'red';
             },
-            events: this.events
+            events: this.events,
+
           }
-          console.log(this.events)
+
         })
 
       }

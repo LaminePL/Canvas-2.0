@@ -58,8 +58,8 @@
               <tr class="d-flex" *ngIf="studentDetails?.still_student">
                 <th width="30%">Training type</th>
                 <td width="2%">:</td>
-                <td><span *ngIf="studentDetails?.has_contrat_pro"> Intership </span> <span
-                  *ngIf="!studentDetails?.has_contrat_pro && !studentDetails?.is_hired "> Initial</span> </td>
+                <td><span *ngIf="studentDetails?.has_contrat_pro"> Intership </span>
+                  <span *ngIf="!studentDetails?.has_contrat_pro && !studentDetails?.is_hired "> Initial</span> </td>
               </tr>
 
               <tr class="d-flex" *ngIf="!studentDetails?.still_student">

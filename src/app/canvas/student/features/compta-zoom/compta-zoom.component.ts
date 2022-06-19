@@ -52,10 +52,10 @@ export class ComptaZoomComponent implements OnInit {
       return res
     })
   }
-  onGradeBulletinsClick(){
+  onAccountingClick(){
     this.dialogRef.open(AcademyDocumentsComponent, {
       width: '40vw',
-      data:{id_student : this.studentDetails[0]?.id_student,title:'Acountings',fileType: FileType.BULLETIN_GRADE}
+      data:{id_student : this.studentDetails[0]?.id_student,title:'Acounting',fileType: FileType.ACCOUNTING}
     })
   }
 
