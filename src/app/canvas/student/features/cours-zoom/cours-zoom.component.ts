@@ -25,7 +25,7 @@ export class CoursZoomComponent implements OnInit {
     this.loading = true;
 
     this.studentsService.studentDetails.subscribe(res => {
-      this.studyLength = res[0].study_length
+      this.studyLength = res[0]?.study_length
     })
     this.modulesService.getModules().subscribe(data => {
       let modules = data.filter(x => x.module_name.startsWith(this.studyLength))
