@@ -23,8 +23,9 @@ import { CalendarDateFormatter, CalendarModule, CalendarNativeDateFormatter, Dat
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 import {PedagogyCalendarComponent} from './pedagogy-calendar/pedagogy-calendar.component';
-import { PedagogyInternshipComponent } from './pedagogy-internship/pedagogy-internship.component';
-import { PedagogyInternshipZoomComponent } from './pedagogy-internship-zoom/pedagogy-internship-zoom.component'
+
+import { PedagogyInternshipZoomComponent } from './pedagogy-internship-zoom/pedagogy-internship-zoom.component';
+import { PedagogyProjectsDetailsComponent } from './pedagogy-projects-details/pedagogy-projects-details.component'
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -90,8 +91,8 @@ const ROUTES: Routes = [
     PedagogyResitDetailsComponent,
     PedagogyMailingComponent,
     PedagogyCalendarComponent,
-    PedagogyInternshipComponent,
-    PedagogyInternshipZoomComponent
+    PedagogyInternshipZoomComponent,
+    PedagogyProjectsDetailsComponent
   ],
   providers: [],
 })

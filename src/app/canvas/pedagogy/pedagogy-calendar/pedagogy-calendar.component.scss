@@ -1,3 +1,17 @@
 .calendar {
   margin: 0 auto;
+  width: 90%;
 }
+.mat-card>:last-child:not(.mat-card-footer), .mat-card-content>:last-child:not(.mat-card-footer) {
+  margin-bottom: 0;
+  height: 536px;
+  /* width: 105%; */
+}
+.active-weekend{
+  display: flex;
+  margin: 1em;
+  color: #ffd740;
+  font-size: large;
+  font-style: italic;
+}
+

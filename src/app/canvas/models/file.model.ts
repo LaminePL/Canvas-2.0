@@ -14,5 +14,5 @@ export enum FileType{
   ACHIEVEMENT_CERTIFIATE,
   OFFERS,
   PROJECTS,
-  COMPTA
+  ACCOUNTING
 }
