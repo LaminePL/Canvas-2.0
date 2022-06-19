@@ -19,7 +19,7 @@
   <ng-template #columnTemplate let-column let-row="row">
     <ng-container *ngIf="column.name == 'activation'">
 
-      <mat-slide-toggle [checked]="row.isActive" color="primary" (change)="editActivationUser(row.userId,$event.source.checked)"></mat-slide-toggle>
+      <mat-slide-toggle [checked]="row.isActive == true" color="primary" (change)="editActivationUser(row.userId,$event.source.checked)"></mat-slide-toggle>
     </ng-container>
   </ng-template>
 
