@@ -18,6 +18,7 @@ import { AcademyResitDetailsComponent } from './academy-resit-details/academy-re
 import { AcademyProfileComponent } from './academy-profile/academy-profile.component';
 import { AcademyProjectsDetailsComponent } from './academy-projects-details/academy-projects-details.component';
 
+
 const ROUTES: Routes = [
   {
     path: '',
@@ -70,7 +71,7 @@ const ROUTES: Routes = [
     AcademyDocumentsComponent,
     AcademyResitDetailsComponent,
     AcademyProfileComponent,
-    AcademyProjectsDetailsComponent,
+    AcademyProjectsDetailsComponent
   ],
   providers: [],
 })

@@ -85,6 +85,11 @@
 
         <ng-container *ngIf="currentUser?.role == roles.Admin">
 
+          <mat-list-item  routerLink="canvas/admin" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+            <mat-icon>admin_panel_settings</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Administration</span>
+          </mat-list-item>
+
         </ng-container>
 
 
@@ -95,7 +100,7 @@
 
         <ng-container *ngIf="currentUser?.role == roles.Student">
 
-          <mat-list-item routerLink="/canvas/student/dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+          <mat-list-item routerLink="{{currentUser?.route}}/dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
             <mat-icon>dashboard</mat-icon>
             <span *ngIf="isExpanded" class="menu-item">Dashboard</span>
           </mat-list-item>
@@ -129,6 +134,7 @@
           <mat-icon>person</mat-icon>
           <span *ngIf="isExpanded" class="menu-item">Profile</span>
         </mat-list-item>
+
 
 
         <button mat-button class="menu-button" (click)="logout()">

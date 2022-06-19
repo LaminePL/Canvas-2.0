@@ -14,33 +14,24 @@ import {MatListModule} from "@angular/material/list";
 import {NgChartsModule} from "ng2-charts";
 import {AdminsBoardComponent} from './admins-board/admins-board.component'
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SharedModule } from '../shared/shared.module';
+import AdminProfileComponent from './admin-profile/admin-profile.component';
 const ROUTES: Routes = [
   {
     path: '',
     component:AdminsBoardComponent ,
   },
+  {
+    path: 'user-profile',
+    component:AdminProfileComponent
+  },
 ]
 
 @NgModule({
-  declarations: [AdminsBoardComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(ROUTES),
-    ChartModule,
-    CommonModule,
-    MaterialModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    NgChartsModule,
-
-  ]
+  declarations: [AdminsBoardComponent,AdminProfileComponent],
+  imports: [RouterModule.forChild(ROUTES),SharedModule,MaterialModule,CommonModule,FormsModule,MatDialogModule]
 })
 export class AdminsModule {
 }
