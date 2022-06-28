@@ -60,7 +60,8 @@ export class AcademyStudentsComponent implements OnInit {
           (filter.hasContratPro != null ? x.has_contrat_pro == filter.hasContratPro : true) &&
           (filter.isHired !=null ? x.is_hired == filter.isHired : true) &&
           (filter.isOldStudent != null ? x.still_student == !filter.isOldStudent : true) &&
-          (filter.hasResitExams != null ? x.has_resit == filter.hasResitExams : true));
+          (filter.hasResitExams != null ? x.has_resit == filter.hasResitExams : true) &&
+          (filter.hasGraduation != null ? x.has_graduation == filter.hasGraduation : true));
         });
       }
     })

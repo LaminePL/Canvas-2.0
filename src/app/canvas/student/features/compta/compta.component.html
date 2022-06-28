@@ -1,4 +1,4 @@
-<div *ngIf="comptaPaymentDue >= 0 ">
+<div *ngIf="comptaPaid == 1 ">
   <div class="positif-compta">
    <span class="positif-sold-compta"> {{comptaPaymentDue}} € </span>
    <div class="compta-label"> Remaining to be paid  </div>
@@ -6,7 +6,7 @@
   </div>
 
 </div>
-<div *ngIf="comptaPaymentDue < 0 ">
+<div *ngIf="comptaPaid == 0 ">
   <div class="negatif-sold-compta">
     {{comptaPaymentDue}} €
   </div>

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AdminsBoardComponent } from './admins-board.component';
 
-import { AdminsBoardComponent } from './admins-board.component.ts';
 
 describe('AdminsComponent', () => {
   let component: AdminsBoardComponent;

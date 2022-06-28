@@ -7,6 +7,7 @@ import { AcademyDocumentsComponent } from '../academy-documents/academy-document
 
 import { AcademyResitDetailsComponent } from '../academy-resit-details/academy-resit-details.component';
 import { FileType } from '../../models/file.model';
+import { AcademyProjectsDetailsComponent } from '../academy-projects-details/academy-projects-details.component';
 
 @Component({
   selector: 'app-student-details',
@@ -16,14 +17,16 @@ import { FileType } from '../../models/file.model';
 export class AcademyStudentDetailsComponent implements OnInit {
   studentDetails: StudentDetailsModel;
   studentId:number;
+  loading:boolean;
 
 
   constructor(private studentsService: StudentsService, private route: ActivatedRoute, private dialogRef : MatDialog) {
     this.route.paramMap.subscribe(params => {
       this.studentId = Number(params.get('id'));
+      this.loading = true;
       this.studentsService.getStudentDetails(this.studentId).subscribe(data => {
         this.studentDetails = data;
-
+        this.loading = false;
       })
     });
   }
@@ -35,21 +38,30 @@ export class AcademyStudentDetailsComponent implements OnInit {
 
   onGradeBulletinsClick(){
     this.dialogRef.open(AcademyDocumentsComponent, {
-      width: '40vw',
       data:{id_student : this.studentId,title:'Grade bulletins',fileType: FileType.BULLETIN_GRADE}
     })
   }
 
   onAchievmentCertificateClick(){
     this.dialogRef.open(AcademyDocumentsComponent, {
-      width: '40vw',
       data:{id_student : this.studentId,title:'Achievement certificates',fileType: FileType.ACHIEVEMENT_CERTIFIATE}
+    })
+  }
+
+  onDissertationClick(){
+    this.dialogRef.open(AcademyDocumentsComponent, {
+      data:{id_student : this.studentId,title:'Dissertation details',fileType: FileType.PROJECTS}
     })
   }
 
   resitDetails(){
     this.dialogRef.open(AcademyResitDetailsComponent, {
-      width: '40vw',
+     data: this.studentId
+    })
+  }
+
+  projectsDetails(){
+    this.dialogRef.open(AcademyProjectsDetailsComponent, {
      data: this.studentId
     })
   }

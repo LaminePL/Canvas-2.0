@@ -37,11 +37,66 @@
             <mat-icon>handshake</mat-icon>
             <span *ngIf="isExpanded" class="menu-item">Partnerships</span>
           </mat-list-item>
+          <mat-list-item routerLink="{{currentUser?.route}}/user-profile" routerLinkActive="active-link">
+            <mat-icon>person</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Profile</span>
+          </mat-list-item>
+
+        </ng-container>
+
+        <ng-container *ngIf="currentUser?.role == roles.Pedagogy">
+
+          <mat-list-item routerLink="canvas/pedagogy/dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+            <mat-icon>dashboard</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Dashboard</span>
+          </mat-list-item>
+
+          <mat-list-item routerLink="canvas/pedagogy/dashboard/students" routerLinkActive="active-link">
+            <mat-icon>school</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Students</span>
+          </mat-list-item>
+
+          <mat-list-item routerLink="canvas/pedagogy/dashboard/notes" routerLinkActive="active-link">
+            <mat-icon>assignment</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Notes</span>
+          </mat-list-item>
+
+          <mat-list-item routerLink="canvas/pedagogy/dashboard/contributors" routerLinkActive="active-link">
+            <mat-icon>supervisor_account</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Contributors</span>
+          </mat-list-item>
+
+          <mat-list-item routerLink="canvas/pedagogy/dashboard/modules" routerLinkActive="active-link">
+            <mat-icon>library_books</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Modules</span>
+          </mat-list-item>
+
+          <mat-list-item routerLink="canvas/pedagogy/dashboard/calendar" routerLinkActive="active-link">
+            <mat-icon>calendar_today</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Calendar</span>
+          </mat-list-item>
+
+          <mat-list-item routerLink="canvas/pedagogy/dashboard/internship" routerLinkActive="active-link">
+            <mat-icon>business icon</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Internship</span>
+          </mat-list-item>
+
 
         </ng-container>
 
 
+
         <ng-container *ngIf="currentUser?.role == roles.Admin">
+
+          <mat-list-item  routerLink="canvas/admin" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+            <mat-icon>admin_panel_settings</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Administration</span>
+          </mat-list-item>
+
+          <mat-list-item routerLink="{{currentUser?.route}}/user-profile" routerLinkActive="active-link">
+            <mat-icon>person</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Profile</span>
+          </mat-list-item>
 
         </ng-container>
 
@@ -53,38 +108,41 @@
 
         <ng-container *ngIf="currentUser?.role == roles.Student">
 
-          <mat-list-item routerLink="">
+          <mat-list-item routerLink="{{currentUser?.route}}/dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
             <mat-icon>dashboard</mat-icon>
             <span *ngIf="isExpanded" class="menu-item">Dashboard</span>
           </mat-list-item>
 
-          <mat-list-item routerLink="{{currentUser?.route}}/calendar">
+          <mat-list-item routerLink="{{currentUser?.route}}/calendar" routerLinkActive="active-link">
             <mat-icon>calendar_today</mat-icon>
             <span *ngIf="isExpanded" class="menu-item">Calendar</span>
           </mat-list-item>
 
-          <mat-list-item routerLink="{{currentUser?.route}}/courses">
+          <mat-list-item routerLink="{{currentUser?.route}}/courses" routerLinkActive="active-link">
             <mat-icon>book</mat-icon>
             <span *ngIf="isExpanded" class="menu-item">Courses</span>
           </mat-list-item>
 
-          <mat-list-item routerLink="">
-            <mat-icon>inbox</mat-icon>
-            <span *ngIf="isExpanded" class="menu-item">Inbox</span>
+          <mat-list-item routerLink="{{currentUser?.route}}/credit-ECTS" routerLinkActive="active-link">
+            <mat-icon>assessment</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">ECTS</span>
           </mat-list-item>
 
-          <mat-list-item routerLink="">
-            <mat-icon>info</mat-icon>
-            <span *ngIf="isExpanded" class="menu-item">Infos</span>
+          <mat-list-item routerLink="{{currentUser?.route}}/compta" routerLinkActive="active-link">
+            <mat-icon>account_balance_wallet</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Accounting</span>
           </mat-list-item>
+          <mat-list-item routerLink="{{currentUser?.route}}/user-profile" routerLinkActive="active-link">
+            <mat-icon>person</mat-icon>
+            <span *ngIf="isExpanded" class="menu-item">Profile</span>
+          </mat-list-item>
+
         </ng-container>
 
 
 
-        <mat-list-item routerLink="{{currentUser?.route}}/user-profile">
-          <mat-icon>person</mat-icon>
-          <span *ngIf="isExpanded" class="menu-item">Profile</span>
-        </mat-list-item>
+
+
 
 
         <button mat-button class="menu-button" (click)="logout()">

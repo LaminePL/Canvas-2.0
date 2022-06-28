@@ -38,3 +38,26 @@
   margin-left: -2em;
 
 }
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  right: 50%;
+  left: 50%;
+}
+.more-button{
+  color: #ffd740
+}
+.mat-card-title{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.mat-card-header .mat-card-title {
+   margin-bottom: 3px;
+}
+.dash-date{
+  font-size:large ;
+  font-weight: bold;
+}

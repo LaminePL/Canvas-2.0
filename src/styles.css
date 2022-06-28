@@ -87,7 +87,21 @@ div.ng-tns-c290-47{
   padding: 20px;
 }
 
+.ellipsis{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mat-drawer-content{
+  background: 	#fdfdfa;
+}
+
 @media screen and (max-width: 767px) {
+  .mat-tab-body-content {
+    padding: 5px;
+    margin-top: 5em;
+  }
 
  /* .responsive-hide-col{
     display: none;
@@ -100,11 +114,7 @@ div.ng-tns-c290-47{
   .nav-right {
     display: none !important;
   }
-  .mat-card>:last-child:not(.mat-card-footer), .mat-card-content>:last-child:not(.mat-card-footer) {
-    margin-bottom: 0;
-    height: 536px;
-    /* width: 105%; */
-  }
+
   .fc .fc-toolbar {
     display: flex;
     justify-content: space-between;
@@ -113,12 +123,13 @@ div.ng-tns-c290-47{
   }
 }
 
-body > app-root > mat-sidenav-container > mat-sidenav-content > div > app-student-board > mat-grid-list > div > mat-grid-tile:nth-child(4) > div > mat-card > mat-card-content > div > app-credits-ects > div > div{
+.total-credits{
   position: absolute;
   font-weight: 700;
   font-size: 2.5rem;
   line-height: 1;
-  color: #3ac47d;
+  color: #3ac47d !important;
+
   left: 0;
   right: 0;
   top: 50%;
@@ -128,3 +139,4 @@ body > app-root > mat-sidenav-container > mat-sidenav-content > div > app-studen
   max-height: 100%;
   overflow: auto;
 }
+

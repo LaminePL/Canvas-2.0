@@ -1,21 +1,39 @@
-<mat-spinner *ngIf="loading" class="m-auto"></mat-spinner>
+<mat-spinner *ngIf="loading" class="m-auto loading-spinner"></mat-spinner>
 
 
 <div  *ngIf="!loading" class="student-profile py-4">
   <div class="container">
-    <div class="row">
+    <div class="row" style="justify-content: center">
       <div class="col-lg-4 mb-3">
         <div class="card shadow-sm">
 
           <div class="card-body">
-            <h3 class="mb-0"> <i class="far fa-clone pr-1 ml-2"> </i> Relevé d’Identité Bancaire</h3>
+            <h3 class="mb-0"> <i class="far fa-clone pr-1 ml-2"> </i> Banck Account Informations</h3>
 
             <p class="mb-0"><strong class="pr-1">RIB:</strong>FR6514508000505814497481A75</p>
-            <p class="mb-0"><strong class="pr-1 mr-1">Nom du titulaire:</strong>{{studentDetails[0]?.first_name}}  {{studentDetails[0]?.last_name}}</p>
+            <p class="mb-0"><strong class="pr-1 mr-1">Name of the holder:</strong>{{studentDetails[0]?.first_name}}  {{studentDetails[0]?.last_name}}</p>
             <p class="mb-0"><strong class="pr-1">Campus:</strong>{{studentDetails[0]?.campus_name}}</p>
+            <p class="mb-0"><strong class="pr-1">Region:</strong>{{studentDetails[0]?.region}}</p>
           </div>
         </div>
       </div>
+      <div class="col-lg-4 mb-3">
+        <div class="card shadow-sm">
+
+          <div class="card-body">
+            <h3 class="mb-0"> <i class="far fa-clone pr-1 ml-2"> </i> Documents</h3>
+            <div class="d-grid">
+              <button mat-raised-button color="accent" class="mb-1" (click)="onAccountingClick()" >
+                <mat-icon> grading</mat-icon> Accounting details
+              </button>
+              <button mat-raised-button color="accent" (click)="onAchievmentCertificateClick()">
+                <mat-icon> text_snippet</mat-icon> Achievement certificates
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="col-lg-8">
         <div class="card shadow-sm">
           <div class="card-header bg-transparent border-0">
@@ -23,18 +41,23 @@
           </div>
           <div class="card-body pt-0">
             <div class="table">
-              <tr class="d-flex">
-                <th width="30%">Le montant à payer</th>
+              <tr class="d-flex"  *ngIf="comptaDetails[0]?.compta_paid == 1">
+                <th width="30%">Balance</th>
                 <td width="2%">:</td>
                 <td>{{comptaDetails[0]?.compta_payment_due}} €</td>
               </tr>
+              <tr class="d-flex"  *ngIf="comptaDetails[0]?.compta_paid == 0">
+                <th width="30%">Balance</th>
+                <td width="2%">:</td>
+                <td style="color: red">- {{comptaDetails[0]?.compta_payment_due}} €</td>
+              </tr>
               <tr class="d-flex">
-                <th width="30%">Type de Payement </th>
+                <th width="30%">Type of Payement </th>
                 <td width="2%">:</td>
                 <td>{{comptaDetails[0]?.compta_payment_type}}</td>
               </tr>
-              <tr class="d-flex"  *ngIf="comptaDetails[0]?.compta_relance ==! null ">
-                <th width="30%">Nombre de relance</th>
+              <tr class="d-flex"  *ngIf="comptaDetails[0]?.compta_relance > 0 ">
+                <th width="30%">relance</th>
                 <td width="2%">:</td>
                 <td>{{comptaDetails[0]?.compta_relance}}</td>
               </tr>
@@ -47,18 +70,28 @@
             <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Autres Informations</h3>
           </div>
           <div class="card-body pt-0">
-            <tr class="d-flex">
-              <th width="30%">Niveau d'étude </th>
+            <tr class="d-flex" *ngIf="studentDetails[0]?.level">
+              <th width="30%"> Level </th>
               <td width="2%">:</td>
               <td>{{studentDetails[0]?.level}}</td>
             </tr>
-            <tr class="d-flex">
-              <th width="30%">Année d'arrivé</th>
+            <tr class="d-flex" *ngIf="studentDetails[0]?.exit_level"l>
+              <th width="30%"> Exit level </th>
+              <td width="2%">:</td>
+              <td>{{studentDetails[0]?.exit_level}}</td>
+            </tr>
+            <tr class="d-flex"  *ngIf="studentDetails[0]?.year_of_entry">
+              <th width="30%">Year of entry</th>
               <td width="2%">:</td>
               <td>{{studentDetails[0]?.year_of_entry}}</td>
             </tr>
+            <tr class="d-flex"*ngIf="studentDetails[0]?.year_of_exit">
+              <th width="30%">Year of exit</th>
+              <td width="2%">:</td>
+              <td>{{studentDetails[0]?.year_of_exit}}</td>
+            </tr>
             <tr class="d-flex">
-              <th width="30%">nombre d'année</th>
+              <th width="30%">Number of years</th>
               <td width="2%">:</td>
               <td>{{studentDetails[0]?.study_length}}</td>
             </tr>

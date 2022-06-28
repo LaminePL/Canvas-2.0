@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { RolesEnum } from 'src/app/canvas/models/roles.enum';
+import { UserTypeModel } from 'src/app/canvas/models/user-type.model';
 import { UserModel } from 'src/app/canvas/models/user.model';
 import { environment } from 'src/environments/environment';
 
@@ -35,9 +36,12 @@ export class UserService {
         user.role = RolesEnum.Academy
       }
 
-      this.getUserIdByEmail(user.email).subscribe(userId => {
-        if (userId) {
-          user.userId = userId;
+
+      this.getUserByEmail(user.email).subscribe(u => {
+        if (u) {
+          user.userId = u.userId;
+          user.isActive = u.isActive;
+          user.isAdmin = u.isAdmin;
           this.currentUser.next(user);
         } else {
           this.logout();
@@ -57,9 +61,47 @@ export class UserService {
   }
 
 
-  getUserIdByEmail(email): Observable<number> {
-    return this.httpClient.get<number>(`${API_URL}users/id/${email}`);
+  getUserByEmail(email): Observable<UserModel> {
+    return this.httpClient.get<any>(`${API_URL}users/id/${email}`).pipe(map(x => {
+      var u = x ? {
+        userId: x.id_user,
+        firstName: x.first_name,
+        lastName: x.last_name,
+        email: x.email,
+        isAdmin: x.is_admin,
+        isActive: x.is_active
+      } as UserModel : null
+      return u
+    }));
   }
+
+
+  getAllUsers(): Observable<UserModel[]> {
+    return this.httpClient.get<any[]>(`${API_URL}users/list`).pipe(map(e => {
+      return e.map( x =>{
+      var u = x ? {
+        userId: x.id_user,
+        firstName: x.first_name,
+        lastName: x.last_name,
+        email: x.email,
+        isAdmin: x.is_admin,
+        isActive: x.is_active,
+        roleName: x.type,
+        userTypeId: x.id_userType
+      } as UserModel : null
+      return u })
+      }))
+    };
+
+
+    editUserActivation(id:number,activate:boolean){
+      return this.httpClient.put(`${API_URL}users/activation/${id}`,{activate : activate})
+    }
+
+
+    getUserTypes():Observable<UserTypeModel[]>{
+      return this.httpClient.get<UserTypeModel[]>(`${API_URL}users/types`)
+    }
 
 
 

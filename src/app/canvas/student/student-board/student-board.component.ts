@@ -2,12 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {map} from 'rxjs/operators';
 import {Breakpoints, BreakpointObserver} from '@angular/cdk/layout';
 import {ActivatedRoute, Router} from '@angular/router';
-import { StudentsService } from 'src/services/students.service';
-import { ColumnDefinition } from '../../shared/models/columnDefinition';
-import { academyStudentColumns } from '../../models/columns/academy-student-columns';
-import { StudentModel } from '../../models/student.model';
-import { UserService } from 'src/services/user.service';
-import { UserModel } from '../../models/user.model';
+import {StudentsService} from 'src/services/students.service';
+import {ColumnDefinition} from '../../shared/models/columnDefinition';
+import {academyStudentColumns} from '../../models/columns/academy-student-columns';
+import {StudentModel} from '../../models/student.model';
+import {UserService} from 'src/services/user.service';
+import {UserModel} from '../../models/user.model';
 
 
 @Component({
@@ -17,45 +17,48 @@ import { UserModel } from '../../models/user.model';
 })
 export class StudentBoardComponent implements OnInit {
   sideBarOpen = true;
-  studentEmail =  ""
+  studentEmail = ""
   creditEtudiants: any;
+  loading: boolean
+  today = new Date()
 
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map(({ matches }) => {
+    map(({matches}) => {
       if (matches) {
         return [
-         // { title: 'contributors', cols: 8, rows: 1, img: '../../../../assets//img//book.png' },
-          { title: 'notes', cols: 6, rows: 1 },
-          { title: 'stages', cols: 6, rows: 1, img: '../../../../assets//img//loupe.png'},
-          { title: 'Compta', cols: 6, rows: 1, img: '../../../../assets//img//calculatrice.png' },
-          { title: 'Credits ECTS', cols: 6, rows: 2 },
-          { title: 'Calendrier journalier', cols: 6, rows: 3, img: '../../../../assets//img//calendar.png' },
-          { title: 'administration', cols: 6, rows: 1 },
-          { title: 'ratrappage', cols: 6, rows: 1 },
-          { title: 'contributors', cols: 6, rows: 1 },
+          {title: 'Modules', cols: 6, rows: 1, img: '../../../../assets//img//book.png'},
+          {title: 'Internship', cols: 6, rows: 1, img: '../../../../assets//img//loupe.png'},
+          {title: 'Resits', cols: 6, rows: 1, img: '../../../../assets//img//resit.png'},
+          {title: 'Calendar', cols: 6, rows: 3, img: '../../../../assets//img//calendar.png'},
+          {title: 'ECTS', cols: 6, rows: 2, img: '../../../../assets//img//ECTS.png'},
+          {title: 'Accounting', cols: 6, rows: 1, img: '../../../../assets//img//calculatrice.png'},
+          {title: 'Contributors', cols: 6, rows: 1, img: '../../../../assets//img//contributors.png'},
+          {title: 'Documents', cols: 6, rows: 1,  img: '../../../../assets//img//document.png'},
+
         ];
       }
 
       return [
-       // { title: 'contributors', cols: 2, rows: 1, img: '../../../../assets//img//book.png' },
-        { title: 'notes', cols: 2, rows: 1 },
-        { title: 'stages', cols: 2, rows: 1, img: '../../../../assets//img//loupe.png' },
-        { title: 'Compta', cols: 2, rows: 1, img: '../../../../assets//img//calculatrice.png' },
-        { title: 'Credits ECTS', cols: 3, rows: 2 },
-        { title: 'Calendrier journalier', cols: 3, rows: 2, img: '../../../../assets//img//calendar.png' },
-        { title: 'administration', cols: 2, rows: 1 },
-        { title: 'ratrappage', cols: 2, rows: 1 },
-        { title: 'contributors', cols: 2, rows: 1 },
+        {title: 'Modules', cols: 2, rows: 1, img: '../../../../assets//img//book.png'},
+        {title: 'Resits', cols: 2, rows: 1, img: '../../../../assets//img//resit.png'},
+        {title: 'Documents', cols: 2, rows: 1,  img: '../../../../assets//img//document.png'},
+        {title: 'Calendar', cols: 3, rows: 2, img: '../../../../assets//img//calendar.png'},
+        {title: 'ECTS', cols: 3, rows: 2, img: '../../../../assets//img//ECTS.png'},
+        {title: 'Accounting', cols: 2, rows: 1, img: '../../../../assets//img//calculatrice.png'},
+        {title: 'Contributors', cols: 2, rows: 1 , img: '../../../../assets//img//contributors.png'},
+        {title: 'Internship', cols: 2, rows: 1, img: '../../../../assets//img//loupe.png'},
+
+
 
       ];
     })
   );
 
 
- currentUser : UserModel;
- studentDetails: Array<StudentModel>
- studentId:number;
+  currentUser: UserModel;
+  studentDetails: Array<StudentModel>
+  studentId: number;
 
 
   constructor(
@@ -63,28 +66,50 @@ export class StudentBoardComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private studentsService: StudentsService,
-    private userService: UserService
-  ) {}
+    private userService: UserService,
+
+  ) {
+
+  }
 
 
-  ngOnInit(){}
+  ngOnInit() {
+
+  }
+
   getCalendar() {
     this.router.navigateByUrl('canvas/student/calendar');
   }
+
   getCreditEcts() {
     this.router.navigateByUrl('canvas/student/credit-ECTS');
   }
+
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
   }
+
   getCompta() {
     this.router.navigateByUrl('canvas/student/compta');
   }
+
   getCourses() {
     this.router.navigateByUrl('canvas/student/courses');
   }
+
   getContributors() {
     this.router.navigateByUrl('canvas/student/contributors');
+  }
+
+  getResits() {
+    this.router.navigateByUrl('canvas/student/resits');
+  }
+
+  getInternship() {
+    this.router.navigateByUrl('canvas/student/internship');
+  }
+  getDocument() {
+    this.router.navigateByUrl('canvas/student/documents');
   }
 
 }

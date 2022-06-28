@@ -13,7 +13,6 @@ import {UserService} from 'src/services/user.service';
 })
 export class CreditsEctsZoomComponent implements OnInit {
   studentLevels = ['B.ENG 1', 'B.ENG 2', 'B.ENG 3', 'M.ENG 1', 'M.ENG 2']
-  // studentLevels = ['M.ENG 2', 'M.ENG 1', 'B.ENG 3', 'B.ENG 2', 'B.ENG 1']
   studentId: number;
   gradePerYear = []
   loading: boolean;
@@ -41,19 +40,24 @@ export class CreditsEctsZoomComponent implements OnInit {
 
 
     this.loading = true;
-    this.studentsService.studentDetails.subscribe(
-      (res) => {
-        this.studentId = res[0].id_student
-        this.year = res[0].study_length
-        this.level = res[0]?.level
-        this.exit_level = res[0]?.exit_level
+    this.userService.currentUser.subscribe(res => {
+      if (res)
+        this.studentsService.getAllStudents().subscribe(data => {
+          let student = data.find((user)=>{ return   user.id_user == res.userId})
+          this.studentId = student?.id_student
+          this.year = student?.study_length
+          this.level = student?.level
+          this.exit_level = student?.exit_level
+
+          this.getStudentCreditsPerYear(this.studentId)
+          this.getStudentNotesPerYear(this.studentId, this.year)
+
+        })
+    })
 
 
-      }
-    )
-    this.getStudentCreditsPerYear(this.studentId)
-    this.getStudentNotesPerYear(this.studentId, this.year)
-  }
+
+}
 
   getStudentCreditsPerYear(studentId) {
     let creditsAvailable = []
@@ -67,8 +71,8 @@ export class CreditsEctsZoomComponent implements OnInit {
           creditsAvailable.unshift(this.total_credits.total_credits)
           maxCredits.unshift(60)
           this.barChartData = [
-            {data: creditsAvailable, label: 'Validated'},
-            {data: maxCredits, label: 'Still to validate'}
+            {data: creditsAvailable, label: 'ECTS obtained'},
+            {data: maxCredits, label: 'ECTS missing'}
           ]
           return data
         })
@@ -86,7 +90,6 @@ export class CreditsEctsZoomComponent implements OnInit {
 
   getStudentNotesPerYear(studentId, year) {
     for (let item = 1; item <= year; item++) {
-      console.log(item)
       this.studentsService.getStudentNotesPerYear(studentId, item).pipe(
         map((data) => {
           this.notePerYear.unshift(data)

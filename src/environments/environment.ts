@@ -11,7 +11,7 @@ export const environment = {
     issuer: "http://localhost:8080" + "/auth",
 
     // Realm
-    realm: 'CANVAS',
+    realm: 'canvas-bis',
 
     // The SPA's id.
     // The SPA is registerd with this id at the auth-serverß

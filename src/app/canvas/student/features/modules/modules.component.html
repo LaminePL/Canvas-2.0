@@ -1,0 +1,17 @@
+<div *ngIf="stillStudent">
+  <div class="actual_student">
+    <span class="actual_level"> {{level}}  </span>
+    <div class="label"> Actual student level</div>
+  </div>
+
+
+</div>
+
+
+<div *ngIf="!stillStudent">
+
+  <div class="former_student">
+    <span class="exit_level"> {{exit_level}}  </span>
+    <div class="label"> Former student level</div>
+  </div>
+</div>

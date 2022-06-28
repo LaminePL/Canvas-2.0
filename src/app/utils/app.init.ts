@@ -8,16 +8,18 @@ export function initializeKeycloak(keyckloak: KeycloakService): () => Promise<an
           {
             config :{
               url: environment.keycloak.issuer,
-              realm:'canvas-bis', //CANVAS //canvas-bis
+              realm: environment.keycloak.realm,
               clientId:environment.keycloak.clientId
             },
             loadUserProfileAtStartUp:true,
             initOptions:{
-              onLoad:"login-required",
+              onLoad:"check-sso",
+              silentCheckSsoRedirectUri: window.origin + '/assets/silent-check-sso.html',
               redirectUri:"http://localhost:4200",
-              checkLoginIframe: true
+              checkLoginIframe: false,
+
             },
-            bearerExcludedUrls: []
+            bearerExcludedUrls: ['/assets']
           }
         );
         resolve()

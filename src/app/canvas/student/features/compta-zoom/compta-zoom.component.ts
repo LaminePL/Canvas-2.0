@@ -4,6 +4,9 @@ import { StudentDetailsModel } from 'src/app/canvas/models/student-details.model
 import { StudentModel } from 'src/app/canvas/models/student.model';
 import { UserModel } from 'src/app/canvas/models/user.model';
 import { StudentsService } from 'src/services/students.service';
+import {AcademyDocumentsComponent} from "../../../academy/academy-documents/academy-documents.component";
+import {FileType} from "../../../models/file.model";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-compta-zoom',
@@ -27,30 +30,39 @@ export class ComptaZoomComponent implements OnInit {
 
 
   constructor(
-    private studentsService: StudentsService,
+    private studentsService: StudentsService,private dialogRef : MatDialog
   ) { }
 
   ngOnInit(): void {
 
     this.loading = true;
     this.studentsService.studentDetails.subscribe(res=>{
-      console.log(res)
-      this.getUserComptaDetails(res[0].id_user)
+      this.getUserComptaDetails(res[0]?.id_student)
       this.studentDetails = res
     })
 
   }
 
   getUserComptaDetails(userId) {
-    this.studentsService.getComptaInfo(userId).pipe(
-      map((compta) => {
-        return compta
-      })
-    ).subscribe((res) => {
+    this.studentsService.getComptaInfo(userId).subscribe((res) => {
       this.comptaDetails = res
+
       this.loading = false;
 
       return res
+    })
+  }
+  onAccountingClick(){
+    this.dialogRef.open(AcademyDocumentsComponent, {
+      width: '40vw',
+      data:{id_student : this.studentDetails[0]?.id_student,title:'Acounting',fileType: FileType.ACCOUNTING}
+    })
+  }
+
+  onAchievmentCertificateClick(){
+    this.dialogRef.open(AcademyDocumentsComponent, {
+      width: '40vw',
+      data:{id_student : this.studentDetails[0]?.id_student,title:'Achievement certificates',fileType: FileType.ACHIEVEMENT_CERTIFIATE}
     })
   }
 

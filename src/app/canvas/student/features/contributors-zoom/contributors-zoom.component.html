@@ -3,7 +3,7 @@
   <app-d-table
     [rows]="displayedRows"
     [columnsDefinition]="displayedColumns"
-    [loading] = "loading"
+
     [searchable]="true">
 
     <div filters>
@@ -17,3 +17,5 @@
     </div>
   </app-d-table>
 </div>
+
+<mat-spinner *ngIf="loading" class="m-auto loading-spinner"></mat-spinner>
